@@ -155,7 +155,10 @@ nav a:hover {
     text-align: center;
     margin-top: var(--mobile-margin);
     margin-bottom: var(--mobile-margin);
-    
+}
+
+.post h1 a {
+    color: inherit;
 }
 
 .post a {
