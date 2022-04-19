@@ -47,8 +47,6 @@ img {
 
 /* HEADING */
 
-.far-right { display: none; }
-
 .heading {
     background-color: var(--content-color);
 }
@@ -230,36 +228,40 @@ nav a:hover {
 
 /* FOOTER */
 
-.footer div {
+body > footer {
+    padding: var(--mobile-margin);
+    color: var(--subtext-color);
+}
+
+.avatar { display: none; }
+
+body > footer div {
     text-align: center;
 }
 
-.footer {
-    padding: var(--mobile-margin)
-}
 
-.footer nav { 
+body > footer nav { 
     justify-content: center;
     text-align: center;
 }
-.footer ul {
+body > footer ul {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.footer nav li {
+body > footer nav li {
     list-style: none;
     display: inline;
 }
 
-.footer nav a {
+body > footer nav a {
     display: inline;
     color: var(--subtext-color);
     font-size: 1rem;
 }
 
-.footer nav li a:hover {
+body > footer nav li a:hover {
     color: var(--accent-color);
     background-color: inherit;
 }
