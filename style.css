@@ -3,7 +3,7 @@
         1. 1000px no matter the height, or
         2. 700px as long as your device is tall enough
 */
-@media ((min-width:1000px) or ((min-width: 700px) and (min-height:475px))) {
+@media only screen and (min-width: 700px) and (min-height:475px) {
 
     :root{
         --far-width: 10%;
@@ -179,7 +179,7 @@
     
 }
 
-@media ((min-width:1000px)) {
+@media (min-width:1000px) {
     :root{
         --far-width: 100px;
         --info-width: 250px;
