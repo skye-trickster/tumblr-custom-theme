@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
         <link rel="icon" type="image/png" href="icons/favicon16x16.png" sizes="16x16">
         <link rel="icon" type="image/png" href="icons/favicon32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="icons/favicon96x96.png" sizes="96x96">
 
+        <link rel="stylesheet" href="style-mobile.css">
         <link rel="stylesheet" href="style.css">
         <title>Dragon's Ascent</title>
 
@@ -16,22 +17,15 @@
 
     <body>
         <header class="heading">
-            <div class="far-right">
-                <img src="images/avatar.png" class="avatar"/>
-
-                <nav>
-                    <a href="#">Home</a>
-                    <a href="#">Archive</a>
-                    <a href="#">Inspired by Kustomer</a>
-                    <a href="#">Credit</a>
-                </nav>
-            </div>
 
             <div class="information">
-                <h1>Dragon's Ascent</h1>
+                <div class="title">
+                    <h1>Dragon's Ascent</h1>
+                </div>
+
                 <div>
                     <div class="header-image">
-                        <img src="images/header-image.webp"/>
+                        <img src="images/header-image.webp" alt="heading image"/>
                     </div>
 
                     <div class="description">
@@ -43,7 +37,7 @@
                     <ul>
                         <li>
                             <a href="#">
-                                <div>
+                                <div class="nav-left">
                                     <i class="fa fa-solid fa-house-user"></i>
                                     <p>Home</p>
                                 </div>
@@ -52,7 +46,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <div>
+                                <div class="nav-left">
                                     <i class="fa fa-solid fa-envelope"></i>
                                     <p>Ask</p>
                                 </div>
@@ -61,7 +55,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <div>
+                                <div class="nav-left">
                                     <i class="fa fa-solid fa-user"></i>
                                     <p>Muses</p>
                                 </div>
@@ -70,7 +64,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <div>
+                                <div class="nav-left">
                                     <i class="fa fa-solid fa-book"></i>
                                     <p>Rules</p>
                                 </div>
@@ -81,19 +75,23 @@
                 </nav>
             </div>
             <div class="tumblr-controls-desktop">
-                <form action="search" method="get">
-                    <input type="text" name="q" placeholder="Search mxstball"/>
-                    <input type="submit" value="Search"/>
-                </form>
+
+                <div class="search">
+
+                    <form action="search" method="get">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="q" placeholder="Search mxstball"/>
+                    </form>
+                </div>
 
                 <div class="controls">
-                    <i class="fa-solid fa-house-chimney"></i>
-                    <i class="fa-solid fa-gear"></i>
+                    <i class="fa-solid fa-house-chimney fa-lg"></i>
+                    <i class="fa-solid fa-gear fa-lg"></i>
                 </div> 
             </div>
         </header>
         <main>
-            <section>
+            <div>
                 <article class="post">
                     <header>
                         <div class="post-info">
@@ -128,13 +126,53 @@
                         </ul>
 
                         <div class="post-controls">
-                            <button class="fa fa-solid fa-folder-closed"></button>
-                            <button class="fa fa-regular fa-heart"></button>
-                            <button class="fa fa-solid fa-retweet"></button>
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
                         </div> 
                     </footer>
                 </article>
-            </section>
+                <article class="post">
+                    <header>
+                        <div class="post-info">
+                            <i class="icon fa-regular fa-circle"></i>
+                            <div>
+                                <a href="#">3 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+                            <div class="pin">
+                                <i class="fa-solid fa-thumbtack"></i>
+                            </div>
+                        </div>
+                        <h1><a href="#">[RAINBOW ROAD]</a></h1>
+                    </header>
+                    <div class="content">
+                        <p>
+                            “Alright. Giovanni will stay under Interpol custody for now… Mewtwo and Nami as well. Ethan will ask Lyra, Silver, and Venus for cooperation. Cynthia will ask Bede to be a lookout and alert every regional champion and have them keep an eye out. Thorough investigations for every Rocket hideout will be performed by Scallion and Zinnia. I will work with Interpol to research what’s going on as well. Finally, Red, Blue, and Leaf… You’ll be there to squash any resemblance of Rainbow Rocket that you can find. They’re bound to run into one of you eventually.”
+                        </p>
+                    </div>
+                    <footer>
+                        <ul class="post-tags">
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+            </div>
         </main>
         <div class="sidenav">
             <div class="updates">
@@ -204,20 +242,24 @@
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div>&copy; 2022</div>
+        <footer>
+            
+            <div class="avatar">
+                <img src="images/avatar.png" alt="avatar"/>
+            </div>
+
             <nav>
                 <ul>
-
+                    <li>
+                        &copy; 2022
+                    </li>
                     <li>
                         <a href="#">Home</a>
                     </li>
                     <li>
                         <a href="#">Archive</a>
                     </li>
-                    <li>
-                        <a href="#">Kustomer</a>
-                    </li>
+
                     <li>
                         <a href="#">Credit</a>
                     </li>
