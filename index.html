@@ -12,6 +12,7 @@
         <title>Dragon's Ascent</title>
 
         <script src="https://kit.fontawesome.com/b293defc25.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
 
 
@@ -85,9 +86,10 @@
                 </div>
 
                 <div class="controls">
-                    <i class="fa-solid fa-house-chimney fa-lg"></i>
-                    <i class="fa-solid fa-gear fa-lg"></i>
-                    <i class="fa-solid fa-bars fa-lg"></i>
+                    <div class="additonal-controls">
+                        <div class="fa-solid fa-house-chimney fa-xl"></div><div class="fa-solid fa-gear fa-xl"></div>
+                    </div>
+                    <i id="menu" class="menu fa-solid fa-bars fa-xl"></i>
                 </div> 
             </div>
         </header>
@@ -209,7 +211,7 @@
                 </article>
             </div>
         </main>
-        <div class="sidenav">
+        <div id="sidenav" class="sidenav">
             <div class="updates">
                 <h2><a href="#">Blog Updates</a></h2>
                 <p>
@@ -302,4 +304,6 @@
             </nav>
         </footer>
     </body>
+    <script src="index.js" ></script>
+    <noscript>This page requires JavaScript.</noscript>
 </html>

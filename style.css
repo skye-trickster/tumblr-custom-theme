@@ -10,6 +10,8 @@
         --info-width: 25%;
         --content-margin: calc(var(--info-width) + var(--far-width));
         --sidebar-width: 350px;
+        --header-height: 80px;
+        --avatar-border: 2px solid var(--main-text-color, var(--main-text-color));
     }
 
 
@@ -23,9 +25,9 @@
     }
 
     .title {
-        height: 80px;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        height: var(--header-height);
+        padding-top: var(--mobile-margin);
+        padding-bottom: var(--mobile-margin);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -38,7 +40,7 @@
     }
 
     .description {
-        padding: 5px;
+        padding: var(--small-margin);
         text-align: left;
     }
 
@@ -61,8 +63,8 @@
     @media screen and (min-height: 575px) {
 
         .navigation a {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: var(--standard-margin);
+            padding-bottom: var(--standard-margin);
         }
 
         .navigation ul {
@@ -73,13 +75,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-right: 15px;
-            padding-left: 15px;
+            padding-right: var(--mobile-margin);
+            padding-left: var(--mobile-margin);
         }
     
         .navigation .fa, .nav-left p {
             display: inline;
-            padding-left: 15px;
+            padding-left: var(--mobile-margin);
     
             height: 100%;
         }
@@ -117,7 +119,7 @@
         align-items: center;
     }
 
-    .search { padding-left: 10px;}
+    .search { padding-left: var(--standard-margin);}
     .search form {
         display: block;
     }
@@ -127,8 +129,13 @@
         justify-content: flex-end;
     }
 
-    .controls * {
-        margin-right: 10px;
+    .controls > .menu {
+        margin-right: var(--large-margin);
+        margin-left: var(--small-margin);
+    }
+
+    .controls > .additonal-controls > * {
+        margin-right: var(--small-margin);
     }
 
     main {
@@ -171,24 +178,29 @@
         padding: 0;
         padding-top: var(--mobile-margin);
         padding-bottom: var(--mobile-margin);
+        align-items: center;
     }
 
     .avatar {
         display: block;
         width: 75%;
-        border-radius: 30px;
-        align-self: center;
+
     }
 
     .avatar img {
         width: 100%;
-        border: 2px solid var(--main-text-color, white);
+        border: var(--avatar-border);
         border-radius: 50%;
     }
 
     body > footer nav ul { 
         display: flex;
         flex-direction: column;
+    }
+
+    body > footer nav li {
+        width: 100%;
+        display: block;
     }
 
     .sidenav {
@@ -203,7 +215,7 @@
     }
 
     .sidenav > div {
-        border-bottom: var(--border-thick);
+        /*border-bottom: var(--border-thick);*/
         background-color: var(--side-bg-color);
     }
 
@@ -221,7 +233,7 @@
 
     .updates h2 {
         display: block;
-        padding: 10px;
+        padding: var(--standard-margin);
         text-align: center;
         border-bottom: var(--border-thick);
         text-decoration: none;
@@ -250,12 +262,12 @@
 
     .trend-title .icon {
         display: inline-block;
-        padding: 5px;
+        padding: var(--small-margin);
         height: 100%;
     }
 
     .trend-title h2 {
-        padding-left: 10px;
+        padding-left: var(--standard-margin);
     }
 
     .trend-tags {
@@ -298,11 +310,11 @@
         :root{
             --far-width: 100px;
             --info-width: 250px;
-            --main-top-margin: calc(30px + 5%);
+            --max-main-margin: 105px;
         }
     
         main {
-            margin-top: var(--main-top-margin);
+            margin-top: calc(5% + 30px);
         }
     
         .post-list {
@@ -311,27 +323,27 @@
             margin: auto;
         }
         .post { 
-            border-radius: 5px;
+            border-radius: var(--small-margin);
         }
     }
     
     @media (min-width:1500px) {
-
+        
         .search, .controls {
             flex-grow: revert;
         }
 
         .search {
-            flex-basis: calc(100% - 350px);
+            flex-basis: calc(100% - var(--sidebar-width));
         }
 
         .controls {
-            flex-basis: 350px;
+            flex-basis: var(--sidebar-width);
             border-left: var(--border-thick);
         }
 
         main {
-            margin-top: 105px;
+            margin-top: var(--max-main-margin);
             margin-right: var(--sidebar-width);
         }
 
