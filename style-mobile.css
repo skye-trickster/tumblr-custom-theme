@@ -3,6 +3,7 @@
     --main-bg-color: red;
     --accent-color: #56bc8a;
     --accent-color-dark: #0f2017;
+    --accent-color-light: forestgreen;
     --main-text-color: white;
     --main-far-color: black;
     --side-bg-color: #121212;
@@ -32,6 +33,13 @@
 *:visited{
     color: inherit;
 }
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover { text-decoration: underline;}
 
 body {
     font-size: var(--font-size);
@@ -106,6 +114,7 @@ img {
     padding-bottom: var(--mobile-margin);
 }
 
+
 nav a {
     text-decoration: none;
     display: inline-block;
@@ -117,6 +126,7 @@ nav a {
 
 nav a:hover {
     background-color: var(--accent-color-dark);
+    text-decoration: none;
     color: var(--accent-color);
     transition: 0.5s;
 }
@@ -129,9 +139,13 @@ nav a:hover {
 
 /* MAIN CONTENT: MOBILE */
 .post {
-    padding-top: calc(var(--mobile-margin) + 10px);
     background-color: var(--content-color);
-    border-bottom: var(--border-standard);
+    border-bottom: var(--border-thick);
+}
+
+.post img {
+    width: auto;
+    max-width: 100%;
 }
 
 .post header, .post .content {
@@ -142,6 +156,9 @@ nav a:hover {
     color: var(--subtext-color);
     font-weight: 700;
     font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .post-info .icon{
@@ -163,30 +180,52 @@ nav a:hover {
 
 .post h1 a {
     color: inherit;
-}
-
-.post a {
     text-decoration: none;
 }
 
 .post .content {
     text-align: left;
-    line-height: 136%;
     padding-top: 0px;
-    margin-bottom: var(--mobile-margin);
+    padding-bottom: var(--large-margin);
 }
+
+.content a {
+    color: var(--accent-color);
+}
+
+.content > figure {
+    border: none;
+    margin: 0 0 1em 0;
+}
+
+.content p {
+    margin: 0 0 1em 0;
+}
+
+.content h2 {
+    margin: 1rem 0;
+}
+
+.content h2:first-of-type { margin-top: 0px; }
 
 .post-tags {
     flex: 2;
     list-style: none;
+    border-right: var(--border-thick);
+    padding-right: var(--small-margin);
 }
 
 .post-tags li {
     display: inline-block;
+
+}
+
+.post-tags li > a {
     color: var(--subtext-color);
 }
 
-.post-tags li:hover {
+.post-tags li a:hover {
+    text-decoration: none;
     color: var(--accent-color);
     transition: 0.5s;
 }
@@ -195,13 +234,12 @@ nav a:hover {
     border-top: var(--border-standard);
     display: flex;
     justify-content: space-between;
-    align-items: center;
     background-color: var(--border-color);
     padding: var(--mobile-margin);
 }
 
 .post-controls {
-    border-left: var(--border-standard);
+
     
     flex: 1;
     display: flex;
@@ -220,7 +258,6 @@ nav a:hover {
 }
 
 .pin { 
-    float: right;
     margin-right: var(--mobile-margin);
 }
 
