@@ -3,7 +3,6 @@
     --main-bg-color: red;
     --accent-color: #56bc8a;
     --accent-color-dark: #0f2017;
-    --accent-color-light: forestgreen;
     --main-text-color: white;
     --main-far-color: black;
     --side-bg-color: #121212;
@@ -51,6 +50,11 @@ body {
 
 img {
     width: 100%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADING */
@@ -135,6 +139,8 @@ nav a:hover {
 }
 
 .tumblr-controls-desktop { display: none; }
+
+#menu:hover { cursor: pointer; }
 
 /* MAIN CONTENT: MOBILE */
 .post {
@@ -239,7 +245,6 @@ nav a:hover {
 
 .post-controls {
 
-    
     flex: 1;
     display: flex;
     justify-content: space-evenly;

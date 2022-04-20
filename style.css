@@ -129,8 +129,13 @@
         justify-content: flex-end;
     }
 
-    .controls * {
-        margin-right: var(--standard-margin);
+    .controls > .menu {
+        margin-right: var(--large-margin);
+        margin-left: var(--small-margin);
+    }
+
+    .controls > .additonal-controls > * {
+        margin-right: var(--small-margin);
     }
 
     main {
@@ -210,7 +215,7 @@
     }
 
     .sidenav > div {
-        border-bottom: var(--border-thick);
+        /*border-bottom: var(--border-thick);*/
         background-color: var(--side-bg-color);
     }
 
