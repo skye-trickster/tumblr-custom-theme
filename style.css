@@ -142,7 +142,7 @@
     }
 
     .post header{
-        border-bottom: var(--border-thick);
+        border-bottom: var(--border-standard);
         padding-bottom: var(--mobile-margin);
     }
 
@@ -316,6 +316,20 @@
     }
     
     @media (min-width:1500px) {
+
+        .search, .controls {
+            flex-grow: revert;
+        }
+
+        .search {
+            flex-basis: calc(100% - 350px);
+        }
+
+        .controls {
+            flex-basis: 350px;
+            border-left: var(--border-thick);
+        }
+
         main {
             margin-top: 105px;
             margin-right: var(--sidebar-width);
