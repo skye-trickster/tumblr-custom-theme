@@ -10,6 +10,8 @@
         --info-width: 25%;
         --content-margin: calc(var(--info-width) + var(--far-width));
         --sidebar-width: 350px;
+        --header-height: 80px;
+        --avatar-border: 2px solid var(--main-text-color, var(--main-text-color));
     }
 
 
@@ -23,9 +25,9 @@
     }
 
     .title {
-        height: 80px;
-        padding-top: 15px;
-        padding-bottom: 15px;
+        height: var(--header-height);
+        padding-top: var(--mobile-margin);
+        padding-bottom: var(--mobile-margin);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -38,7 +40,7 @@
     }
 
     .description {
-        padding: 5px;
+        padding: var(--small-margin);
         text-align: left;
     }
 
@@ -73,13 +75,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-right: 15px;
-            padding-left: 15px;
+            padding-right: var(--mobile-margin);
+            padding-left: var(--mobile-margin);
         }
     
         .navigation .fa, .nav-left p {
             display: inline;
-            padding-left: 15px;
+            padding-left: var(--mobile-margin);
     
             height: 100%;
         }
@@ -171,18 +173,18 @@
         padding: 0;
         padding-top: var(--mobile-margin);
         padding-bottom: var(--mobile-margin);
+        align-items: center;
     }
 
     .avatar {
         display: block;
         width: 75%;
-        border-radius: 30px;
-        align-self: center;
+
     }
 
     .avatar img {
         width: 100%;
-        border: 2px solid var(--main-text-color, white);
+        border: var(--avatar-border);
         border-radius: 50%;
     }
 
@@ -250,7 +252,7 @@
 
     .trend-title .icon {
         display: inline-block;
-        padding: 5px;
+        padding: var(--small-margin);
         height: 100%;
     }
 
@@ -311,7 +313,7 @@
             margin: auto;
         }
         .post { 
-            border-radius: 5px;
+            border-radius: var(--small-margin);
         }
     }
     
@@ -322,11 +324,11 @@
         }
 
         .search {
-            flex-basis: calc(100% - 350px);
+            flex-basis: calc(100% - var(--sidebar-width));
         }
 
         .controls {
-            flex-basis: 350px;
+            flex-basis: var(--sidebar-width);
             border-left: var(--border-thick);
         }
 
