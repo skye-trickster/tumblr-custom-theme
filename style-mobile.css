@@ -14,6 +14,7 @@
     --font-size: 15px;
     --large-margin: 20px;
     --mobile-margin: 15px;
+    --standard-margin: 10px;
     --small-margin: 5px;
     --nav-color: #333;
     --border-color: rgba(255, 255, 255, 0.05);
@@ -281,13 +282,14 @@ body > footer nav {
 }
 body > footer ul {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 body > footer nav li {
     list-style: none;
-    display: inline;
+    text-align: center;
 }
 
 body > footer nav a {

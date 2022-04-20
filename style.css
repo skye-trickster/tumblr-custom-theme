@@ -63,8 +63,8 @@
     @media screen and (min-height: 575px) {
 
         .navigation a {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: var(--standard-margin);
+            padding-bottom: var(--standard-margin);
         }
 
         .navigation ul {
@@ -119,7 +119,7 @@
         align-items: center;
     }
 
-    .search { padding-left: 10px;}
+    .search { padding-left: var(--standard-margin);}
     .search form {
         display: block;
     }
@@ -130,7 +130,7 @@
     }
 
     .controls * {
-        margin-right: 10px;
+        margin-right: var(--standard-margin);
     }
 
     main {
@@ -193,6 +193,11 @@
         flex-direction: column;
     }
 
+    body > footer nav li {
+        width: 100%;
+        display: block;
+    }
+
     .sidenav {
         float:right;
         top: 80px;
@@ -223,7 +228,7 @@
 
     .updates h2 {
         display: block;
-        padding: 10px;
+        padding: var(--standard-margin);
         text-align: center;
         border-bottom: var(--border-thick);
         text-decoration: none;
@@ -257,7 +262,7 @@
     }
 
     .trend-title h2 {
-        padding-left: 10px;
+        padding-left: var(--standard-margin);
     }
 
     .trend-tags {
@@ -300,11 +305,11 @@
         :root{
             --far-width: 100px;
             --info-width: 250px;
-            --main-top-margin: calc(30px + 5%);
+            --max-main-margin: 105px;
         }
     
         main {
-            margin-top: var(--main-top-margin);
+            margin-top: calc(5% + 30px);
         }
     
         .post-list {
@@ -318,7 +323,7 @@
     }
     
     @media (min-width:1500px) {
-
+        
         .search, .controls {
             flex-grow: revert;
         }
@@ -333,7 +338,7 @@
         }
 
         main {
-            margin-top: 105px;
+            margin-top: var(--max-main-margin);
             margin-right: var(--sidebar-width);
         }
 
