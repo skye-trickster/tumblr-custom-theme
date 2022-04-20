@@ -11,6 +11,7 @@
     --content-color: #222;
     --font: "Helvetica Neue";
     --font-size: 15px;
+    --extreme-margin: 30px;
     --large-margin: 20px;
     --mobile-margin: 15px;
     --standard-margin: 10px;
@@ -21,6 +22,7 @@
     --hover-color: #111;
     --border-standard: 1px solid var(--border-color);
     --border-thick: 1px solid var(--border-desktop-color);
+    --max-post-list-width: 650px;
 }
 
 * {
@@ -157,6 +159,19 @@ nav a:hover {
     padding: var(--mobile-margin);
 }
 
+.content blockquote {
+    border-left: var(--border-thick);
+    border-bottom: var(--border-thick);
+    border-radius: 0 0 0 0.5em;
+    padding-left: var(--large-margin);
+    padding-right: var(--large-margin);
+    margin-bottom: var(--standard-margin);
+}
+
+.content * {
+    margin-top: var(--standard-margin);
+}
+
 .post-info {
     color: var(--subtext-color);
     font-weight: 700;
@@ -199,7 +214,7 @@ nav a:hover {
     color: var(--accent-color);
 }
 
-.content > figure {
+.content figure {
     border: none;
     margin: 0 0 1em 0;
 }
@@ -264,6 +279,37 @@ nav a:hover {
 
 .pin { 
     margin-right: var(--mobile-margin);
+}
+
+/* PAGINATION */
+.pagination {
+    display: flex;
+    justify-content: space-around;
+    margin: var(--extreme-margin);
+    max-width: var(--max-post-list-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page {
+    display: flex;
+    border: 3px solid var(--accent-color);
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: var(--small-margin);
+    border-radius: 0.3em;
+}
+
+.page:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--accent-color-dark);
+    background-color: var(--accent-color);
+    transition: 0.5s;
 }
 
 .sidenav { display: none; }

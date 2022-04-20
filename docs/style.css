@@ -158,6 +158,10 @@
         margin-top: var(--small-margin);
     }
 
+    .post header .icon {
+        display: inline-block;
+    }
+
     .post .content { 
         padding-top: var(--mobile-margin);
     }
@@ -321,7 +325,7 @@
     
         .post-list {
             width: 100%;
-            max-width: 650px;
+            max-width: var(--max-post-list-width);
             margin: auto;
         }
         .post { 
