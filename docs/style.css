@@ -285,6 +285,8 @@
         flex-grow: 1;
     }
 
+    .trend-tags a:link { color: var(--main-text-color);}
+
     .trend-tags a:nth-child(2n+1) {
         border-left: none;
     }
