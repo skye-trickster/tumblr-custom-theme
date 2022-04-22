@@ -424,3 +424,20 @@ body > footer nav li a:hover {
 .tooltip:hover {
     text-decoration: none;
 }
+
+/* PHOTO TYPE*/
+.featured-photo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.featured-photo * { margin: 0;}
+
+.featured-photo figcaption { 
+    width: 100%;
+    border-bottom: var(--border-thick);
+    border-top: none;
+    padding: 3px;
+    text-align: center;
+}
