@@ -17,6 +17,7 @@
 
     .information {
         position: fixed;
+        z-index: 100;
         height: 100%;
         width: var(--info-width);
         margin-left:var(--far-width);
@@ -105,6 +106,7 @@
         display: flex;
         width: calc(100% - var(--content-margin));
         position: fixed;
+        z-index: 100;
         background-color: var(--content-color);
         border-bottom: var(--border-thick);
         margin-left: var(--content-margin);
@@ -158,6 +160,10 @@
         margin-top: var(--small-margin);
     }
 
+    .post header .icon {
+        display: inline-block;
+    }
+
     .post .content { 
         padding-top: var(--mobile-margin);
     }
@@ -170,7 +176,6 @@
         justify-content: space-between;
         
         width: var(--far-width);
-        position: fixed;
         height: 100%;
         background-color: var(--main-far-color);
         height: 100%;
@@ -209,6 +214,7 @@
         right: 0;
         width: var(--sidebar-width);
         position: fixed;
+        position: 100;
         border-left: var(--border-thick);
         background-color: var(--content-color);
         height: 100%;
@@ -321,7 +327,7 @@
     
         .post-list {
             width: 100%;
-            max-width: 650px;
+            max-width: var(--max-post-list-width);
             margin: auto;
         }
         .post { 
