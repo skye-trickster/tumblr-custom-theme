@@ -208,13 +208,24 @@
         display: block;
     }
 
-    .sidenav {
-        float:right;
-        top: 80px;
-        right: 0;
-        width: var(--sidebar-width);
+    aside {
+        display: flex;
         position: fixed;
-        position: 100;
+        right: 0px;
+        top: 80px;
+        height: 100%;
+    }
+
+    .menu {
+        display: flex;
+        padding: var(--small-margin);
+        height: 30px;
+        align-items: center;
+    }
+
+
+    .sidenav {
+        width: var(--sidebar-width);
         border-left: var(--border-thick);
         background-color: var(--content-color);
         height: 100%;
