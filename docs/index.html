@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<!-- TODO: switch variables out by ctrl+F "{". should be able to find it-->
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+        <link rel="icon" type="image/png" href="icons/favicon16x16.png" sizes="16x16" /> <!-- {Favicon}-->
+        <link rel="icon" type="image/png" href="icons/favicon32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="icons/favicon96x96.png" sizes="96x96" />
+
+        <link rel="stylesheet" type="text/css" media="all" href="style-mobile.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="style.css" />
+        <title>Dragon's Ascent</title> <!--TODO: INSERT {Title}-->
+
+        <script src="https://kit.fontawesome.com/b293defc25.js" crossorigin="anonymous"></script>
+
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+
+
+    <body>
+
+        <header class="heading">
+
+            <div class="information">
+                <div class="title">
+                    <h1>Dragon's Ascent</h1>
+                </div>
+
+                <div>
+                    <div class="header-image">
+                        <img src="images/header-image.webp" alt="heading image"/>
+                    </div>
+
+                    <div class="description"> <!--{Description}-->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In imperdiet efficitur massa. Nullam nec mi laoreet, eleifend ligula sed, vestibulum sem. Morbi ornare condimentum tortor.</p>
+                        <p class="secondary writer"><i class="fa-regular fa-circle-user"></i> Written by Skye</p>
+                    </div>
+                </div>
+                <nav class="navigation"> <!-- {block:Pages} for custom page navigation-->
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="nav-left">
+                                    <i class="fa fa-solid fa-house-user"></i>
+                                    <p>Home</p>
+                                </div>
+                                <div class="fa fa-solid fa-arrow-right"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="nav-left">
+                                    <i class="fa fa-solid fa-envelope"></i>
+                                    <p>Ask</p>
+                                </div>
+                                <div class="fa fa-solid fa-arrow-right"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="nav-left">
+                                    <i class="fa fa-solid fa-user"></i>
+                                    <p>Muses</p>
+                                </div>
+                                <div class="fa fa-solid fa-arrow-right"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="nav-left">
+                                    <i class="fa fa-solid fa-book"></i>
+                                    <p>Rules</p>
+                                </div>
+                                <div class="fa fa-solid fa-arrow-right"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="tumblr-controls-desktop">
+
+                <div class="search">
+
+                    <form action="search" method="get">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="q" placeholder="Search mxstball"/>
+                    </form>
+                </div>
+
+                <div class="controls">
+                    <div class="additonal-controls">
+                        <div class="fa-solid fa-house-chimney fa-xl"></div><div class="fa-solid fa-gear fa-xl"></div>
+                    </div>
+                </div> 
+            </div>
+        </header>
+
+        <main>
+            <div class="post-list">
+
+                <!-- {POSTS} -->
+                <!-- Post list example-->
+                <!-- {block:Text} Text Post Example -->
+
+                <article class="post">
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">3 weeks ago</a>
+                            </div>
+                            <div class="pin">
+                                <i class="fa-solid fa-thumbtack"></i>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="content">
+                        <figure data-orig-width="100" data-original-width="100">
+                            <img src="https://64.media.tumblr.com/43d480c18de0fbc8a6ebcb2683d726c4/bccb26e8bc054d31-37/s100x200/0c9ff18b654df69db11bda27afbf34a399855639.png" alt="Zin" />
+                        </figure>
+
+                        <p>
+                            "We literally went camping for a vacation three months ago, dad."
+                        </p>
+                        <h2>
+                            Ah the memories of travel and battles.
+                        </h2>
+                        <p>
+                            "WE JUST FOUGHT TOGETHER YESTERDAY!"
+                        </p>
+                        
+                        <h2>
+                            Ah how I miss the good old days.
+                        </h2>
+
+                        <p>
+                            "…" Zinnia is getting mad.
+                        </p>
+
+                        <figure data-orig-width="100" data-original-width="100">
+                            <img src="https://64.media.tumblr.com/f2f31ed424156babac290ff31853bc37/bccb26e8bc054d31-03/s100x200/c849f3a08473ea3293cd29480343a703c467ecb1.png" alt="image" />
+                        </figure>
+                        <p>
+                            Rayquaza nuzzled and licked her face.
+                        </p>
+                        <h2>
+                            …but even then, I would not trade the current day for the world, for I am with the most loving and caring family to date.
+                        </h2>
+
+                        <p>
+                            "…" Zinnia is now blushing. "…I love you too, you stupid old dragon."
+                        </p>
+
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Text} End Text Post Example -->
+
+
+                <!-- {block:Text} Editable Reblogs Post Example -->
+                <article class="post post-text"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">3 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                        <h1><a href="#">[RAINBOW ROAD]</a></h1>
+                    </header>
+                    <div class="content">
+                        <p><a href="#">skypxllar</a></p>
+                        <blockquote>
+                            <figure>
+                                <img src="https://64.media.tumblr.com/ef23afa695a11848890b5e643f71feaf/314baeeabd799f49-56/s100x200/d6367e1d414ee814328abb9cbcaf0a69708df4bc.jpg" alt="red">
+                            </figure>
+                            <p>"…." Red shook his head. Even when he thought that he'd never hear Team Rocket again, here they are. Guess this is his life, now.</p>
+                        </blockquote>
+                        <figure data-orig-width="100" data-original-width="100">
+                            <img src="https://64.media.tumblr.com/413b568877208995381c3334344e0d66/4134fe5e5fb5ed69-04/s100x200/4cfbe11c585264ffa812bd3da5f7b90e0e8e18ea.png" alt="heidi" />
+                        </figure>
+
+                        <p>
+                            "Alright. Giovanni will stay under Interpol custody for now… Mewtwo and Nami as well. Ethan will ask Lyra, Silver, and Venus for cooperation. Cynthia will ask Bede to be a lookout and alert every regional champion and have them keep an eye out. Thorough investigations for every Rocket hideout will be performed by Scallion and Zinnia. I will work with Interpol to research what’s going on as well. Finally, Red, Blue, and Leaf… You’ll be there to squash any resemblance of Rainbow Rocket that you can find. They’re bound to run into one of you eventually."
+                        </p>
+
+                        <p><a class="readmore" href="#">Keep reading</a></p> <!--{block:More}-->
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Text} Editable Reblogs Post Example -->
+
+
+                <!-- {block:Reblog} Reblog Post Example -->
+                <article class="post post-text"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">3 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+                        <div class="reblog-item">
+                            <a href="#" class="reblogger">skypxllar</a>
+                            <div class="reblog-body">
+
+                                <figure>
+                                    <img alt="image" src="https://64.media.tumblr.com/bdfec7c9eeaf703812be6146604f951f/a1f0d7ba9ed2b0d1-30/s100x200/5f8f25cac8d32c7899a959c6c05b96e09232e8a2.png" />
+                                </figure>
+                                <p>//guess who has a surprise for everyone when it's finally time to show off~</p>
+                            </div>
+
+                        </div>
+
+                        <div class="reblog-item">
+                            <a href="#" class="reblogger">skypxllar:</a>
+                            <div class="reblog-body">
+
+                                <figure>
+                                    <img alt="image" src="https://64.media.tumblr.com/bdfec7c9eeaf703812be6146604f951f/a1f0d7ba9ed2b0d1-30/s100x200/5f8f25cac8d32c7899a959c6c05b96e09232e8a2.png" />
+                                </figure>
+                                <p>//Another one~</p>
+                            </div>
+
+
+                        </div>
+                        <figure data-orig-width="100" data-original-height="100">
+                            <img src="https://64.media.tumblr.com/2ff5a3cd2f5eb4bfa7d3072bca1debf1/7fe720cb1675cb0b-68/s540x810/d124fbe96547a341fb6f322ec7f5f53b7b2f9082.png" alt="heidi" />
+                        </figure>
+
+                        <p>
+                            //oh i'm so starting to regret this. Just did a quick test and I realized just how much additional work that I'm going to have to do in order to go from a quick and cool thing to reality.
+                        </p>
+
+                        <p><a class="readmore" href="#">Keep reading</a></p> <!--{block:More}-->
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Reblog} End Reblog Post Example -->
+
+
+                <!-- {block:Photo} Photo Post Example -->
+                <article class="post post-photo"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">3 weeks ago</a>
+                            </div>
+
+                        </div>
+
+                    </header>
+
+                    <div class="content">
+                        <figure class="featured-photo">
+                            <img class="featured" alt="rayquaza" src="https://64.media.tumblr.com/e403c7dc375d3524dc5ab834318cc66b/afd16af0f6d60dfe-f2/s500x750/68baf032103ae3b4c5fb80b7b0a34758fdf8bb70.gif" />
+                            <figcaption>Rayquaza</figcaption>
+                        </figure>
+                        <div class="post-body">
+                            <h2>
+                                Lorekeeper Zinnia, Pokémon OmegaRuby and AlphaSapphire
+                            </h2>
+                            <p>
+                                You know I'm already on iconing and gifing this episode.
+                            </p>
+                        </div>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Photo} Photo Post Example -->
+
+                <!-- {block:Photoset} Photoset Post Example -->
+                <article class="post post-photoset"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">5 weeks ago</a>
+                            </div>
+
+                        </div>
+
+                    </header>
+
+                    <div class="content">
+                        <div class="photoset">
+                            <figure class="photo">
+                                <img class="featured" alt="zinnia" src="https://64.media.tumblr.com/3b28e6d575a168b5036f7e58eb86f9f7/841e0eeb9f618533-ea/s500x750/9e80deb59d648ab649853c40449d0890667dfbaf.gif" />
+                            </figure>
+                            <figure class="photo">
+                                <img class="featured" alt="raiden" src="https://c.tenor.com/M5bMo8aZnRAAAAAd/raiden-shogun.gif" />
+                            </figure>
+                            <figure class="photo">
+                                <img class="featured" alt="hod" src="https://loginportal.funnyjunk.com/thumbnails/comments/On+the+bright+side+at+least+you+dodged+dr+fetus+_7bab3cf341d1b8f6acb1075a55c584de.gif" />
+                            </figure>
+                            <figure class="photo">
+                                <img class="featured" alt="mythra" src="https://ssb.wiki.gallery/images/2/26/SSBUMythraTaunt3.gif" />
+                            </figure>
+
+
+                        </div>
+                        <div class="post-body">
+                            <h2>
+                                Best girls.
+                            </h2>
+                            <p>
+                                Don't @ me
+                            </p>
+                        </div>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Photoset} Photoset Post Example -->
+
+                <!-- {block:Quote} Quote Post Example -->
+                <article class="post post-quote"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">3 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+                        <blockquote class="quote">
+                            <h2>"When you see a duck you have to hit it with a shovel."</h2>
+                            <h3>-SlyFoxHound</h3>
+                        </blockquote>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Quote} Quote Post Example -->
+
+                <!-- {block:Link} Link Post Example -->
+                <article class="post post-link"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">6 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+                        <div class="link-wrapper">
+                            <a href="https://soundcloud.com/sky-trickster">
+                                <div class="link-thumbnail">
+                                    <img src="https://64.media.tumblr.com/104616a2579225b0f4562d2ebc4a1e7d/e8467ea4764e38c7-64/s1280x1920/a7cf6ce31b2716404917ab9e0c4eaa73ba959962.jpg" alt="soundcloud"/>
+                                </div>
+                                <div class="link-details">
+                                    <div class="link-title">Sky Trickster</div>
+                                    <div class="link-exerpt">Just someone that wants to learn new things.</div>
+                                    <div class="link-author">By: no one</div>
+                                    <div class="link-host">From: <span class="link-source">soundcloud.com</span></div>
+                                </div>
+
+                            </a>
+                        </div>
+                        <p>Wow that was way too big</p>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Link} Link Post Example -->
+
+                <!-- {block:Chat} Chat Post Example -->
+                <article class="post post-chat"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">6 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+                        <ul class="conversation">
+                            <li class="chat-item chat-odd">
+                                <span class="chat-label">Me:</span>
+                                <span class="chat-text">I should test this out</span>
+                            </li>
+                            <li class="chat-item chat-even">
+                                <span class="chat-label">Also me:</span>
+                                <span class="chat-text">Me too</span>
+                            </li>
+                            <li class="chat-item chat-odd">
+                                <span class="chat-label">Me:</span>
+                                <span class="chat-text">And a second test</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Chat} Chat Post Example -->
+
+                <!-- {block:Audio} Audio Post Example -->
+                <article class="post post-audio"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">6 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+                        <div class="audio-embed">
+                            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1216500565&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/sky-trickster" title="Sky Trickster" target="_blank" style="color: #cccccc; text-decoration: none;">Sky Trickster</a> · <a href="https://soundcloud.com/sky-trickster/pokemon-masters-battle-cynthia-8-bit-vrc6" title="Pokémon Masters - Battle! Cynthia [8-bit, VRC6]" target="_blank" style="color: #cccccc; text-decoration: none;">Pokémon Masters - Battle! Cynthia [8-bit, VRC6]</a></div>
+                        </div>
+                        <p>Vibes</p>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Audio} Audio Post Example -->
+
+                <!-- {block:Video} Video Post Example -->
+                <article class="post post-video"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">6 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+                        <div class="video-embed">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/mVDAhGo2Zrc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p>More vibes</p>
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Video} Video Post Example -->
+
+                <!-- {block:Answer} Answer Post Example -->
+                <article class="post post-answer"> 
+                    <header>
+                        <div class="post-info">
+
+                            <div>
+                                <a href="#">6 weeks ago</a>
+                                <div class="fa-solid fa-retweet"></div>
+                                <a href="#">skypxllar</a>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="content">
+
+                        <div class="question">
+                            <div class="ask-contents">
+                                <div class="asker">skypxllar asked:</div>
+                                <div class="asker-question">Here is my question: Who are you</div>
+                            </div>
+
+                            <img class="asker-avatar" src="https://64.media.tumblr.com/1e3e360891fda24931609e38352e32c4/4c1332aa368af1f8-51/s96x96u_c1/c1cb954312bb28018b3ef1c5272b0dc9acd6c753.png" alt="">
+                        </div>
+                    
+                        <div class="answer">
+                            <img class="answerer-avatar" src="images/avatar.png" alt="">
+                            <div class="answer-contents">
+                                <div class="answerer">mxstball answered:</div>
+                                <div class="answerer-answer">I'm you but stronger</div>
+                            </div>
+                        </div>
+
+                        <div class="replies">
+                            This would be a reply if there were no answerer.
+                        </div>
+
+                    </div>
+                    <footer>
+                        <ul class="post-tags"> <!--{block:HasTags}-->
+                            <li><a href="#">#lorem</a></li> <!--{block:Tags}<a class="post-tag" href="{TagURL}">#{Tag}</a> {/block:Tags}-->
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                            <li><a href="#">#lorem</a></li>
+                        </ul>
+
+                        <div class="post-controls">
+                            <button class="fa fa-solid fa-folder-closed fa-lg"></button>
+                            <button class="fa fa-regular fa-heart fa-lg"></button>
+                            <button class="fa fa-solid fa-retweet fa-lg"></button>
+                        </div> 
+                    </footer>
+                </article>
+                <!-- {/block:Answer} Answer Post Example -->
+
+
+
+            </div> <!-- /post-list -->
+
+            <!-- Navigation -->
+            <div class="pagination">
+                <a class="page previous-page">
+                    <p>Previous</p>
+                </a>
+                <a class="page next-page">
+                    <p>Next</p>
+                </a>
+            </div>
+        </main>
+
+        <aside>
+            <div id="menu" class="menu">
+                <i class="fa-solid fa-bars fa-xl"></i>
+            </div>
+
+
+            <div id="sidenav" class="sidenav">
+                <div class="updates">
+                    <h2><a href="#">Blog Updates</a></h2>
+                    <p>
+                        Suspendisse sed tempus ipsum. Quisque posuere lectus ac ante fermentum, et euismod lectus sodales. Nulla facilisi. Vivamus nec lobortis odio, id ullamcorper turpis.
+                    </p>
+                </div>
+                <div class="trending">
+                    <div class="trend-title">
+                        <i class="icon fa-solid fa-chevron-up"></i>
+                        <h2>Guest Muses</h2>
+                    </div>
+                    <div class="trend-tags">
+                        <a href="#">
+                            <h3>red</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>blue</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>leaf</h3>
+                            <h4>see posts</h4>
+                        </a>
+                    </div>
+                </div>
+                <div class="trending">
+                    <div class="trend-title">
+                        <i class="icon fa-solid fa-chevron-up"></i>
+                        <h2>Primary Muses</h2>
+                    </div>
+                    <div class="trend-tags">
+                        <a href="#">
+                            <h3>muse zinnia</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse rayquaza</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse latias</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse arceus</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse cynthia</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse hilda</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse zygarde</h3>
+                            <h4>see posts</h4>
+                        </a>
+                        <a href="#">
+                            <h3>muse kathy</h3>
+                            <h4>see posts</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <footer>
+            
+            <div class="avatar">
+                <img src="images/avatar.png" alt="avatar"/>
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        &copy; 2022
+                    </li>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Archive</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Credit</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+    <script src="index.js" ></script>
+    <script src="lightbox.js"></script>
+    <noscript>This page requires JavaScript.</noscript>
+
+</html>
