@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.0
+    VERSION: 1.0.0a
     RELEASE DATE: 1 May 2022
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
 
@@ -80,12 +80,16 @@
                 --sidebar-width: {select:Sidebar Size};
             }
             
-            .post-body * {
+            .post-body > * {
                 margin-bottom: 10px;
             }
             
-            .post-body ul {
+            .post-body ul, .post-body ol {
                 padding-left: 40px;
+            }
+            
+            .post-controls {
+                align-items: center;
             }
             
             .description a {
@@ -242,7 +246,7 @@
 
                     <form action="search" method="get">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" name="q" placeholder="Search mxstball"/>
+                        <input type="text" name="q" placeholder="Search"/>
                     </form>
                 </div>
 
@@ -285,9 +289,6 @@
                         {block:Photo}
                         <figure class="featured-photo">
                             <img class="featured" alt="{PhotoAlt}" src="{PhotoURL-HighRes}" />
-                            {block:Caption}
-                            <figcaption>{Caption}</figcaption>
-                            {/block:Caption}
                         </figure>
                         {/block:Photo}
                         {block:Photoset}
