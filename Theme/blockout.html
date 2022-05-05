@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.0a
-    RELEASE DATE: 1 May 2022
+    VERSION: 1.0.1
+    RELEASE DATE: 5 May 2022
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
     TEXT ICON CREDIT: FONT AWESOME
     
@@ -77,8 +77,8 @@
         <link rel="shortcut icon" type="image/png" href="{Favicon}"/> <!-- {Favicon}-->
 
         <!-- Mobile and normal stylesheets-->
-        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/98Rrb6wo2/style-mobile.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/eo5rb6wnj/style.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/iFbrbfm6l/style-mobile.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/nJOrbfm6p/style.css" />
         <title>{Title}</title>
         
         <style>
@@ -101,150 +101,13 @@
                 {/block:IfNotWhiteBorderColor}
             }
             
-            .post-body > * {
-                margin-bottom: 10px;
-            }
-            
-            .post-body ul, .post-body ol {
-                padding-left: 40px;
-            }
-            
-            .post-controls {
-                align-items: center;
-            }
-            
-            .description a {
-                color: var(--accent-color);
-            }
-        
-            .post-tags li {
-                margin-right: 5px;
-            }
-            
-            .fa-retweet {
-                margin: 0 3px;
-            }
-            
-            .featured-photo figcaption > *:last-child {
-                margin-bottom: 0;
-            }
-            
-            .photoset img {
-                height: 150px;
-                object-fit: cover;
-            }
-            
-            .photoset .photo {
-                width: 30%;
-                margin-left: 3px;
-                margin-right: 3px;
-                display: flex;
-                justify-content: center;
-            }
-            .quote > h2, .quote > h3 {
-                margin: 0;
-            }
-    
-            .audio-embed, .video-embed {
-                display: flex;
-                justify-content: center;
-            }
-            
-            .asker .asker {
-                display: inline;
-                font-size: 1em;
-            }
-            
-            .answerer .answerer {
-                display: inline;
-                font-size: 1em;
-            }
-            .tumblr-controls-desktop, .information {
-                z-index: 3;
-            }
-            
-            .page:visited {
-                color:var(--accent-color);
-            }
-            
-            .page:visited:hover {
-                color: var(--accent-color-dark);
-            }
-            
-            .title:hover {
-                text-decoration: none;
-            }
-            
-            .title:link {
-                color: var(--main-text-color);
-            }
-            
             .post footer {
-                border-radius: 0 0 var(--small-margin) var(--small-margin);
                 {block:IfLightenFooterColor}                
                 background-color: rgba(255, 255, 255, {select:Post Footer Transparency});
                 {/block:IfLightenFooterColor}
                 {block:IfNotLightenFooterColor}
                 background-color: rgba(0, 0, 0, {select:Post Footer Transparency});
                 {/block:IfNotLightenFooterColor}
-            }
-
-            nav a:visited {
-                color: var(--subtext-color);
-            }
-            
-            nav a:visited:hover {
-                color: var(--accent-color);
-            }
-            
-            .avatar img {
-                border-color: {color:Avatar Border Color};
-            }
-            
-            .like_button {
-                display: flex;   
-                margin: 0 var(--standard-margin);
-            }
-            
-            
-            /* NOTE INFORMATIOIN */
-            .note-info {
-                display: flex;
-                flex-direction: column;
-                margin-bottom: var(--large-margin);
-            }
-
-            .note-count {
-                background-color: var(--nav-color);
-                text-align: center;
-                font-size: 1.2em;
-                font-weight: bold;
-                padding: var(--standard-margin);
-                border-radius: var(--small-margin) var(--small-margin) 0 0;
-            }
-
-            .notes {
-                background-color: var(--content-color);
-                list-style: none;
-                padding: var(--standard-margin);
-                border-radius: 0 0 var(--small-margin) var(--small-margin);
-            }
-
-            .note {
-                display: flex;
-                align-items: center;
-            }
-
-            .note .action a:visited {
-                color: var(--accent-color);
-            }
-            
-            @media only screen and (min-width: 700px) and (min-height: 475px) {
-                .post {
-                    margin-top: 0;
-                    margin-bottom: var(--large-margin);
-                    border: var(--border-standard);
-                }
             }
             {CustomCSS}
         </style>

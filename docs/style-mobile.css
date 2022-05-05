@@ -18,6 +18,7 @@
     --tip-x: calc(-1 * var(--standard-margin) - 5px);
     --tip-y: 10%;
     --small-margin: 5px;
+    --tiny-margin: 3px;
     --nav-color: #333;
     --border-color: rgba(255, 255, 255, 0.05);
     --border-desktop-color: rgba(255, 255, 255, 0.2);
@@ -62,6 +63,9 @@ img {
 
 /* HEADING */
 
+.title:hover { text-decoration: none;}
+.title:link { color:var(--main-text-color); }
+
 .heading {
     background-color: var(--content-color);
 }
@@ -82,6 +86,10 @@ img {
     padding-top: var(--mobile-margin);
     max-width: 100%;
     text-align: justify;
+}
+
+.description a {
+    color: var(--accent-color);
 }
 
 .writer {
@@ -137,6 +145,14 @@ nav a:hover {
     transition: 0.5s;
 }
 
+nav a:visited {
+    color: var(--subtext-color);
+}
+
+nav a:visited:hover {
+    color: var(--accent-color);
+}
+
 .secondary {
     color: var(--subtext-color)
 }
@@ -154,6 +170,7 @@ nav a:hover {
 .post img {
     width: auto;
     max-width: 100%;
+    object-fit: contain;
 }
 
 .post header, .post .content {
@@ -230,6 +247,14 @@ nav a:hover {
 
 .content h2:first-of-type { margin-top: 0; }
 
+.post-body > * {
+    margin-bottom: 10px;
+}
+
+.post-body ul, .post-body ol {
+    padding-left: 40px; /* To keep the original ordered list */
+}
+
 .post-tags {
     flex: 2;
     list-style: none;
@@ -239,6 +264,7 @@ nav a:hover {
 
 .post-tags li {
     display: inline-block;
+    margin-right: var(--small-margin);
 
 }
 
@@ -265,6 +291,7 @@ nav a:hover {
     flex: 1;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .post-controls .fa {
@@ -278,8 +305,47 @@ nav a:hover {
     cursor:pointer;
 }
 
+.fa-retweet {
+    margin: 0 var(--tiny-margin);
+}
+
 .pin { 
     margin-right: var(--mobile-margin);
+}
+
+/* NOTE INFORMATIOIN */
+.note-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--large-margin);
+    margin-top: var(--large-margin)
+}
+
+.note-count {
+    background-color: var(--nav-color);
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: var(--standard-margin);
+    border-radius: 0;
+}
+
+.notes {
+    background-color: var(--content-color);
+    list-style: none;
+    padding: var(--standard-margin);
+
+    border-radius: 0;
+}
+
+.note {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--small-margin);
+}
+
+.note .action a:visited {
+    color: var(--accent-color);
 }
 
 /* PAGINATION */
@@ -312,6 +378,9 @@ nav a:hover {
     background-color: var(--accent-color);
     transition: 0.5s;
 }
+
+.page:visited { color: var(--accent-color)}
+.page:visited:hover { color: var(--accent-color-dark)}
 
 .sidenav { display: none; }
 
@@ -408,6 +477,10 @@ body > footer nav li a:hover {
     text-align: center;
 }
 
+.featured-photo figcaption > *:last-child {
+    margin-bottom: 0;
+}
+
 /* PHOTOSET TYPE*/
 
 .photoset {
@@ -419,9 +492,16 @@ body > footer nav li a:hover {
 
 .photoset .photo {
     height: 100%;
-    width: 33%;
-    margin: 0 0%;
+    width: 30%;
+    margin: 0 var(--tiny-margin);
     flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.photoset img {
+    height: 150px;
+    object-fit: cover;
 }
 
 .setLink {
@@ -443,6 +523,10 @@ body > footer nav li a:hover {
 .post-quote blockquote {
     padding: var(--standard-margin);
     text-align: center;
+}
+
+.quote > h2, .quote > h3 {
+    margin: 0;
 }
 
 /* LINK TYPE */
@@ -519,6 +603,11 @@ body > footer nav li a:hover {
 }
 
 /* AUDIO POSTS */
+.audio-embed, .video-embed {
+    display: flex;
+    justify-content: center;
+}
+
 .audio-embed {
     background-color: var(--nav-color);
     margin-bottom: var(--standard-margin);
@@ -529,7 +618,15 @@ body > footer nav li a:hover {
 }
 
 /* ANSWER POSTS */
+.asker .asker {
+    display: inline;
+    font-size: 1em;
+}
 
+.answerer .answerer {
+    display: inline;
+    font-size: 1em;
+}
 
 .answer, .question {
     display: flex;
@@ -613,4 +710,10 @@ body > footer nav li a:hover {
 
 aside {
     display: none;
+}
+
+/* EXTRA TUMBLR FEATURES */
+.like_button {
+    display: flex;
+    margin: 0 var(--standard-margin);
 }

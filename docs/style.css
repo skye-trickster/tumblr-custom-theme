@@ -17,7 +17,7 @@
 
     .information {
         position: fixed;
-        z-index: 100;
+        z-index: 3;
         height: 100%;
         width: var(--info-width);
         margin-left:var(--far-width);
@@ -106,7 +106,7 @@
         display: flex;
         width: calc(100% - var(--content-margin));
         position: fixed;
-        z-index: 100;
+        z-index: 3;
         background-color: var(--content-color);
         border-bottom: var(--border-thick);
         margin-left: var(--content-margin);
@@ -146,7 +146,7 @@
     }
 
     .post {
-        margin-top: var(--large-margin);
+        margin-bottom: var(--large-margin);
         border: var(--border-standard);
     }
 
@@ -167,6 +167,20 @@
     .post .content { 
         padding-top: var(--mobile-margin);
     }
+
+    .post footer {
+        border-radius: 0 0 var(--small-margin) var(--small-margin);
+    }
+
+    .note-count {
+        border-radius: var(--small-margin) var(--small-margin) 0 0;
+    }
+
+    .notes {
+        border-radius: 0 0 var(--small-margin) var(--small-margin);
+    }
+
+
 
     body > footer { 
         display: flex;
