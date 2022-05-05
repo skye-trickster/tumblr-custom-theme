@@ -4,10 +4,11 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.0a
-    RELEASE DATE: 1 May 2022
+    VERSION: 1.0.1
+    RELEASE DATE: 5 May 2022
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
-
+    TEXT ICON CREDIT: FONT AWESOME
+    
     Please do not remove the credit.
 -->
 <html lang="en">
@@ -23,8 +24,22 @@
         <meta name="color:Text Color" content="white">
         <meta name="color:Subtext Color" content="#808080">
         <meta name="color:Nav Color" content="#333333">
-        <meta name="color:Header Border Color" content="white">
-
+        <meta name="color:Content Color" content="#222222">
+        <meta name="color:Avatar Border Color" content="white">
+        <meta name="color:Blog Footer Color" content="black">
+        <meta name="if:White Like and Reblog" content="1">
+        <meta name="if:White Border Color" content="1">
+        
+        <!-- FOOTER TRANSPARENCY -->
+        <meta name="if:Lighten Footer Color" content="1">
+        <meta name="select:Post Footer Transparency" content="0.05" title="5% (Default)">
+        <meta name="select:Post Footer Transparency" content="0.1" title="10%">
+        <meta name="select:Post Footer Transparency" content="0.25" title="25%">
+        <meta name="select:Post Footer Transparency" content="0.5" title="50%">
+        <meta name="select:Post Footer Transparency" content="0.75" title="75%">
+        <meta name="select:Post Footer Transparency" content="0.9" title="90%">
+        <meta name="select:Post Footer Transparency" content="1" title="100%">
+        
         <!-- FONT SIZE -->
         <meta name="select:Font Size" content="15px" title="15px (Default)">
         <meta name="select:Font Size" content="14px" title="14px">
@@ -47,24 +62,23 @@
         <!-- ADDITIONAL TEXT -->
         <meta name="if:Show Subtext" content="1">
         <meta name="text:Subtext" content="Written by Skye">
-        
         <!-- SIDENAV VARIABLES -->
         <meta name="if:Show Sidebar" content="1">
         <meta name="text:Updates Title" content="Updates">
         <meta name="text:Updates Tag" content="Tag">
         <meta name="text:Updates Text" content="Feel free to use this to post updates!">
-
         <meta name="text:Guest Tag Title" content="Guest Tags">
         <meta name="text:Guest Tags" content="red, blue, leaf">
-        
         <meta name="text:Main Tag Title" content="Main Tags">
         <meta name="text:Main Tags" content="venusaur, squirtle, charizard">
+        
+        <meta name="if:Copyright Years" content="1">
         
         <link rel="shortcut icon" type="image/png" href="{Favicon}"/> <!-- {Favicon}-->
 
         <!-- Mobile and normal stylesheets-->
-        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/98Rrb6wo2/style-mobile.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/eo5rb6wnj/style.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/iFbrbfm6l/style-mobile.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/nJOrbfm6p/style.css" />
         <title>{Title}</title>
         
         <style>
@@ -78,91 +92,26 @@
                 --nav-color: {color:Nav Color};
                 --max-post-list-width: {select:Post Size};
                 --sidebar-width: {select:Sidebar Size};
+                --content-color: {color:Content Color};
+                --main-far-color: {color:Blog Footer Color};
+                
+                {block:IfNotWhiteBorderColor}
+                --border-color: rgba(0, 0, 0, 0.05);
+                --border-desktop-color: rgba(0, 0, 0, 0.2);
+                {/block:IfNotWhiteBorderColor}
             }
             
-            .post-body > * {
-                margin-bottom: 10px;
-            }
-            
-            .post-body ul, .post-body ol {
-                padding-left: 40px;
-            }
-            
-            .post-controls {
-                align-items: center;
-            }
-            
-            .description a {
-                color: var(--accent-color);
-            }
-        
-            .post-tags li {
-                margin-right: 5px;
-            }
-            
-            .fa-retweet {
-                margin: 0 3px;
-            }
-            
-            .featured-photo figcaption > *:last-child {
-                margin-bottom: 0;
-            }
-            
-            .photoset img {
-                height: 150px;
-                object-fit: cover;
-            }
-            
-            .photoset .photo {
-                width: 30%;
-                margin-left: 3px;
-                margin-right: 3px;
-                display: flex;
-                justify-content: center;
-            }
-            .quote > h2, .quote > h3 {
-                margin: 0;
-            }
-    
-            .audio-embed, .video-embed {
-                display: flex;
-                justify-content: center;
-            }
-            
-            .asker .asker {
-                display: inline;
-                font-size: 1em;
-            }
-            
-            .answerer .answerer {
-                display: inline;
-                font-size: 1em;
-            }
-            .tumblr-controls-desktop, .information {
-                z-index: 3;
-            }
-            
-            .page:visited {
-                color:var(--accent-color);
-            }
-            
-            .page:visited:hover {
-                color: var(--accent-color-dark);
-            }
-            
-            .title:hover {
-                text-decoration: none;
-            }
-            
-            nav a:visited {
-                color: var(--subtext-color);
-            }
-            
-            .avatar img {
-                border-color: {color:Header Border Color};
+            .post footer {
+                {block:IfLightenFooterColor}                
+                background-color: rgba(255, 255, 255, {select:Post Footer Transparency});
+                {/block:IfLightenFooterColor}
+                {block:IfNotLightenFooterColor}
+                background-color: rgba(0, 0, 0, {select:Post Footer Transparency});
+                {/block:IfNotLightenFooterColor}
             }
             {CustomCSS}
         </style>
+
     </head>
 
 
@@ -206,7 +155,7 @@
                         <li>
                             <a href="/ask">
                                 <div class="nav-left">
-                                    <i class="fa-solid fa-circle-question"></i>
+                                    <i class="fa fa-solid fa-circle-question"></i>
                                     <p>Ask</p>
                                 </div>
                                 <div class="fa fa-solid fa-arrow-right"></div>
@@ -268,7 +217,7 @@
                         <div class="post-info">
 
                             <div>
-                                <a href="{Permalink}">{TimeAgo}</a>
+                                <a href="{Permalink}" title="{ShortDayOfWeek}, {DayOfMonth} {ShortMonth} {Year}">{TimeAgo}</a>
                                 {block:RebloggedFrom}
                                     <div class="fa-solid fa-retweet"> </div>
                                     <a href="{ReblogParentURL}">{ReblogParentName}</a>
@@ -388,6 +337,7 @@
 
 
                     </div>
+{block:Date}
                     <footer>
 
                         <ul class="post-tags"> 
@@ -400,11 +350,36 @@
 
 
                         <div class="post-controls">
+                        <div class="like_button">
+                            {block:IfWhiteLikeandReblog}
                             {LikeButton color="white"}
+                            {/block:IfWhiteLikeandReblog}
+                            {block:IfNotWhiteLikeandReblog}
+                            {LikeButton}
+                            {/block:IfNotWhiteLikeandReblog}
+                            <span>{NoteCount}</span>
+                        </div>
+                            {block:IfWhiteLikeandReblog}
                             {ReblogButton color="white"}
+                            {/block:IfWhiteLikeandReblog}
+                            {block:IfNotWhiteLikeandReblog}
+                            {ReblogButton}
+                            {/block:IfNotWhiteLikeandReblog}
                         </div> 
                     </footer>
+{/block:Date}
                 </article>
+                <!-- POST NOTES -->
+                {block:PostNotes} 
+                <div class="note-info">
+                {block:NoteCount}
+                <div class="note-count">
+                    {NoteCountWithLabel}
+                </div>
+                {/block:NoteCount}
+                    {PostNotes-64}    
+                </div>
+                {/block:PostNotes}
 
                 {/block:Posts}
 
@@ -468,9 +443,11 @@
 
             <nav>
                 <ul>
+                    {block:IfCopyrightYears}
                     <li>
                         &copy; {CopyrightYears}
                     </li>
+                    {block:IfCopyrightYears}
                     <li>
                         <a href="/">Home</a>
                     </li>
@@ -479,7 +456,7 @@
                     </li>
 
                     <li>
-                        <a target="_blank" href="https://github.com/skye-trickster/tumblr-custom-theme">Credit</a>
+                        <a target="_blank" href="https://skyetrick-blockout.tumblr.com/">Credit</a>
                     </li>
                 </ul>
             </nav>
@@ -491,6 +468,8 @@
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+
 
     <!--Menu Toggle-->
     <script src="https://static.tumblr.com/7ijwq6x/dg3rb6wo6/menutoggle.js" ></script>
@@ -534,7 +513,6 @@
             
     </script>
 
-    <!-- Custom Lightbox -->
     <script>
         let showDescription = false
         {block:ShowDescription}
@@ -546,147 +524,10 @@
         {/block:ifShowSubtext}
         
         document.querySelector(".description").style.display = showDescription ? "block" : "none";
-        
-        function prepareImage({ src }) {
-            const img = document.createElement("img")
-            img.src = src;
-            img.style.cssText = `
-            width: initial;
-            max-height: 75%;
-            max-width: 75%;
-            border: 2px solid var(--accent-color);
-            box-shadow: -3px 3px 7px black;
-            `;
-            return img;
-        }
-
-        function showLightbox(images, index = 0) {
-            let figure = startLightbox()
-
-            let left = document.createElement("a")
-
-            let right = document.createElement("a")
-
-            let img = prepareImage(images[index])
-
-            const setControls = () => {
-                if (index === 0) {
-                    left.innerHTML = " "
-                    left.classList.remove("setLink")
-                }
-                else {
-                    left.innerHTML = "<p>\<-</p>"
-                    left.classList.add("setLink")
-                }
-
-                if (index >= images.length - 1) {
-                    right.innerHTML = " "
-                    right.classList.remove("setLink")
-                }
-                else {
-                    right.innerHTML = "<p>-\></p>"
-                    right.classList.add("setLink")
-                }
-            }
-            setControls()
-
-            const nextImage = () => {
-                if (images.length > 1 && index < images.length - 1) {
-                    index = index + 1
-                    img.src = images[index].src;
-                }
-                setControls()
-            }
-
-            const prevImage = () => {
-                if (images.length > 1 && index > 0)
-                    img.src = images[--index].src
-                setControls()
-            }
-
-            img.addEventListener("click", (event) => {
-
-                const half = event.target.x + (event.target.width) / 2
-
-                if (event.clientX < half) prevImage()
-                else nextImage()
-            })
-
-            left.addEventListener("click", prevImage)
-            right.addEventListener("click", nextImage)
-
-            figure.appendChild(left);
-            figure.appendChild(img);
-            figure.appendChild(right);
-        }
-
-        function startLightbox() {
-            const figure = document.createElement("figure");
-            figure.style.cssText = `
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                position: fixed;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                top: 0;
-                left: 0;
-                z-index: 1000;
-                padding: 2%;
-            `;
-            figure.data = {}
-            figure.data.photos = []
-            const body = document.querySelector('body')
-            body.appendChild(figure);
-            const overflow = body.style.overflow;
-            body.style.overflow = "hidden";
-
-            function hidefigure(figure) {
-                body.style.overflow = overflow
-                if (figure.parentNode)
-                    figure.parentNode.removeChild(figure)
-                document.removeEventListener("keydown", escapeKey, figure)
-            }
-
-            function escapeKey(event) { return event.key === "Escape" && hidefigure(figure) }
-
-            figure.addEventListener("click", event => event.target === figure && hidefigure(event.target))
-            document.addEventListener("keydown", escapeKey, figure)
-            return figure
-        }
-
-        function figurePreview(figure) {
-            const caption = figure.querySelector("figcaption");
-            const image = figure.querySelector("img");
-
-            image.addEventListener("load", (event) => {
-                caption.width = `image.clientWidth`;
-            })
-            image.addEventListener("mouseover", () => { image.style.cursor = `pointer` });
-            image.addEventListener("click", (img) => showLightbox([image]));
-
-        }
-
-        function photosetPreview(photoset) {
-            const images = photoset.querySelectorAll("img");
-
-            images.forEach((image, index) => {
-                image.addEventListener("mouseover", () => { image.style.cursor = `pointer` });
-                image.addEventListener("click", (img) => showLightbox(images, index));
-            })
-        }
-
-        function main() {
-            const images = document.querySelectorAll(".post-photo .featured-photo");
-            images.forEach(figurePreview);
-
-            const photosets = document.querySelectorAll(".photoset");
-            photosets.forEach(photosetPreview);
-        }
-
-        document.addEventListener("DOMContentLoaded", main);
     </script>
+
+    <!-- Custom Lightbox -->
+    <script src="https://static.tumblr.com/7ijwq6x/zqWrbfk30/lightbox.js"></script>
 
     <script>
 
