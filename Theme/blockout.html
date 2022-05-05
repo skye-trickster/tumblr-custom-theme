@@ -28,7 +28,18 @@
         <meta name="color:Avatar Border Color" content="white">
         <meta name="color:Blog Footer Color" content="black">
         <meta name="if:White Like and Reblog" content="1">
-
+        <meta name="if:White Border Color" content="1">
+        
+        <!-- FOOTER TRANSPARENCY -->
+        <meta name="if:Lighten Footer Color" content="1">
+        <meta name="select:Post Footer Transparency" content="0.05" title="5% (Default)">
+        <meta name="select:Post Footer Transparency" content="0.1" title="10%">
+        <meta name="select:Post Footer Transparency" content="0.25" title="25%">
+        <meta name="select:Post Footer Transparency" content="0.5" title="50%">
+        <meta name="select:Post Footer Transparency" content="0.75" title="75%">
+        <meta name="select:Post Footer Transparency" content="0.9" title="90%">
+        <meta name="select:Post Footer Transparency" content="1" title="100%">
+        
         <!-- FONT SIZE -->
         <meta name="select:Font Size" content="15px" title="15px (Default)">
         <meta name="select:Font Size" content="14px" title="14px">
@@ -83,6 +94,11 @@
                 --sidebar-width: {select:Sidebar Size};
                 --content-color: {color:Content Color};
                 --main-far-color: {color:Blog Footer Color};
+                
+                {block:IfNotWhiteBorderColor}
+                --border-color: rgba(0, 0, 0, 0.05);
+                --border-desktop-color: rgba(0, 0, 0, 0.2);
+                {/block:IfNotWhiteBorderColor}
             }
             
             .post-body > * {
@@ -163,6 +179,16 @@
                 color: var(--main-text-color);
             }
             
+            .post footer {
+                border-radius: 0 0 var(--small-margin) var(--small-margin);
+                {block:IfLightenFooterColor}                
+                background-color: rgba(255, 255, 255, {select:Post Footer Transparency});
+                {/block:IfLightenFooterColor}
+                {block:IfNotLightenFooterColor}
+                background-color: rgba(0, 0, 0, {select:Post Footer Transparency});
+                {/block:IfNotLightenFooterColor}
+            }
+
             nav a:visited {
                 color: var(--subtext-color);
             }
@@ -218,11 +244,11 @@
                     margin-top: 0;
                     margin-bottom: var(--large-margin);
                     border: var(--border-standard);
-                    margin-bottom: var(--standard-margin);
                 }
             }
             {CustomCSS}
         </style>
+
     </head>
 
 
@@ -468,9 +494,7 @@
                             {block:IfNotWhiteLikeandReblog}
                             {LikeButton}
                             {/block:IfNotWhiteLikeandReblog}
-                            {block:NoteCount}
-                                <span>{NoteCount}</span>
-                            {/block:NoteCount}
+                            <span>{NoteCount}</span>
                         </div>
                             {block:IfWhiteLikeandReblog}
                             {ReblogButton color="white"}
@@ -581,6 +605,8 @@
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+
 
     <!--Menu Toggle-->
     <script src="https://static.tumblr.com/7ijwq6x/dg3rb6wo6/menutoggle.js" ></script>
@@ -665,7 +691,7 @@
                     left.classList.remove("setLink")
                 }
                 else {
-                    left.innerHTML = "<p>\<-</p>"
+                    left.innerHTML = "<i class=\"fa fa-solid fa-arrow-left\"></i>"
                     left.classList.add("setLink")
                 }
 
@@ -674,7 +700,7 @@
                     right.classList.remove("setLink")
                 }
                 else {
-                    right.innerHTML = "<p>-\></p>"
+                    right.innerHTML = "<i class=\"fa fa-solid fa-arrow-right\"></i>"
                     right.classList.add("setLink")
                 }
             }
