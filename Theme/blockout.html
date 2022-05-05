@@ -169,6 +169,45 @@
             .avatar img {
                 border-color: {color:Header Border Color};
             }
+            /* NOTE INFORMATIOIN */
+            .note-info {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: var(--large-margin);
+            }
+
+            .note-count {
+                background-color: var(--nav-color);
+                text-align: center;
+                font-size: 1.2em;
+                font-weight: bold;
+                padding: var(--standard-margin);
+                border-radius: var(--small-margin) var(--small-margin) 0 0;
+            }
+
+            .notes {
+                background-color: var(--content-color);
+                list-style: none;
+                padding: var(--standard-margin);
+                border-radius: 0 0 var(--small-margin) var(--small-margin);
+            }
+
+            .note {
+                display: flex;
+                align-items: center;
+            }
+
+            .note .action a:visited {
+                color: var(--accent-color);
+            }
+
+            @media only screen and (min-width: 700px) and (min-height: 475px) {
+                .post {
+                    margin-top: 0;
+                    margin-bottom: var(--large-margin);
+                    border: var(--border-standard);
+                }
+            }
             {CustomCSS}
         </style>
     </head>
@@ -413,7 +452,18 @@
                         </div> 
                     </footer>
                 </article>
-
+                {block:PostNotes} 
+                <div class="note-info">
+                {block:NoteCount}
+                <div class="note-count">
+                    {NoteCountWithLabel}
+                </div>
+                {/block:NoteCount}
+                    
+                    {PostNotes-64}    
+                </div>
+                
+                {/block:PostNotes}
                 {/block:Posts}
 
             </div> <!-- /post-list -->
