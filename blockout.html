@@ -78,8 +78,8 @@
         <link rel="shortcut icon" type="image/png" href="{Favicon}"/> <!-- {Favicon}-->
 
         <!-- Mobile and normal stylesheets-->
-        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/iFbrbfm6l/style-mobile.css" />
-        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/nJOrbfm6p/style.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/opLrl0ift/style-mobile.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="https://static.tumblr.com/7ijwq6x/j5nrl0ikd/style.css" />
         <title>{Title}</title>
         
         <style>
@@ -103,48 +103,6 @@
                 {/block:IfNotWhiteBorderColor}
             }
 
-            .navigation ul {
-                display: block;
-                overflow: scroll;
-                padding: 0;
-                white-space: nowrap;
-                text-align: center;
-            }
-            
-            .navigation ul li {
-                display: inline-block;
-            }
-            
-            .navigation ul li a {
-                padding: var(--mobile-margin);
-            }
-            
-            @media only screen and (min-width: 700px) and (min-height: 475px) {
-                .navigation ul {
-                    display: block;
-                    white-space: initial;
-                    overflow: initial;   
-                }
-                
-                .navigation ul li {
-                    display: list-item;
-                    margin: 0;
-                }
-                
-                .navigation ul li a {
-                    padding: var(--standard-margin) var(--mobile-margin);
-                }
-            }
-            
-            /*.tmblr-iframe { display:none!important }*/
-            .content blockquote {
-                padding-bottom: var(--standard-margin);
-            }
-            
-            .content br {
-                margin: 0;
-            }
-            
             .post footer {
                 {block:IfLightenFooterColor}                
                 background-color: rgba(255, 255, 255, {select:Post Footer Transparency});
