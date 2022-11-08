@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.1
-    RELEASE DATE: 5 May 2022
+    VERSION: 1.0.2
+    RELEASE DATE: 7 November 2022
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
     TEXT ICON CREDIT: FONT AWESOME
     
@@ -101,6 +101,48 @@
                 --border-color: rgba(0, 0, 0, 0.05);
                 --border-desktop-color: rgba(0, 0, 0, 0.2);
                 {/block:IfNotWhiteBorderColor}
+            }
+
+            .navigation ul {
+                display: block;
+                overflow: scroll;
+                padding: 0;
+                white-space: nowrap;
+                text-align: center;
+            }
+            
+            .navigation ul li {
+                display: inline-block;
+            }
+            
+            .navigation ul li a {
+                padding: var(--mobile-margin);
+            }
+            
+            @media only screen and (min-width: 700px) and (min-height: 475px) {
+                .navigation ul {
+                    display: block;
+                    white-space: initial;
+                    overflow: initial;   
+                }
+                
+                .navigation ul li {
+                    display: list-item;
+                    margin: 0;
+                }
+                
+                .navigation ul li a {
+                    padding: var(--standard-margin) var(--mobile-margin);
+                }
+            }
+            
+            /*.tmblr-iframe { display:none!important }*/
+            .content blockquote {
+                padding-bottom: var(--standard-margin);
+            }
+            
+            .content br {
+                margin: 0;
             }
             
             .post footer {
