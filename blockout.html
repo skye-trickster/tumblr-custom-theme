@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.2
-    RELEASE DATE: 2 January 2023
+    VERSION: 1.0.2a
+    RELEASE DATE: 12 January 2023
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
     TEXT ICON CREDIT: FONT AWESOME
     
@@ -1595,7 +1595,15 @@
             <div id="sidenav" class="sidenav">
                 <div class="updates">
                     {block:IfUpdatesTitle}
-                    <h2><a href="/tagged/{text:Updates Tag}">{text:Updates Title}</a></h2>
+                    <h2>
+                        {block:IfUpdatesTag}
+                        <a href="/tagged/{text:Updates Tag}">
+                        {/block:IfUpdatesTag}
+                            {text:Updates Title}
+                        {block:IfUpdatesTag}
+                        </a>
+                        {/block:IfUpdatesTag}
+                    </h2>
                     {/block:IfUpdatesTitle}
                     {block:IfUpdatesText}
                     <p>{text:Updates Text}</p>
