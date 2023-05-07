@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.2a
-    RELEASE DATE: 12 January 2023
+    VERSION: 1.0.3
+    RELEASE DATE: 6 May 2023
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
     TEXT ICON CREDIT: FONT AWESOME
     
@@ -195,7 +195,7 @@
 
             .navigation ul {
                 display: block;
-                overflow: scroll;
+                overflow: auto;
                 padding: 0;
                 white-space: nowrap;
                 text-align: center;
@@ -260,7 +260,7 @@
                 object-fit: contain;
             }
 
-            .post header, .post .content {
+            .post header {
                 padding: var(--mobile-margin);
             }
 
@@ -329,6 +329,12 @@
                 border: none;
                 margin: 0 0 1em 0;
             }
+            
+            .content figure.tmblr-full {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
             .content p {
                 margin: 0 0 1em 0;
@@ -340,12 +346,21 @@
 
             .content h2:first-of-type { margin-top: 0; }
 
+            .post-body {
+                padding: var(--mobile-margin);
+                margin-top: 0;
+            }
+
             .post-body > * {
-                margin-bottom: 10px;
+                margin-bottom: var(--standard-margin);
             }
 
             .post-body ul, .post-body ol {
                 padding-left: 40px; /* To keep the original ordered list */
+            }
+            
+            .reblog-item .post-body {
+                padding-top: 0;
             }
 
             .post-tags {
@@ -545,15 +560,32 @@
             }
 
             /* POST TYPES */
+            .post-body {
+                padding: var(--mobile-margin);
+            }
 
             .reblog-item {
                 margin-bottom: var(--standard-margin);
                 padding: 0;
-                padding-left: 5px;
+                border-bottom: var(--border-thick);
+            }
+            
+            .reblog-item:last-child {
+                border-bottom: none;
             }
 
             .reblog-header {
                 margin: 0;
+                padding-inline: var(--mobile-margin);
+            }
+            
+            .reblog-wrapper {
+                display: flex;
+                margin: 0;
+                justify-content: start;
+                align-items: center;
+                column-gap: var(--standard-margin);
+                padding-bottom: var(--small-margin);
             }
 
             .reblog-header figure {
@@ -567,6 +599,23 @@
                 border-radius: 50%;
                 padding: 0;
                 margin: 0;
+            }
+            
+            .reblog-avatar {
+                margin: 0;
+                width: 3em;
+            }
+            
+            .reblog-avatar img {
+                margin: 0;
+                height: 100%;
+            }
+            
+            .reblog-username {
+                margin: 0;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 1.2em;
             }
 
             .reblog-body {
@@ -642,6 +691,7 @@
             .post-quote blockquote {
                 padding: var(--standard-margin);
                 text-align: center;
+                border: none;
             }
 
             .quote > h2, .quote > h3 {
@@ -737,18 +787,23 @@
             }
 
             /* ANSWER POSTS */
-            .asker .asker {
+            .asker > .asker {
                 display: inline;
                 font-size: 1em;
             }
 
-            .answerer .answerer {
+            .answerer {
                 display: inline;
                 font-size: 1em;
             }
 
             .answer, .question {
                 display: flex;
+                margin-inline: var(--mobile-margin);
+            }
+            
+            .replies {
+                margin-inline: var(--mobile-margin);
             }
 
             .ask-contents {
@@ -766,7 +821,7 @@
                 right: var(--tip-x);
                 top: var(--tip-y);
                 border-color:transparent transparent transparent var(--main-background-color);
-                border-width: 10px;
+                border-width: var(--standard-margin);
                 border-style: solid;
             }
 
@@ -789,7 +844,8 @@
 
             .answerer-avatar {
                 margin-right: var(--standard-margin);
-                border-radius: var(--small-margin);
+                position: relative;
+                top: 10px;
             }
 
             .asker-avatar {
@@ -809,13 +865,13 @@
                 content: '';
                 position: absolute;
                 left: var(--tip-x);
-                top: var(--tip-y);
+                top: 20px;
                 border-color:transparent var(--main-background-color) transparent transparent;
                 border-width: 10px;
                 border-style: solid;
             }
 
-            .answer-contents .answerer {
+            .answer-contents > .answerer {
                 color: var(--main-text-color);
                 margin: 0;
                 display: block;
@@ -1018,10 +1074,6 @@
 
                 .post header .icon {
                     display: inline-block;
-                }
-
-                .post .content { 
-                    padding-top: var(--mobile-margin);
                 }
 
                 .post footer {
@@ -1406,13 +1458,19 @@
                         {/block:Title}
                     </header>
                     <div class="content">
+                    
                         {block:Photo}
-                        <figure class="featured-photo">
-                            <img class="featured" alt="{PhotoAlt}" src="{PhotoURL-HighRes}" />
+                        <figure class="featured-photo legacy-photo">
+                            <img 
+                                src="{PhotoURL-HighRes}"
+                                alt="{PhotoAlt}"
+                                class="featured"
+                            />
                         </figure>
                         {/block:Photo}
+                        
                         {block:Photoset}
-                        <div class="photoset">
+                        <div class="photoset legacy-photoset">
                             {block:Photos}
                             <figure class="photo">
                                 <img class="featured" alt="{PhotoAlt}" src="{PhotoURL-400}" />
@@ -1420,6 +1478,8 @@
                             {/block:Photos}
                         </div>
                         {/block:Photoset}
+
+                        <!-- quote posts -->
                         {block:Quote}
                         <blockquote class="quote">
                             <h2>“{Quote}”</h2>
@@ -1428,6 +1488,8 @@
                             {/block:Source}
                         </blockquote>
                         {/block:Quote}
+
+                        
                         {block:Link}
                         <div class="link-wrapper">
                             <a {Target} href="{URL}">
@@ -1487,7 +1549,7 @@
                         {block:Answer}
                             <div class="question">
                                 <div class="ask-contents">
-                                    <div class="asker">{Asker} asked:</div>
+                                    <div class="asker">{lang:Asker asked 2}</div>
                                     <div class="asker-question">{Question}</div>
                                 </div>
 
@@ -1498,7 +1560,7 @@
                             <div class="answer">
                                 <img class="answerer-avatar" src="{AnswererPortraitURL-96}" alt="">
                                 <div class="answer-contents">
-                                    <div class="answerer">{Answerer} answered:</div>
+                                    <div class="answerer">{Answerer} {lang:Answer}</div>
                                     <div class="answerer-answer">{Answer}</div>
                                 </div>
                             </div>
@@ -1508,6 +1570,37 @@
                                 {Replies}
                             </div>
                         {/block:Answer}
+                        
+                        {block:RebloggedFrom}
+                        <div class="reblog-list">
+                            {block:Reblogs}
+                            <div class="reblog-item">
+                                <div class="reblog-header">
+                                    <div class="reblog-wrapper">
+                                        {block:IsDeactivated}
+                                        <div class="reblog-avatar">
+                                            <img src="{PortraitURL-64}" alt="{Username} Profle Picture">
+                                        </div>
+                                        <span class="inactive reblog-username">{Username}</span>
+                                        {/block:IsDeactivated}
+                                        {block:IsActive}
+                                        <a href="{Permalink}" class="reblog-avatar">
+                                            <img src="{PortraitURL-64}" alt="{Username}" />
+                                        </a>
+                                        <a class="active reblog-username" href="{Permalink}">{Username}</a>
+                                        {/block:IsActive}
+                                    </div>
+                                </div>
+                                <div class="post-body">
+                                    {body}
+                                </div>
+                            </div>
+                            {/block:Reblogs}
+                        </div>
+                        {/block:RebloggedFrom}
+                        
+                        {block:NotReblog}
+                        {block:Text}
                         <div class="post-body">
                             {block:Link}
                                 {Description}
@@ -1515,6 +1608,8 @@
                             {Caption}
                             {Body}
                         </div>
+                        {/block:Text}
+                        {/block:NotReblog}
 
 
                     </div>
@@ -1744,6 +1839,15 @@
         
         const mutationObserver = new MutationObserver(callback)
         mutationObserver.observe(body, {attributes:true});
+    </script>
+    
+    <script>
+        // remove empty p tags
+        for (const p of document.querySelectorAll('p')) {
+            if (p.innerHTML.trim() === '') {
+                p.remove();
+            }
+        }
     </script>
     <noscript>This page requires JavaScript.</noscript>
 </html>
