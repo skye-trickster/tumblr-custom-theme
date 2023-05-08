@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.0.4
+    VERSION: 1.1.0
     RELEASE DATE: 7 May 2023
     GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
     TEXT ICON CREDIT: FONT AWESOME
@@ -102,7 +102,7 @@
                 --mobile-margin: 15px;
                 --standard-margin: 10px;
                 --tip-x: calc(-1 * var(--standard-margin) - 5px);
-                --tip-y: 10%;
+                --tip-y: 10px;
                 --small-margin: 5px;
                 --tiny-margin: 3px;
                 --nav-color: {color:Nav Color};
@@ -576,46 +576,88 @@
             }
 
             /* PHOTO TYPE */
+            .photo-info {
+                margin: auto;
+            }
+            
             .featured-photo {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .featured-photo img:hover {
+                cursor: pointer;
             }
 
             .featured-photo figcaption { 
                 width: 100%;
                 border-block-end: var(--border-thick);
                 border-block-start: none;
-                padding: 3px;
+                padding: var(--small-margin);
                 text-align: center;
             }
 
             .featured-photo figcaption > *:last-child {
                 margin-block-end: 0;
             }
+            
+            .post-caption {
+                margin: var(--mobile-margin);
+            }
 
             /* PHOTOSET TYPE*/
 
             .photoset {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                flex-wrap: wrap;
-                justify-content: center;
             }
-
-            .photoset .photo {
-                height: 100%;
-                width: 30%;
-                margin: 0 var(--tiny-margin);
-                flex-grow: 1;
-                display: flex;
-                justify-content: center;
-            }
-
-            .photoset img {
-                height: 150px;
-                object-fit: cover;
-            }
+            
+            .slideshow {
+    			display: flex;
+    			flex-direction: column;
+    		}
+    
+    		.slideshow .row {
+    			display: flex;
+    			margin-block-start: var(--small-margin);
+    		}
+    
+    		.slideshow .row:first-child{
+    			margin-block-start: 0;
+    		}
+    
+    		.slideshow .row .image {
+    			width: 100%;
+    			display: flex;
+    			margin-inline-start: 5px;
+    			flex-direction: column;
+    		}
+    		
+            .slideshow .row .image:first-child {
+    			margin-inline-start: 0;
+    		}
+    
+    		.slideshow .row .image:hover {
+    		    cursor: pointer;
+    		}
+    		
+    		.slideshow .image figcaption {
+    		    text-align: center;
+    		    padding: var(--small-margin);
+    		}
+    
+    
+    		.slideshow img {
+    			inline-size: 100%;
+    			object-fit: cover;
+    		}
+    		
+    		.photoset .caption {
+    		    margin-block-start: var(--standard-margin);
+    		    inline-size: 100%;
+    		}
 
             /* QUOTE TYPE */
 
@@ -740,6 +782,14 @@
                 display: inline;
                 font-size: 1em;
             }
+            
+            .answerer-answer {
+                margin-block-start: var(--standard-margin);
+            }
+            
+            .asker-question {
+                padding-top: var(--standard-margin);
+            }
 
             .answer, .question {
                 display: flex;
@@ -749,6 +799,15 @@
             
             .replies {
                 margin-inline: var(--mobile-margin);
+                margin-block-end: var(--mobile-margin);
+            }
+            
+            .replies > * {
+                margin-block-end: var(--standard-margin);
+            }
+            
+            .replies > *:last-child {
+                margin-block-end: 0;
             }
 
             .ask-contents {
@@ -763,9 +822,10 @@
             .ask-contents::after {
                 content: '';
                 position: absolute;
-                right: var(--tip-x);
-                top: var(--tip-y);
-                border-color:transparent transparent transparent var(--main-background-color);
+                inset-inline-end: var(--tip-x);
+                inset-block-start: var(--tip-y);
+                border-color: transparent;
+                border-inline-start-color:var(--main-background-color);
                 border-width: var(--standard-margin);
                 border-style: solid;
             }
@@ -809,9 +869,10 @@
             .answer-contents::after {
                 content: '';
                 position: absolute;
-                left: var(--tip-x);
-                top: 20px;
-                border-color:transparent var(--main-background-color) transparent transparent;
+                inset-inline-start: var(--tip-x);
+                inset-block-start: 20px;
+                border-color: transparent;
+                border-inline-end-color: var(--main-background-color);
                 border-width: 10px;
                 border-style: solid;
             }
@@ -1390,22 +1451,74 @@
                     <div class="content">
                     
                         {block:Photo}
-                        <figure class="featured-photo legacy-photo">
-                            <img 
-                                src="{PhotoURL-HighRes}"
-                                alt="{PhotoAlt}"
-                                class="featured"
-                            />
+                        <figure class="photo-info">
+                            <div class="photo-header">
+                                <figure 
+                                    class="featured-photo {block:HighRes}high-res{/block:HighRes}"
+                                    {block:HighRes}
+                                    data-full-width="{PhotoWidth-HighRes}"
+                                    data-full-height="{PhotoHeight-HighRes}"
+                                    data-full-url="{PhotoURL-HighRes}"
+                                    data-orig-url="{PhotoURL-HighRes}"
+                                    {/block:HighRes}
+                                >
+                                    <img 
+                                        loading="lazy" 
+                                        alt="{PhotoAlt}" 
+                                        src="{PhotoURL-HighRes}"
+                                        class="featured-image"
+                                    >
+                                    {block:LinkURL}
+                                    <figcaption class="click-through">
+                                        <a href="{LinkURL}">
+                                            {LinkURL}
+                                        </a>
+                                    </figcaption>
+                                    {/block:LinkURL}
+                                </figure>
+                                
+                            </div>
+                            {block:NotReblog} 
+                            <figcaption class="post-caption">{Caption}</figcaption>
+                            {/block:NotReblog}
                         </figure>
                         {/block:Photo}
-                        
+
                         {block:Photoset}
-                        <div class="photoset legacy-photoset">
-                            {block:Photos}
-                            <figure class="photo">
-                                <img class="featured" alt="{PhotoAlt}" src="{PhotoURL-400}" />
-                            </figure>
-                            {/block:Photos}
+                        <div class="photoset">
+                            <div 
+                                class="slideshow"
+                                data-layout="{PhotosetLayout}">
+                                {block:Photos}
+                                <figure 
+                                    class="image"
+                                    data-full-width="{PhotoWidth-HighRes}"
+                                    data-full-height="{PhotoHeight-HighRes}"
+                                    data-full-url="{PhotoURL-HighRes}"
+                                    data-orig-url="{PhotoURL-HighRes}"
+                                >
+                                    <img
+                                        loading="lazy"
+                                        alt="{PhotoAlt}"
+                                        src="{PhotoURL-HighRes}"
+                                    >
+                                    <figcaption>
+                                    {block:Caption}
+                                        {Caption}
+                                    {/block:Caption}
+                                    </figcaption>
+
+                                </figure>
+                                {/block:Photos}
+                            </div>
+                            {block:NotReblog} 
+                            {block:Caption}
+                            <div class="caption">
+                                {Caption}
+                            </div>
+                            
+                            {/block:Caption}
+                            {/block:NotReblog}
                         </div>
                         {/block:Photoset}
 
@@ -1743,9 +1856,17 @@
         
         document.querySelector(".description").style.display = showDescription ? "block" : "none";
     </script>
+    
+    <!-- Minified functions for lightboxes and photosets-->
+    <script src="https://static.tumblr.com/7ijwq6x/CPWrlisng/functions1.min.js"></script>
 
-    <!-- Custom Lightbox -->
-    <script src="https://static.tumblr.com/7ijwq6x/zqWrbfk30/lightbox.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".high-res .featured-image").click(openLightbox);
+            $(".slideshow").each(setPhotosetLayout);
+            $(".slideshow .image").click(startSlideshow);
+        });
+    </script>
 
     <script>
 
