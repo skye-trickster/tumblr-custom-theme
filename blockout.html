@@ -66,6 +66,8 @@
         <!-- ADDITIONAL TEXT -->
         <meta name="if:Show Subtext" content="1">
         <meta name="text:Subtext" content="Written by Skye">
+        <meta name="text:Custom Ask Label" content="">
+        <meta name="text:Custom Submit Label" content="">
         <!-- SIDENAV VARIABLES -->
         <meta name="if:Show Sidebar" content="1">
         <meta name="text:Updates Title" content="Updates">
@@ -625,6 +627,19 @@
 
             .quote > h2, .quote > h3 {
                 margin: 0;
+            }
+            
+            .quotation::before {
+                content: "“";
+            }
+            
+            .quotation::after {
+                content: "”";
+            }
+            
+            .source::before {
+                content: "-";
+                margin-inline-end: 5px;
             }
 
             /* LINK TYPE */
@@ -1273,7 +1288,7 @@
                             <a href="/">
                                 <div class="nav-left">
                                     <i class="fa fa-solid fa-house-user"></i>
-                                    <p>Home</p>
+                                    <p>{lang:Home}</p>
                                 </div>
                                 <div class="fa fa-solid fa-arrow-right"></div>
                             </a>
@@ -1283,7 +1298,12 @@
                             <a href="/ask">
                                 <div class="nav-left">
                                     <i class="fa fa-solid fa-circle-question"></i>
-                                    <p>Ask</p>
+                                    {block:IfCustomAskLabel}
+                                    <p>{text:Custom Ask Label}</p>
+                                    {/block:IfCustomAskLabel}
+                                    {block:IfNotCustomAskLabel}
+                                    <p>{AskLabel}</p>
+                                    {/block:IfNotCustomAskLabel}
                                 </div>
                                 <div class="fa fa-solid fa-arrow-right"></div>
                             </a>
@@ -1294,7 +1314,12 @@
                             <a href="/submit">
                                 <div class="nav-left">
                                     <i class="fa fa-solid fa-envelope"></i>
-                                    <p>Submit</p>
+                                    {block:IfCustomSubmitLabel}
+                                    <p>{text:Custom Submit Label}</p>
+                                    {block:IfCustomSubmitLabel}
+                                    {block:IfNotCustomSubmitLabel}
+                                    <p>{SubmitLabel}</p>
+                                    {/block:IfNotCustomSubmitLabel}
                                 </div>
                                 <div class="fa fa-solid fa-arrow-right"></div>
                             </a>
@@ -1386,9 +1411,9 @@
                         {block:Quote}
                         <!-- quote posts -->
                         <blockquote class="quote">
-                            <h2>“{Quote}”</h2>
+                            <h2 class="quotation">{Quote}</h2>
                             {block:Source}
-                            <h3>-{Source}</h3>
+                            <h3 class="source">{Source}</h3>
                             {/block:Source}
                         </blockquote>
                         {/block:Quote}
@@ -1407,10 +1432,10 @@
                                     <div class="link-exerpt">{Excerpt}</div>
                                     {/block:Excerpt}
                                     {block:Author}
-                                    <div class="link-author">By: {Author}</div>
+                                    <div class="link-author">{lang:Authors}: {Author}</div>
                                     {/block:Author}
                                     {block:Host}
-                                    <div class="link-host">From: <span class="link-source">{Host}</span></div>
+                                    <div class="link-host">{lang:Link}: <span class="link-source">{Host}</span></div>
                                     {/block:Host}
                                 </div>
 
