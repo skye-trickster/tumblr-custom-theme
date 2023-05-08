@@ -15,7 +15,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-
         
         <!-- COLOR OPTIONS -->
         <meta name="color:Background" content="#111111">
@@ -64,6 +63,7 @@
         
         
         <!-- ADDITIONAL TEXT -->
+        <meta name="if:Show Description" content="1">
         <meta name="if:Show Subtext" content="1">
         <meta name="text:Subtext" content="Written by Skye">
         <meta name="text:Custom Ask Label" content="">
@@ -80,7 +80,8 @@
         
         <meta name="if:Copyright Years" content="1">
         
-        <link rel="shortcut icon" type="image/png" href="{Favicon}"/> <!-- {Favicon}-->
+        <link rel="shortcut icon" type="image/png" href="{Favicon}"/> <!-- Favicon-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,0" />
 
         <title>{Title}</title>
         
@@ -171,6 +172,14 @@
                 padding: var(--mobile-margin); 
                 font-size: 2.5rem;
             }
+            
+            {block:IfNotShowDescription}
+            {block:IfNotShowSubtext}
+            .description {
+                display: none;
+            }
+            {/block:IfNotShowSubtext}
+            {/block:IfNotShowDescription}
 
             .description {
                 padding-inline: var(--mobile-margin);
@@ -186,6 +195,11 @@
             .writer {
                 text-align: center;
                 margin-block: var(--mobile-margin);
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                column-gap: var(--small-margin);
+                align-items: center;
             }
             
             .tumblr-controls-desktop {
@@ -206,7 +220,7 @@
                 text-align: center;
             }
 
-            .navigation .fa {
+            .navigation .material-symbols-outlined {
                 display: none;
             }
 
@@ -291,6 +305,13 @@
                 font-size: 0.8em;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
+            }
+            
+            .post-meta {
+                display: flex;
+                flex-direction: row;
+                column-gap: var(--small-margin);
                 align-items: center;
             }
 
@@ -389,21 +410,6 @@
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
-            }
-
-            .post-controls .fa {
-
-                border: none;
-                background: none;
-                color: var(--main-text-color);
-            }
-
-            .post-controls .fa:hover {
-                cursor: pointer;
-            }
-
-            .fa-retweet {
-                margin: 0 var(--tiny-margin);
             }
 
             /* NOTE INFORMATIOIN */
@@ -941,7 +947,7 @@
                 }
 
                 .writer {
-                    margin-block: var(--standard-margin);
+                    margin-block: var(--small-margin);
                     font-size: 0.8em;
                 }
 
@@ -981,11 +987,11 @@
                         display: flex;
                     }
                     
-                    .navigation .fa, .nav-left p {
+                    .navigation .material-symbols-outlined, .nav-left p {
                         display: inline;
                     }
 
-                    .nav-left .fa {
+                    .nav-left .material-symbols-outlined {
                         margin: auto;
                     }
 
@@ -1020,7 +1026,8 @@
                 }
                 
                 .search form {
-                    display: block;
+                    display: flex;
+                    flex-direction: row;
                 }
                 
                 .search form input {
@@ -1336,11 +1343,11 @@
                     {/block:ShowHeaderImage}
                     
                     <div class="description"> <!--Description-->
-                        {block:ShowDescription}
+                        {block:IfShowDescription}
                         <p>{Description}</p>
-                        {/block:ShowDescription}
+                        {/block:IfShowDescription}
                         {block:IfShowSubtext}
-                        <p class="secondary writer"><i class="fa-regular fa-circle-user"></i> {text:Subtext}</p>
+                        <p class="secondary writer"><span class="material-symbols-outlined">person</span>{text:Subtext}</p>
                         {/block:IfShowSubtext}
                     </div>
                 </div>
@@ -1349,17 +1356,17 @@
                         <li>
                             <a href="/">
                                 <div class="nav-left">
-                                    <i class="fa fa-solid fa-house-user"></i>
+                                    <span class="material-symbols-outlined">other_houses</span>
                                     <p>{lang:Home}</p>
                                 </div>
-                                <div class="fa fa-solid fa-arrow-right"></div>
+                                <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
                         </li>
                         {block:AskEnabled}
                         <li>
                             <a href="/ask">
                                 <div class="nav-left">
-                                    <i class="fa fa-solid fa-circle-question"></i>
+                                    <span class="material-symbols-outlined">help</span>
                                     {block:IfCustomAskLabel}
                                     <p>{text:Custom Ask Label}</p>
                                     {/block:IfCustomAskLabel}
@@ -1367,7 +1374,7 @@
                                     <p>{AskLabel}</p>
                                     {/block:IfNotCustomAskLabel}
                                 </div>
-                                <div class="fa fa-solid fa-arrow-right"></div>
+                                <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
                         </li>
                         {/block:AskEnabled}
@@ -1375,7 +1382,7 @@
                         <li>
                             <a href="/submit">
                                 <div class="nav-left">
-                                    <i class="fa fa-solid fa-envelope"></i>
+                                    <span class="material-symbols-outlined">mail</span>
                                     {block:IfCustomSubmitLabel}
                                     <p>{text:Custom Submit Label}</p>
                                     {block:IfCustomSubmitLabel}
@@ -1383,7 +1390,7 @@
                                     <p>{SubmitLabel}</p>
                                     {/block:IfNotCustomSubmitLabel}
                                 </div>
-                                <div class="fa fa-solid fa-arrow-right"></div>
+                                <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
                         </li>
                         {/block:SubmissionsEnabled} 
@@ -1395,7 +1402,7 @@
                                             <i class=""></i>
                                             <p>{Label}</p>
                                         </div>
-                                        <div class="fa fa-solid fa-arrow-right"></div>
+                                        <span class="material-symbols-outlined">arrow_forward</span>
                                     </a>
                                 </li>
                             {/block:Pages}
@@ -1408,7 +1415,7 @@
                 <div class="search">
 
                     <form action="/search" method="get">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="material-symbols-outlined">search</span>
                         <input type="text" name="q" placeholder="Search"/>
                     </form>
                 </div>
@@ -1430,10 +1437,10 @@
 {block:Date}
                         <div class="post-info">
 
-                            <div>
+                            <div class="post-meta">
                                 <a href="{Permalink}" title="{ShortDayOfWeek}, {DayOfMonth} {ShortMonth} {Year}">{TimeAgo}</a>
                                 {block:RebloggedFrom}
-                                    <div class="fa-solid fa-retweet"> </div>
+                                    <span class="material-symbols-outlined">cached</span>
                                     <a href="{ReblogParentURL}">{ReblogParentName}</a>
                                 {/block:RebloggedFrom}
                             </div>
@@ -1726,7 +1733,7 @@
         {block:ifShowSidebar}
         <aside>
             <div id="menu" class="menu">
-                <i class="fa-solid fa-bars fa-xl"></i>
+                <span class="material-symbols-outlined">menu</span>
             </div>
 
 
@@ -1749,7 +1756,7 @@
                 </div>
                 <div class="trending">
                     <div class="trend-title">
-                        <i class="icon fa-solid fa-chevron-up"></i>
+                        <span class="icon material-symbols-outlined">expand_less</span>
                         <h2>{text:Guest Tag Title}</h2>
                     </div>
                     <div class="trend-tags">
@@ -1757,7 +1764,7 @@
                 </div>
                 <div class="trending">
                     <div class="trend-title">
-                        <i class="icon fa-solid fa-chevron-up"></i>
+                        <span class="icon material-symbols-outlined">expand_less</span>
                         <h2>{text:Main Tag Title}</h2>
                     </div>
                     <div class="trend-tags"></div>
@@ -1780,10 +1787,10 @@
                     </li>
                     {block:IfCopyrightYears}
                     <li>
-                        <a href="/">Home</a>
+                        <a href="/">{lang:Home}</a>
                     </li>
                     <li>
-                        <a href="/archive">Archive</a>
+                        <a href="/archive">{lang:Archive}</a>
                     </li>
 
                     <li>
@@ -1793,17 +1800,32 @@
             </nav>
         </footer>
     </body>
-    
-    <!-- icons from fontawesome -->
-    <script src="https://kit.fontawesome.com/b293defc25.js" crossorigin="anonymous"></script>
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
-
 
     <!--Menu Toggle-->
-    <script src="https://static.tumblr.com/7ijwq6x/dg3rb6wo6/menutoggle.js" ></script>
+    <script>
+        $.fn.extend({
+            toggleText: function(a, b){
+                return this.text(this.text() == b ? a : b);
+            }
+        });
+        $(document).ready(function () {
+            $("#menu").click(function () {
+                $("#sidenav").toggle("flex");
+            })
+            $(".trend-title").click(function (event) {
+                const parent = $(event.target).closest(".trend-title");
+                $(parent).siblings(".trend-tags").slideToggle("fast");
+                $(parent).children(".icon").toggleText("expand_more", "expand_less");
+            })
+            $(window).resize(function () {
+                if ($(this).width() < 700)
+                    $("#sidenav").hide();
+            })
+        })
+    </script>
 
     <script>
         const trending = document.querySelectorAll(".trending")
@@ -1843,19 +1865,6 @@
             mainTags.forEach((tag) => createTrend(tag, trending[1]))
             
     </script>
-
-    <script>
-        let showDescription = false
-        {block:ShowDescription}
-        showDescription = true
-        {/block:ShowDescription}
-        
-        {block:ifShowSubtext}
-        showDescription = true
-        {/block:ifShowSubtext}
-        
-        document.querySelector(".description").style.display = showDescription ? "block" : "none";
-    </script>
     
     <!-- Minified functions for lightboxes and photosets-->
     <script src="https://static.tumblr.com/7ijwq6x/CPWrlisng/functions1.min.js"></script>
@@ -1869,7 +1878,6 @@
     </script>
 
     <script>
-
         const body = document.querySelector("body")
         
         function callback(mutationsList, observer) {
