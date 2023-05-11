@@ -4,10 +4,10 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.1.0
-    RELEASE DATE: 7 May 2023
-    GET THE THEME: https://github.com/skye-trickster/tumblr-custom-theme
-    TEXT ICON CREDIT: FONT AWESOME
+    VERSION: 1.1.0a
+    RELEASE DATE: 11 May 2023
+    GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
+    TEXT ICON CREDIT: GOOGLE MATERIAL
     
     Please do not remove the credit.
 -->
@@ -1432,7 +1432,7 @@
                 <!-- Posts -->
                 {block:Posts}
                 
-                <article class="post post-{PostType}">
+                <article class="post post-{PostType}" id="{PostId}">
                     <header>
 {block:Date}
                         <div class="post-info">
@@ -1824,6 +1824,42 @@
                     $("#sidenav").hide();
             })
         })
+    </script>
+    
+    <!-- NPF Rendering -->
+    <script>
+    // remove empty p tags
+    for (const p of document.querySelectorAll('p')) {
+        if (p.innerHTML.trim() === '') {
+           p.remove()
+        }
+    }
+    // create posts array
+    let posts = [];
+    {block:Posts}
+        posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
+    {/block:Posts}
+    
+    function updateTypes(type, article) {
+        article.classList.remove('post-text');
+        article.classList.add(`post-${type}`, 'npf-post');
+    }
+    
+    for (const post of posts) {
+        let npf = post.npf;
+        let article = document.getElementById(`${post.id}`);
+
+        let body = article.querySelector('.post-body');
+        const photoCandidate = false;
+        if (body != null && article.classList.contains('post-text')) {
+            switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
+                case 'image':
+                    photoCandidate = true;
+                    break;
+            }
+        }
+        // TODO(skye): change photo candidate to photo type if there's an npf_row class at the start of the body, then prepend the photo
+    }
     </script>
 
     <script>
