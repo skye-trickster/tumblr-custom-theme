@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.1.0a
-    RELEASE DATE: 11 May 2023
+    VERSION: 1.1.1
+    RELEASE DATE: 18 June 2023
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
     
@@ -1640,7 +1640,7 @@
                                         {/block:IsActive}
                                     </div>
                                 </div>
-                                <div class="post-body">
+                                <div class="reblog-body post-body">
                                     {body}
                                 </div>
                             </div>
@@ -1842,23 +1842,55 @@
     
     function updateTypes(type, article) {
         article.classList.remove('post-text');
-        article.classList.add(`post-${type}`, 'npf-post');
+        const postName = "post-" + type;
+        article.classList.add(postName, 'npf-post');
     }
     
     for (const post of posts) {
         let npf = post.npf;
         let article = document.getElementById(`${post.id}`);
 
-        let body = article.querySelector('.post-body');
+        let content = article.querySelector(".content");
         const photoCandidate = false;
-        if (body != null && article.classList.contains('post-text')) {
+        if (content != null && article.classList.contains('post-text')) {
             switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
                 case 'image':
-                    photoCandidate = true;
+                    if (article.querySelector(".npf_row")) {
+                        const parent = content.querySelectorAll(".npf_row")[0].parentElement;
+                        const elements = [];
+                        const photoset = document.createElement("div");
+                        photoset.classList.add("photoset");
+                        content.prepend(photoset);
+
+                        let current = parent.firstElementChild;
+
+                        // gather all of the photoset items in the first row; break when there's not one.
+                        while(current?.classList.contains("npf_row")) {
+                            elements.push(current);
+                            current = current.nextElementSibling;
+                        }
+                        
+                        photoset.append(...elements);
+
+                        // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
+                        if (photoset.querySelectorAll('.npf_col').length > 1) {
+                            updateTypes('photoset', article);
+                        }
+                        else {
+                            updateTypes('photo', article);
+                        }
+
+                        // clean up any potential stray reblog headers
+                        let reblogHeader = article.querySelector('.reblog-header')
+                        let reblogBody = article.querySelector('.reblog-body')
+                        if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
+                            reblogHeader.remove()
+                            reblogBody.remove()
+                        }
+                    }
                     break;
             }
         }
-        // TODO(skye): change photo candidate to photo type if there's an npf_row class at the start of the body, then prepend the photo
     }
     </script>
 
