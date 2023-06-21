@@ -4,19 +4,25 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.2.0
+    VERSION: 2.0.0
     RELEASE DATE: 20 June 2023
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
-    NPF FORMAT CREDIT: EGGDESIGN (https://npftemplate.tumblr.com/)
-    
+
+    Credits:
+        - NPF Format rendering by eggdesign: https://npftemplate.tumblr.com/ 
+
     Please do not remove the credit.
 -->
 <html lang="en">
+
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{Title}</title>
+
+        {block:Hidden}
+
+        <!-- VARIABLES -->
         <!-- COLOR OPTIONS -->
         <meta name="color:Background" content="#111111">
         <meta name="color:Accent Color" content="#56bc8a">
@@ -80,12 +86,17 @@
         <meta name="text:Main Tags" content="venusaur, squirtle, charizard">
         
         <meta name="if:Copyright Years" content="1">
-        
-        <link rel="shortcut icon" type="image/png" href="{Favicon}"/> <!-- Favicon-->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,0" />
+        <!-- VARIABLES -->
+        {/block:Hidden}
 
-        <title>{Title}</title>
-        
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,0">
+
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        {block:Description}
+        <meta name="description" content="{MetaDescription}">
+        {/block:Description}
+
         <style>
             /* GLOBAL VARIABLES */
             :root {
@@ -622,49 +633,49 @@
             }
             
             .slideshow {
-    			display: flex;
-    			flex-direction: column;
-    		}
-    
-    		.slideshow .row {
-    			display: flex;
-    			margin-block-start: var(--small-margin);
-    		}
-    
-    		.slideshow .row:first-child{
-    			margin-block-start: 0;
-    		}
-    
-    		.slideshow .row .image {
-    			width: 100%;
-    			display: flex;
-    			margin-inline-start: 5px;
-    			flex-direction: column;
-    		}
-    		
+                display: flex;
+                flex-direction: column;
+            }
+
+            .slideshow .row {
+                display: flex;
+                margin-block-start: var(--small-margin);
+            }
+
+            .slideshow .row:first-child{
+                margin-block-start: 0;
+            }
+
+            .slideshow .row .image {
+                width: 100%;
+                display: flex;
+                margin-inline-start: 5px;
+                flex-direction: column;
+            }
+            
             .slideshow .row .image:first-child {
-    			margin-inline-start: 0;
-    		}
-    
-    		.slideshow .row .image:hover {
-    		    cursor: pointer;
-    		}
-    		
-    		.slideshow .image figcaption {
-    		    text-align: center;
-    		    padding: var(--small-margin);
-    		}
-    
-    
-    		.slideshow img {
-    			inline-size: 100%;
-    			object-fit: cover;
-    		}
-    		
-    		.photoset .caption {
-    		    margin-block-start: var(--standard-margin);
-    		    inline-size: 100%;
-    		}
+                margin-inline-start: 0;
+            }
+
+            .slideshow .row .image:hover {
+                cursor: pointer;
+            }
+            
+            .slideshow .image figcaption {
+                text-align: center;
+                padding: var(--small-margin);
+            }
+
+
+            .slideshow img {
+                inline-size: 100%;
+                object-fit: cover;
+            }
+            
+            .photoset .caption {
+                margin-block-start: var(--standard-margin);
+                inline-size: 100%;
+            }
 
             /* QUOTE TYPE */
 
@@ -1326,9 +1337,7 @@
 
     </head>
 
-
     <body>
-
         <header class="heading">
 
             <div class="information">
@@ -1435,7 +1444,7 @@
                 
                 <article class="post post-{PostType}" id="{PostId}">
                     <header>
-{block:Date}
+                        {block:Date}
                         <div class="post-info">
 
                             <div class="post-meta">
@@ -1451,7 +1460,7 @@
                             </div>
                             {/block:PinnedPostLabel}
                         </div>
-{/block:Date}
+                        {/block:Date}
                         {block:Title}
                         <h1><a href="{Permalink}">{Title}</a></h1>
                         {/block:Title}
@@ -1663,7 +1672,7 @@
 
 
                     </div>
-{block:Date}
+    {block:Date}
                     <footer>
 
                         <ul class="post-tags"> 
@@ -1693,7 +1702,7 @@
                             {/block:IfNotWhiteLikeandReblog}
                         </div> 
                     </footer>
-{/block:Date}
+    {/block:Date}
                 </article>
 
                 {block:PostNotes} 
@@ -1730,7 +1739,7 @@
             {/block:Pagination}
 
         </main>
-        
+    
         {block:ifShowSidebar}
         <aside>
             <div id="menu" class="menu">
@@ -1801,194 +1810,196 @@
             </nav>
         </footer>
 
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!--Menu Toggle-->
-    <script>
-        $.fn.extend({
-            toggleText: function(a, b){
-                return this.text(this.text() == b ? a : b);
+        <!-- NPF Rendering -->
+        <script>
+            // remove empty p tags
+            for (const p of document.querySelectorAll('p')) {
+                if (p.innerHTML.trim() === '') {
+                    p.remove()
+                }
             }
-        });
-        $(document).ready(function () {
-            $("#menu").click(function () {
-                $("#sidenav").toggle("flex");
-            })
-            $(".trend-title").click(function (event) {
-                const parent = $(event.target).closest(".trend-title");
-                $(parent).siblings(".trend-tags").slideToggle("fast");
-                $(parent).children(".icon").toggleText("expand_more", "expand_less");
-            })
-            $(window).resize(function () {
-                if ($(this).width() < 700)
-                    $("#sidenav").hide();
-            })
-        })
-    </script>
-    
-    <!-- NPF Rendering -->
-    <script>
-    // remove empty p tags
-    for (const p of document.querySelectorAll('p')) {
-        if (p.innerHTML.trim() === '') {
-           p.remove()
-        }
-    }
-    // create posts array
-    let posts = [];
-    {block:Posts}
-        posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
-    {/block:Posts}
-    
-    function updateTypes(type, article) {
-        article.classList.remove('post-text');
-        const postName = "post-" + type;
-        article.classList.add(postName, 'npf-post');
-    }
-    
-    for (const post of posts) {
-        let npf = post.npf;
-        let article = document.getElementById(`${post.id}`);
+            // create posts array
+            let posts = [];
+            {block:Posts}
+                posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
+            {/block:Posts}
+            
+            function updateTypes(type, article) {
+                article.classList.remove('post-text');
+                const postName = "post-" + type;
+                article.classList.add(postName, 'npf-post');
+            }
+            
+            for (const post of posts) {
+                let npf = post.npf;
+                let article = document.getElementById(`${post.id}`);
 
-        let content = article.querySelector(".content");
-        const photoCandidate = false;
-        if (content != null && article.classList.contains('post-text')) {
-            switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
-                case 'image':
-                    if (article.querySelector(".npf_row")) {
-                        const parent = content.querySelectorAll(".npf_row")[0].parentElement;
-                        const elements = [];
-                        const photoset = document.createElement("div");
-                        photoset.classList.add("photoset");
-                        content.prepend(photoset);
+                let content = article.querySelector(".content");
+                const photoCandidate = false;
+                if (content != null && article.classList.contains('post-text')) {
+                    switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
+                        case 'image':
+                            if (article.querySelector(".npf_row")) {
+                                const parent = content.querySelectorAll(".npf_row")[0].parentElement;
+                                const elements = [];
+                                const photoset = document.createElement("div");
+                                photoset.classList.add("photoset");
+                                content.prepend(photoset);
 
-                        let current = parent.firstElementChild;
+                                let current = parent.firstElementChild;
 
-                        // gather all of the photoset items in the first row; break when there's not one.
-                        while(current?.classList.contains("npf_row")) {
-                            elements.push(current);
-                            current = current.nextElementSibling;
-                        }
-                        
-                        photoset.append(...elements);
+                                // gather all of the photoset items in the first row; break when there's not one.
+                                while(current?.classList.contains("npf_row")) {
+                                    elements.push(current);
+                                    current = current.nextElementSibling;
+                                }
+                                
+                                photoset.append(...elements);
 
-                        // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
-                        if (photoset.querySelectorAll('.npf_col').length > 1) {
-                            updateTypes('photoset', article);
-                        }
-                        else {
-                            updateTypes('photo', article);
-                        }
+                                // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
+                                if (photoset.querySelectorAll('.npf_col').length > 1) {
+                                    updateTypes('photoset', article);
+                                }
+                                else {
+                                    updateTypes('photo', article);
+                                }
 
-                        // clean up any potential stray reblog headers
-                        let reblogHeader = article.querySelector('.reblog-header')
-                        let reblogBody = article.querySelector('.reblog-body')
-                        if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
-                            reblogHeader.remove()
-                            reblogBody.remove()
-                        }
+                                // clean up any potential stray reblog headers
+                                let reblogHeader = article.querySelector('.reblog-header')
+                                let reblogBody = article.querySelector('.reblog-body')
+                                if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
+                                    reblogHeader.remove()
+                                    reblogBody.remove()
+                                }
+                            }
+                            break;
+                        case 'video':
+                            updateTypes('video', article);
+                            let video = article.querySelector('figure');
+                            content.prepend(video);
+                            break;
+                        case 'link':
+                            updateTypes('link', article);
+                            break;
+                        case 'audio':
+                            updateTypes('audio', article);
+                            break;
+                        case 'quote':
+                            updateTypes('quote', article);
                     }
-                    break;
-                case 'video':
-                    updateTypes('video', article);
-                    let video = article.querySelector('figure');
-                    content.prepend(video);
-                    break;
-                case 'link':
-                    updateTypes('link', article);
-                    break;
-                case 'audio':
-                    updateTypes('audio', article);
-                    break;
-                case 'quote':
-                    updateTypes('quote', article);
+                }
             }
-        }
-    }
-    </script>
+        </script>
 
-    <script>
-        const trending = document.querySelectorAll(".trending")
+        <script>
+            const trending = document.querySelectorAll(".trending")
 
-        function setTags(tagString) {
-            if(tagString === "") return []
-            let list = tagString.split(',')
-            list = list.map((item) => item.trimStart().trimEnd())
-            return list
-        }
-        const guestTags = setTags("{text:Guest Tags}")
-        const mainTags = setTags("{text:Main Tags}")        
-        function createTrend(trendText, trend) {
-            const a = document.createElement("a")
-            a.href = "/tagged/" + trendText
-            const name = document.createElement("h3")
-            name.innerText = trendText
-            const seeTags = document.createElement("h4")
-            seeTags.innerText = "see tags"
-            a.appendChild(name)
-            a.appendChild(seeTags)
-            
-            trend.querySelector(".trend-tags").appendChild(a)
-            return a
-        }
-        if(guestTags.length === 0) {
-            trending[0].style.display = "none"
-        }
-        else {
-            guestTags.forEach((tag) => createTrend(tag, trending[0]))
-        }
-        
-        if(mainTags.length === 0) {
-            trending[1].style.display = "none"
-        }
-        else
-            mainTags.forEach((tag) => createTrend(tag, trending[1]))
-            
-    </script>
-    
-    <!-- Minified functions for lightboxes and photosets-->
-    <script src="https://static.tumblr.com/7ijwq6x/CPWrlisng/functions1.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $(".high-res .featured-image").click(openLightbox);
-            $(".slideshow").each(setPhotosetLayout);
-            $(".slideshow .image").click(startSlideshow);
-        });
-    </script>
-
-    <script>
-        const body = document.querySelector("body")
-        
-        function callback(mutationsList, observer) {
-            mutationsList.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-              // handle class change
-              const pushdown = "tmblr-iframe-pushdown"
-              if (mutation.target.className.includes(pushdown) && screen.width > 700)
-              {
-                  body.style.paddingTop = "0px";
-                  body.querySelector(".information").classList.add(pushdown)
-                  body.querySelector(".footer").classList.add(pushdown)
-              }
+            function setTags(tagString) {
+                if(tagString === "") return []
+                let list = tagString.split(',')
+                list = list.map((item) => item.trimStart().trimEnd())
+                return list
             }
+            const guestTags = setTags("{text:Guest Tags}")
+            const mainTags = setTags("{text:Main Tags}")        
+            function createTrend(trendText, trend) {
+                const a = document.createElement("a")
+                a.href = "/tagged/" + trendText
+                const name = document.createElement("h3")
+                name.innerText = trendText
+                const seeTags = document.createElement("h4")
+                seeTags.innerText = "see tags"
+                a.appendChild(name)
+                a.appendChild(seeTags)
+                
+                trend.querySelector(".trend-tags").appendChild(a)
+                return a
+            }
+            if(guestTags.length === 0) {
+                trending[0].style.display = "none"
+            }
+            else {
+                guestTags.forEach((tag) => createTrend(tag, trending[0]))
+            }
+            
+            if(mainTags.length === 0) {
+                trending[1].style.display = "none"
+            }
+            else
+                mainTags.forEach((tag) => createTrend(tag, trending[1]))
+                
+        </script>
+
+        <!--Menu Toggle-->
+        <script>
+            $.fn.extend({
+                toggleText: function(a, b){
+                    return this.text(this.text() == b ? a : b);
+                }
+            });
+            $(document).ready(function () {
+                $("#menu").click(function () {
+                    $("#sidenav").toggle("flex");
+                })
+                $(".trend-title").click(function (event) {
+                    const parent = $(event.target).closest(".trend-title");
+                    $(parent).siblings(".trend-tags").slideToggle("fast");
+                    $(parent).children(".icon").toggleText("expand_more", "expand_less");
+                })
+                $(window).resize(function () {
+                    if ($(this).width() < 700)
+                        $("#sidenav").hide();
+                })
             })
+        </script>
 
-        }
-        
-        const mutationObserver = new MutationObserver(callback)
-        mutationObserver.observe(body, {attributes:true});
-    </script>
-    
-    <script>
-        // remove empty p tags
-        for (const p of document.querySelectorAll('p')) {
-            if (p.innerHTML.trim() === '') {
-                p.remove();
+        <!-- Minified functions for lightboxes and photosets-->
+        <script src="https://static.tumblr.com/7ijwq6x/CPWrlisng/functions1.min.js"></script>
+
+        <!-- Lightbox handling -->
+        <script>
+            $(document).ready(function () {
+                $(".high-res .featured-image").click(openLightbox);
+                $(".slideshow").each(setPhotosetLayout);
+                $(".slideshow .image").click(startSlideshow);
+            });
+        </script>
+
+        <script>
+            const body = document.querySelector("body")
+            
+            function callback(mutationsList, observer) {
+                mutationsList.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                // handle class change
+                const pushdown = "tmblr-iframe-pushdown"
+                if (mutation.target.className.includes(pushdown) && screen.width > 700)
+                {
+                    body.style.paddingTop = "0px";
+                    body.querySelector(".information").classList.add(pushdown)
+                    body.querySelector(".footer").classList.add(pushdown)
+                }
+                }
+                })
+
             }
-        }
-    </script>
-    <noscript>This page requires JavaScript.</noscript>
+            
+            const mutationObserver = new MutationObserver(callback)
+            mutationObserver.observe(body, {attributes:true});
+        </script>
+
+        <script>
+            // remove empty p tags
+            for (const p of document.querySelectorAll('p')) {
+                if (p.innerHTML.trim() === '') {
+                    p.remove();
+                }
+            }
+        </script>
+
+        <noscript>This page requires JavaScript.</noscript>
     </body>
 </html>
