@@ -4,10 +4,11 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 1.1.1
-    RELEASE DATE: 18 June 2023
+    VERSION: 1.2.0
+    RELEASE DATE: 20 June 2023
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
+    NPF FORMAT CREDIT: EGGDESIGN (https://npftemplate.tumblr.com/)
     
     Please do not remove the credit.
 -->
@@ -1889,6 +1890,19 @@
                         }
                     }
                     break;
+                case 'video':
+                    updateTypes('video', article);
+                    let video = article.querySelector('figure');
+                    content.prepend(video);
+                    break;
+                case 'link':
+                    updateTypes('link', article);
+                    break;
+                case 'audio':
+                    updateTypes('audio', article);
+                    break;
+                case 'quote':
+                    updateTypes('quote', article);
             }
         }
     }
