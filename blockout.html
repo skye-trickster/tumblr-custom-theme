@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.0
-    RELEASE DATE: 20 June 2023
+    VERSION: 2.0.1
+    RELEASE DATE: 3 September 2023
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
 
@@ -788,6 +788,10 @@
 
             .video-embed {
                 margin-block-end: var(--standard-margin);
+            }
+            
+            .audio-caption, .video-caption {
+                margin: var(--mobile-margin);
             }
 
             /* ANSWER POSTS */
@@ -1599,11 +1603,25 @@
                                 {AudioPlayer}
                             </div>
                             {/block:AudioPlayer}
+                            {block:NotReblog} 
+                            {block:Caption}
+                            <div class="video-caption">
+                                {Caption}
+                            </div>
+                            {/block:Caption}
+                            {/block:NotReblog}
                         {/block:Audio}
                         {block:Video}
                                 <div class="video-embed">
                                     {VideoEmbed-500}
                                 </div>
+                            {block:NotReblog} 
+                            {block:Caption}
+                                <div class="video-caption">
+                                    {Caption}
+                                </div>
+                            {/block:Caption}
+                            {/block:NotReblog}
                         {/block:Video}
                         {block:Answer}
                             <div class="question">
