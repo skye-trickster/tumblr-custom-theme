@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.2
+    VERSION: 2.0.1b
     RELEASE DATE: 7 October 2023
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -364,11 +364,15 @@
                 padding: var(--mobile-margin);
             }
 
-            .post-body > * {
+            .post-body > *,
+            .asker-question > *,
+            .answerer-answer > * {
                 margin-block-end: var(--standard-margin);
             }
             
-            .post-body > *:last-child {
+            .post-body > *:last-child,
+            .asker-question > *:last-child,
+            .answerer-answer > *:last-child {
                 margin-block-end: 0;
             }
 
