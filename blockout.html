@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.1c
-    RELEASE DATE: 15 August 2024
+    VERSION: 2.0.1d
+    RELEASE DATE: 16 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
 
@@ -831,6 +831,23 @@
             /* AUDIO POSTS */
             .tmblr-embed {
                 width: 100%;
+            }
+            
+            .featured-audio {
+                text-align: center;
+            }
+            
+            .featured-audio figcaption {
+                text-align: start;
+            }
+            
+            .featured-audio iframe {
+                width: 100%;
+            }
+            
+            /* spotify iframe has a weird gap so we're setting it manually */
+            .featured-audio .spotify_audio_player {
+                height: 160px;
             }
             
             .audio-embed, .video-embed {
@@ -1943,6 +1960,24 @@
                 article.classList.add(postName, 'npf-post');
             }
             
+            function cleanupPost(article) {
+                const postBody = article.querySelector('.post-body');
+                
+                const containsMedia = () => {
+                    if (postBody.querySelector('figure')) {
+                        return true;
+                    }
+                    if (postBody.querySelector('iframe')) {
+                        return true;
+                    }
+                    return false;
+                }
+                
+                if (postBody && postBody.innerText.trim() === '' && !containsMedia()) {
+                    postBody.remove();
+                }
+            }
+            
             for (const post of posts) {
                 const npf = post.npf;
                 const article = document.getElementById(`${post.id}`);
@@ -1986,76 +2021,82 @@
                                     reblogBody.remove()
                                 }
                                 
+                                // clean up any potential stray captions
                                 let captions = article.querySelectorAll('figcaption');
                                 for (const caption of captions) {
-                                    if (caption.innerText.trim() === '') {
+                                    if (caption.innerHTML.trim() === '') {
                                         caption.remove();
                                     }
                                 }
                             }
+                            cleanupPost(article);
                             break;
                         case 'video':
                             updateTypes('video', article);
                             let video = article.querySelector('figure');
                             content.prepend(video);
+                            cleanupPost(article);
                             break;
                         case 'link':
                             updateTypes('link', article);
                             break;
                         case 'audio':
                             updateTypes('audio', article);
+                            let audio = article.querySelector('figure');
+                            audio.classList.add('featured-audio');
+                            content.prepend(audio);
+                            cleanupPost(article);
                             break;
-                        case 'text':
+                        default: // 'text'
                             if (postContent.subtype === 'quote') {
                                 updateTypes('quote', article);
                             }
                     }
 
-                    const postBody = article.querySelector('.post-body');
-                    if (postBody && postBody.innerText.trim() === '') {
-                        postBody.remove();
-                    }
+
                 }
             }
         </script>
 
+        <!-- tags setting script -->
         <script>
-            const trending = document.querySelectorAll(".trending")
-
-            function setTags(tagString) {
-                if(tagString === "") return []
-                let list = tagString.split(',')
-                list = list.map((item) => item.trimStart().trimEnd())
-                return list
-            }
-            const guestTags = setTags("{text:Guest Tags}")
-            const mainTags = setTags("{text:Main Tags}")        
-            function createTrend(trendText, trend) {
-                const a = document.createElement("a")
-                a.href = "/tagged/" + trendText
-                const name = document.createElement("h3")
-                name.innerText = trendText
-                const seeTags = document.createElement("h4")
-                seeTags.innerText = "see tags"
-                a.appendChild(name)
-                a.appendChild(seeTags)
+            (function() {
+                const trending = document.querySelectorAll(".trending")
+    
+                function setTags(tagString) {
+                    if(tagString === "") return []
+                    let list = tagString.split(',')
+                    list = list.map((item) => item.trimStart().trimEnd())
+                    return list
+                }
+                const guestTags = setTags("{text:Guest Tags}")
+                const mainTags = setTags("{text:Main Tags}")        
+                function createTrend(trendText, trend) {
+                    const a = document.createElement("a")
+                    a.href = "/tagged/" + trendText
+                    const name = document.createElement("h3")
+                    name.innerText = trendText
+                    const seeTags = document.createElement("h4")
+                    seeTags.innerText = "see tags"
+                    a.appendChild(name)
+                    a.appendChild(seeTags)
+                    
+                    trend.querySelector(".trend-tags").appendChild(a)
+                    return a
+                }
+                if(guestTags.length === 0) {
+                    trending[0].style.display = "none"
+                }
+                else {
+                    guestTags.forEach((tag) => createTrend(tag, trending[0]))
+                }
                 
-                trend.querySelector(".trend-tags").appendChild(a)
-                return a
-            }
-            if(guestTags.length === 0) {
-                trending[0].style.display = "none"
-            }
-            else {
-                guestTags.forEach((tag) => createTrend(tag, trending[0]))
-            }
-            
-            if(mainTags.length === 0) {
-                trending[1].style.display = "none"
-            }
-            else
-                mainTags.forEach((tag) => createTrend(tag, trending[1]))
-                
+                if(mainTags.length === 0) {
+                    trending[1].style.display = "none";
+                }
+                else
+                    mainTags.forEach((tag) => createTrend(tag, trending[1]));
+            })();
         </script>
 
         <!--Menu Toggle-->
@@ -2091,15 +2132,6 @@
                 $(".slideshow").each(setPhotosetLayout);
                 $(".slideshow .image").click(startSlideshow);
             });
-        </script>
-
-        <script>
-            // remove empty p tags
-            for (const p of document.querySelectorAll('p')) {
-                if (p.innerHTML.trim() === '') {
-                    p.remove();
-                }
-            }
         </script>
 
         <noscript>This page requires JavaScript.</noscript>
