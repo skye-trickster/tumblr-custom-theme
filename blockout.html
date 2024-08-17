@@ -1843,9 +1843,9 @@
                     
                         {block:Photo}
                         <div class="photo-info">
-                            <div class="photo-header {block:exif}exif-photo{/block:exif}">
+                            <div class="photo-header{block:exif} exif-photo{/block:exif}">
                                 <figure 
-                                    class="featured-photo {block:HighRes}high-res{/block:HighRes}"
+                                    class="featured-photo{block:HighRes} high-res{/block:HighRes}"
                                     {block:HighRes}
                                     data-full-width="{PhotoWidth-HighRes}"
                                     data-full-height="{PhotoHeight-HighRes}"
@@ -1891,7 +1891,9 @@
                             </div>
                             {block:NotReblog}
                             <div class="post-body">
-                                {Body}
+                                {block:Caption}
+                                {Caption}
+                                {/block:Caption}
                             </div>
                             {/block:NotReblog}
                         </div>
