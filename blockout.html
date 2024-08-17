@@ -4,8 +4,8 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.3
-    RELEASE DATE: 16 August 2024
+    VERSION: 2.0.4
+    RELEASE DATE: 17 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
 
@@ -77,6 +77,9 @@
 
         <!-- POST VARIABLES -->
         <meta name="if:Sticky Post Headers" content="0">
+        <meta name="if:Show Additional Photo Info" content="1">
+        <meta name="font:Title" content="{TitleFont}">
+        <meta name="font:Body" content="Helvetica Neue">
 
         <!-- SIDENAV VARIABLES -->
         <meta name="if:Show Sidebar" content="1">
@@ -136,7 +139,8 @@
                 --side-bg-color: {color:Side Background Color};
                 --subtext-color: {color:Subtext Color};
                 --content-color: {color:Content Color};
-                --font: 'Helvetica Neue';
+                --font: {font:Body}, Arial, Helvetica, sans-serif;
+                --title-font: {font:Title};
                 --font-size: {select:Font Size};
                 --extreme-margin: 30px;
                 --large-margin: 20px;
@@ -147,13 +151,19 @@
                 --small-margin: 5px;
                 --tiny-margin: 3px;
                 --nav-color: {color:Nav Color};
-                --border-color: rgba({RGBcolor:Main Border Color}, 0.05);
-                --border-desktop-color: rgba({RGBcolor:Main Border Color}, 0.2);
                 --border-standard: 1px solid var(--border-color);
                 --border-thick: 1px solid var(--border-desktop-color);
                 --max-post-list-width: {select:Post Size};
                 --search-background-color: {color:Search Background Color};
                 --search-text-color: {color:Search Text Color};
+            }
+            
+            :root {
+                --border-color: #0f0f0f;
+                --border-color: rgba({RGBcolor:Main Border Color}, 0.05);
+                
+                --border-desktop-color: #333333;
+                --border-desktop-color: rgba({RGBcolor:Main Border Color}, 0.2);
             }
             
             body {
@@ -219,6 +229,7 @@
             .heading h1 { 
                 padding: var(--mobile-margin); 
                 font-size: 2.5rem;
+                font-family: {font:Title};
             }
             
             {block:IfNotShowDescription}
@@ -268,7 +279,7 @@
                 text-align: center;
             }
 
-            .navigation .material-symbols-outlined {
+            .navigation .material-symbols-outlined, .nav-left .no-icon {
                 display: none;
             }
 
@@ -463,6 +474,7 @@
                 padding: var(--mobile-margin);
                 flex-direction: column;
                 
+                background-color: rgba(255, 255, 255, 0.1);
                 background-color: rgba({RGBcolor:Post Footer Color}, {select:Post Footer Transparency});
             }
             
@@ -711,6 +723,112 @@
             .post-caption > *:last-child {
                 margin-bottom: 0;
             }
+            
+            .exif-photo {
+                position: relative;
+                top: 0;
+                bottom: 0;
+            }
+            
+            .exif-photo .exif-info {
+                font-size: 0.75em;
+                line-height: 1.4;
+                display: flex;
+                position: absolute;
+                bottom: 0;
+                background-color: black;
+                width: 0%;
+                padding: 4px;
+                justify-content: space-between;
+                gap: 8px;
+                transition-duration: 1s;
+                transition-timing-function: linear;
+                opacity: 0;
+                transition: ease-in;
+                visibility: collapse;
+                background-color: rgba(0, 0, 0, 0.7);
+                transition: visibility 0s linear 0.5s, opacity 0.5s linear, width 0.5s linear;
+            }
+
+            .exif-photo:hover .exif-info {
+                visibility: visible;
+                opacity: 1;
+                width: 75%;
+                transition-delay: 0s;
+            }
+            
+            .exif-info ul {
+                list-style: none;
+                padding-inline-start: 0;
+            }
+            
+            .exif-info ul li {
+                margin-block-end: 0;
+                color: white;
+            }
+            
+            .exif-info .action-link a {
+                color: white;
+                opacity: 0.8;
+                transition: 0.5s;
+            }
+            
+            .exif-info .action-link a:hover {
+                opacity: 1;
+                color: var(--accent-color);
+                text-decoration: none;
+                transition: 0.5s;
+            }
+            
+            .with-click-through .click-through {
+                max-height: 0;
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s linear 0.5s, opacity 0.5s linear, max-height 0.5s linear
+            }
+            
+            .with-click-through:hover .click-through {
+                max-height: 3em;
+                visibility: visible;
+                opacity: 1;
+                transition-delay: 0s;
+            }
+            
+            .click-through {
+                line-height: 1.4;
+                text-align: center;
+                background-color: var(--nav-color);
+                width: 100%;
+            }
+            
+            .click-through a {
+            	color: var(--subtext-color);
+            	overflow: hidden;
+            	display: block;
+            	width: 100%;
+            	text-overflow: ellipsis;
+            	white-space: nowrap;
+            	padding: 4px;
+            	font-size: 0.9em;
+            	border: var(--border-thick);
+            	border-top: none;
+            	transition: 0.5s;
+            }
+            
+            .npf_col:last-child .click-through a {
+                border-inline-end: none;
+            }
+            
+            .npf_col:first-child .click-through a {
+                border-inline-start: none;
+            }
+            
+            .click-through a:hover {
+                background-color: var(--accent-color-dark);
+                text-decoration: none;
+                color: var(--accent-color);
+                transition: 0.5s;
+            }
 
             /* PHOTOSET TYPE*/
 
@@ -722,6 +840,10 @@
 
             .photoset .npf_row {
                 width: 100%;
+            }
+            
+            .photoset .npf_col {
+                max-width: 100%;
             }
 
             .photoset .post_media_photo_anchor {
@@ -1097,8 +1219,6 @@
                     padding: 0;
                 }
 
-
-
                 /* Change to row navigation once gets enough space */
                 @media (min-height: 575px) {
 
@@ -1136,16 +1256,16 @@
                     }
                     
                     .nav-left {
-                        line-height: 0;
+                        display: flex;
+                        align-items: center;
                     }
                     
-                    .navigation .material-symbols-outlined, .nav-left p {
+                    .navigation .material-symbols-outlined, .nav-left .no-icon, .nav-left p {
                         display: inline;
-                        vertical-align: middle;
                     }
-
-                    .nav-left .material-symbols-outlined {
-                        margin: auto;
+                    
+                    .nav-left .no-icon {
+                        width: 24px;
                     }
 
                     .nav-left p {
@@ -1563,6 +1683,7 @@
                             <li>
                                 <a href="{URL}">
                                     <div class="nav-left">
+                                        <div class="no-icon"></div>
                                         <p>{Label}</p>
                                     </div>
                                     <span class="material-symbols-outlined">arrow_forward</span>
@@ -1578,6 +1699,9 @@
                                         {block:IfLink1Symbol}
                                         <span class="material-symbols-outlined">{text:Link 1 Symbol}</span>
                                         {/block:IfLink1Symbol}
+                                        {block:IfNotLink1Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink1Symbol}
                                         <p>{text:Link 1 Name}</p>
                                     </div>
                                     <span class="material-symbols-outlined">arrow_forward</span>
@@ -1593,6 +1717,9 @@
                                         {block:IfLink2Symbol}
                                         <span class="material-symbols-outlined">{text:Link 2 Symbol}</span>
                                         {/block:IfLink2Symbol}
+                                        {block:IfNotLink2Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink2Symbol}
                                         <p>{text:Link 2 Name}</p>
                                     </div>
                                     <span class="material-symbols-outlined">arrow_forward</span>
@@ -1608,6 +1735,9 @@
                                         {block:IfLink3Symbol}
                                         <span class="material-symbols-outlined">{text:Link 3 Symbol}</span>
                                         {/block:IfLink3Symbol}
+                                        {block:IfNotLink3Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink3Symbol}
                                         <p>{text:Link 3 Name}</p>
                                     </div>
                                     <span class="material-symbols-outlined">arrow_forward</span>
@@ -1623,6 +1753,9 @@
                                         {block:IfLink4Symbol}
                                         <span class="material-symbols-outlined">{text:Link 4 Symbol}</span>
                                         {/block:IfLink4Symbol}
+                                        {block:IfNotLink4Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink4Symbol}
                                         <p>{text:Link 4 Name}</p>
                                     </div>
                                     <span class="material-symbols-outlined">arrow_forward</span>
@@ -1661,7 +1794,7 @@
                         <div class="post-info">
 
                             <div class="post-meta">
-                                <a href="{Permalink}" title="{ShortDayOfWeek}, {DayOfMonth} {ShortMonth} {Year}">{TimeAgo}</a>
+                                <a href="{Permalink}" title="{lang:Posted on DayOfWeek DayOfMonth Month Year}">{TimeAgo}</a>
                                 {block:RebloggedFrom}
                                     <span class="material-symbols-outlined">cached</span>
                                     <a href="{ReblogParentURL}">{ReblogParentName}</a>
@@ -1681,8 +1814,8 @@
                     <div class="content">
                     
                         {block:Photo}
-                        <figure class="photo-info">
-                            <div class="photo-header">
+                        <div class="photo-info">
+                            <div class="photo-header {block:exif}exif-photo{/block:exif}">
                                 <figure 
                                     class="featured-photo {block:HighRes}high-res{/block:HighRes}"
                                     {block:HighRes}
@@ -1706,12 +1839,34 @@
                                     </figcaption>
                                     {/block:LinkURL}
                                 </figure>
-                                
+                                {block:exif}
+                                <div class="exif-info">
+                                    <ul>
+                                        {block:Camera}
+                                        <li>Camera: <a href="https://www.dpreview.com/search/?query={Camera}" target="_blank">{Camera}</a></li>
+                                        {/block:Camera}
+                                        {block:FocalLength}
+                                        <li>Focal Length: {FocalLength}</li>
+                                        {/block:FocalLength}
+                                        {block:Exposure}
+                                        <li>Exposure: {Exposure}</li>
+                                        {/block:Exposure}
+                                        {block:Aperture}
+                                        <li>Aperture: {Aperture}</li>
+                                        {/block:Aperture}
+                                    </ul>
+                                    <div class="action-link">
+                                        <a href="https://www.cambridgeincolour.com/tutorials/camera-exposure.htm" class="material-symbols-outline" title="What is all of this information?">info</a>
+                                    </div>
+                                </div>
+                                {/block:exif}
                             </div>
-                            {block:NotReblog} 
-                            <figcaption class="post-caption">{Caption}</figcaption>
+                            {block:NotReblog}
+                            <div class="post-body">
+                                {Body}
+                            </div>
                             {/block:NotReblog}
-                        </figure>
+                        </div>
                         {/block:Photo}
 
                         {block:Photoset}
@@ -2043,93 +2198,177 @@
 
         <!-- NPF Rendering -->
         <script>
-            // remove empty p tags
-            for (const p of document.querySelectorAll('p')) {
-                if (p.innerHTML.trim() === '') {
-                    p.remove()
+            (function() {
+                // remove empty p tags
+                for (const p of document.querySelectorAll('p')) {
+                    if (p.innerHTML.trim() === '') {
+                        p.remove()
+                    }
                 }
-            }
-            // create posts array
-            const posts = [];
-            {block:Posts}
-                posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
-            {/block:Posts}
-            
-            function updateTypes(type, article) {
-                article.classList.remove('post-text');
-                const postName = "post-" + type;
-                article.classList.add(postName, 'npf-post');
-            }
-            
-            function cleanupPost(article) {
-                const postBody = article.querySelector('.post-body');
+                // create posts array
+                const posts = [];
+                {block:Posts}
+                posts.push({ npf: {NPF}, id: "{PostId}"});
+                {/block:Posts}
                 
-                const containsMedia = () => {
-                    if (postBody.querySelector('figure')) {
-                        return true;
-                    }
-                    if (postBody.querySelector('iframe')) {
-                        return true;
-                    }
-                    return false;
+                function updateTypes(type, article) {
+                    article.classList.remove('post-text');
+                    const postName = "post-" + type;
+                    article.classList.add(postName, 'npf-post');
                 }
                 
-                if (postBody && postBody.innerText.trim() === '' && !containsMedia()) {
-                    postBody.remove();
+                function cleanupPost(article) {
+                    const postBody = article.querySelector('.post-body');
+                    if (postBody && postBody.innerHTML.trim() === '') {
+                        postBody.remove();
+                    }
+                    
+                    // clean up any potential stray reblog headers
+                    let reblogHeader = article.querySelector('.reblog-header')
+                    let reblogBody = article.querySelector('.reblog-body')
+                    if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
+                        reblogHeader.remove()
+                        reblogBody.remove()
+                    }
+                    
+                    // clean up any potential stray captions
+                    let captions = article.querySelectorAll('figcaption');
+                    for (const caption of captions) {
+                        if (caption.innerHTML.trim() === '') {
+                            caption.remove();
+                        }
+                    }
                 }
-            }
-            
-            for (const post of posts) {
-                const npf = post.npf;
-                const article = document.getElementById(`${post.id}`);
-                const content = article.querySelector(".content");
-
-                if (content && article.classList.contains('post-text')) {
-
-                    const postContent = npf.trail?.at(0)?.content[0] ?? npf.content?.at(0);
-                    switch(postContent?.type) {
-                        case 'image':
-                            if (article.querySelector(".npf_row")) {
-                                const parent = content.querySelectorAll(".npf_row")[0].parentElement;
-                                const elements = [];
-                                const photoset = document.createElement("div");
-                                photoset.classList.add("photoset");
-                                content.prepend(photoset);
-
-                                let current = parent.firstElementChild;
-
-                                // gather all of the photoset items in the first row; break when there's not one.
-                                while(current?.classList.contains("npf_row")) {
-                                    elements.push(current);
-                                    current = current.nextElementSibling;
-                                }
-                                
-                                photoset.append(...elements);
-
-                                // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
-                                if (photoset.querySelectorAll('.npf_col').length > 1) {
-                                    updateTypes('photoset', article);
-                                }
-                                else {
-                                    updateTypes('photo', article);
-                                }
-
-                                // clean up any potential stray reblog headers
-                                let reblogHeader = article.querySelector('.reblog-header')
-                                let reblogBody = article.querySelector('.reblog-body')
-                                if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
-                                    reblogHeader.remove()
-                                    reblogBody.remove()
-                                }
-                                
-                                // clean up any potential stray captions
-                                let captions = article.querySelectorAll('figcaption');
-                                for (const caption of captions) {
-                                    if (caption.innerHTML.trim() === '') {
-                                        caption.remove();
-                                    }
-                                }
+                
+                {block:IfShowAdditionalPhotoInfo}
+                function handlePhotos(photoset, postContent) {
+                    const photos = photoset.querySelectorAll('.npf_col');
+                    
+                    photos.forEach((photo, index) => {
+                        const content = postContent[index];
+                        
+                        // checks for exif content
+                        const {exif, attribution} = content;
+                        if (exif) {
+                            const {
+                                Aperture,
+                                aperture,
+                                CameraMake,
+                                cameramake,
+                                CameraModel,
+                                cameramodel,
+                                ExposureTime,
+                                exposuretime,
+                                FocalLength,
+                                focallength
+                            } = exif
+                            
+                            photo.classList.add('exif-photo');
+                            const exifFigure = photo.querySelector('figure');
+                            exifFigure.classList.add('exif-figure');
+                            const exifWrapper = document.createElement('div');
+                            exifWrapper.classList.add('exif-info');
+                            const exifList = document.createElement('ul');
+                            
+                            const cameraName = (cameramake ?? CameraMake ?? '') + ' ' + (cameramodel ?? CameraModel ?? '');
+                            if (cameraName.trim()) {
+                                const link = document.createElement('a');
+                                link.innerText = cameraName;
+                                const href = 'https://www.dpreview.com/search/?query=' + cameraName;
+                                link.href = href;
+                                const cameraItem = document.createElement('li');
+                                cameraItem.innerText = 'Camera: '
+                                cameraItem.append(link);
+                                exifList.append(cameraItem);
                             }
+                            
+                            const focalLength = focallength ?? FocalLength;
+                            if (focalLength) {
+                                const focalItem = document.createElement('li');
+                                focalItem.innerText = "Focal Length: " + focalLength;
+                                exifList.append(focalItem);
+                            }
+                            
+                            const exposureTime = exposuretime ?? ExposureTime;
+                            if (exposureTime) {
+                                const exposureItem = document.createElement('li');
+                                exposureItem.innerText = "Exposure: " + exposureTime;
+                                exifList.append(exposureItem);
+                            }
+                            
+                            const camAperture = aperture ?? Aperture;
+                            if (camAperture) {
+                                const apertureItem = document.createElement('li');
+                                apertureItem.innerText = "Aperture: " + camAperture;
+                                exifList.append(apertureItem);
+                            }
+
+                            if (exifList.childElementCount) {
+                                exifWrapper.append(exifList);
+                                const actionDiv = document.createElement('div');
+                                actionDiv.classList.add('action-link');
+                                actionDiv.innerHTML = '<a href="https://www.cambridgeincolour.com/tutorials/camera-exposure.htm" class="material-symbols-outlined" title="What is all of this information?">info</a>';
+                                exifWrapper.append(actionDiv);
+                                photo.append(exifWrapper);
+                            } else {
+                                exifList.remove();
+                                exifWrapper.remove();
+                            }
+                        }
+                        
+                        if (attribution && attribution.type === 'link') {
+                            photo.classList.add('with-click-through');
+                            const figure = photo.querySelector('figure');
+                            const attrElement = document.createElement('div');
+                            attrElement.classList.add('click-through');
+                            const anchor = document.createElement('a');
+                            anchor.innerText = attribution.url;
+                            anchor.href = attribution.url;
+                            attrElement.append(anchor);
+                            figure.append(attrElement);
+                        }
+                    });
+                }
+                {/block:IfShowAdditionalPhotoInfo}
+                
+                
+                for (const {npf, id} of posts) {
+                    const article = document.getElementById(id);
+                    if (article === null) continue;
+                    if (!article.classList.contains('post-text')) continue;
+                    
+                    const content = article?.querySelector(".content");
+                    if (!content === null) continue;
+    
+                    const postContent = npf.trail[0]?.content?.length ? npf.trail[0].content : npf.content;
+                    
+                    const type = postContent[0]?.type;
+                    const subtype = postContent[0]?.subtype;
+                    switch(type) {
+                        case 'image':
+                            const parent = content.querySelector('.npf_row')?.parentElement;
+                            const elements = [];
+    
+                            // gather all of the beginning rows of the photoset
+                            let current = parent?.firstElementChild;
+                            while(current?.classList.contains("npf_row")) {
+                                elements.push(current);
+                                current = current.nextElementSibling;
+                            }
+                            
+                            if (elements.length === 0) continue;
+                            
+                            const photoset = document.createElement("div");
+                            photoset.classList.add("photoset");
+                            photoset.append(...elements);
+                            content.prepend(photoset);
+                            
+                            // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
+                            const newType = photoset.querySelectorAll('.npf_col').length > 1 ? 'photoset' : 'photo';
+                            updateTypes(newType, article);
+                            {block:IfShowAdditionalPhotoInfo}
+                            handlePhotos(photoset, postContent);
+                            {/block:IfShowAdditionalPhotoInfo}
                             cleanupPost(article);
                             break;
                         case 'video':
@@ -2140,23 +2379,26 @@
                             break;
                         case 'link':
                             updateTypes('link', article);
+                            const link = content.querySelector('.npf-link-block');
+                            if (link) {
+                                content.prepend(link);
+                            }
+                            cleanupPost(link);
                             break;
                         case 'audio':
                             updateTypes('audio', article);
                             let audio = article.querySelector('figure');
-                            audio.classList.add('featured-audio');
+                            audio?.classList.add('featured-audio');
                             content.prepend(audio);
                             cleanupPost(article);
                             break;
                         default: // 'text'
-                            if (postContent.subtype === 'quote') {
+                            if (subtype === 'quote') {
                                 updateTypes('quote', article);
                             }
                     }
-
-
                 }
-            }
+            })()
         </script>
 
         {block:IfShowSidebar}
