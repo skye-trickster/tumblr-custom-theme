@@ -465,6 +465,22 @@
             .reblog-item .post-body {
                 padding-block: 0;
             }
+            
+            .post .post-source {
+            	border-block-start: var(--border-standard);
+            	justify-content: space-between;
+            	background-color: var(--border-color);
+            	padding: var(--small-margin);
+            	background-color: rgba(255, 255, 255, 0.1);
+            	background-color: rgba({RGBcolor:Post Footer Color}, {select:Post Footer Transparency});
+            	font-size: 0.9em;
+            	text-align: center;
+            	color: var(--subtext-color);
+            }
+            
+            .post .post-source a, .post .post-source a:visited {
+                color: var(--accent-color);
+            }
 
             .post footer {
                 border-block-start: var(--border-standard);
@@ -1694,7 +1710,7 @@
                         {block:IfLink1Name}
                             {block:IfLink1URL}
                             <li>
-                                <a href="{text:Link 1 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                <a href="{text:Link 1 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
                                     <div class="nav-left">
                                         {block:IfLink1Symbol}
                                         <span class="material-symbols-outlined">{text:Link 1 Symbol}</span>
@@ -1712,7 +1728,7 @@
                         {block:IfLink2Name}
                             {block:IfLink2URL}
                             <li>
-                                <a href="{text:Link 2 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                <a href="{text:Link 2 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
                                     <div class="nav-left">
                                         {block:IfLink2Symbol}
                                         <span class="material-symbols-outlined">{text:Link 2 Symbol}</span>
@@ -1730,7 +1746,7 @@
                         {block:IfLink3Name}
                             {block:IfLink3URL}
                             <li>
-                                <a href="{text:Link 3 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                <a href="{text:Link 3 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
                                     <div class="nav-left">
                                         {block:IfLink3Symbol}
                                         <span class="material-symbols-outlined">{text:Link 3 Symbol}</span>
@@ -1748,7 +1764,7 @@
                         {block:IfLink4Name}
                             {block:IfLink4URL}
                             <li>
-                                <a href="{text:Link 4 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                <a href="{text:Link 4 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
                                     <div class="nav-left">
                                         {block:IfLink4Symbol}
                                         <span class="material-symbols-outlined">{text:Link 4 Symbol}</span>
@@ -1843,7 +1859,7 @@
                                 <div class="exif-info">
                                     <ul>
                                         {block:Camera}
-                                        <li>Camera: <a href="https://www.dpreview.com/search/?query={Camera}" target="_blank">{Camera}</a></li>
+                                        <li>Camera: <a href="https://www.dpreview.com/search/?query={Camera}" target="_blank" rel="noreferrer">{Camera}</a></li>
                                         {/block:Camera}
                                         {block:FocalLength}
                                         <li>Focal Length: {FocalLength}</li>
@@ -2055,6 +2071,12 @@
 
 
                     </div>
+                    {block:ContentSource}
+                    <div class="post-source">
+                        {lang:Source}:
+                        <a href="{SourceURL}" target="_blank" rel="noreferrer" title="{SourceTitle}">{SourceTitle}</a>
+                    </div>
+                    {/block:ContentSource}
     {block:Date}
                     <footer>
 
@@ -2187,7 +2209,7 @@
                     </li>
 
                     <li>
-                        <a target="_blank" href="https://skyetrick-blockout.tumblr.com/">Credit</a>
+                        <a target="_blank" rel="noreferrer" href="https://skyetrick-blockout.tumblr.com/">Credit</a>
                     </li>
                 </ul>
             </nav>
