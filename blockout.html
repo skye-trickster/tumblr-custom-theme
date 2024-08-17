@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.2
+    VERSION: 2.0.3
     RELEASE DATE: 16 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -68,13 +68,16 @@
         <meta name="select:Sidebar Size" content="300px" title="300px">
         <meta name="select:Sidebar Size" content="400px" title="400px">
         
-        
         <!-- ADDITIONAL TEXT -->
         <meta name="if:Show Description" content="1">
         <meta name="if:Show Subtext" content="1">
         <meta name="text:Subtext" content="Written by Skye">
         <meta name="text:Custom Ask Label" content="Ask">
         <meta name="text:Custom Submit Label" content="Submit">
+
+        <!-- POST VARIABLES -->
+        <meta name="if:Sticky Post Headers" content="0">
+
         <!-- SIDENAV VARIABLES -->
         <meta name="if:Show Sidebar" content="1">
         <meta name="text:Updates Title" content="Updates">
@@ -151,6 +154,14 @@
                 --max-post-list-width: {select:Post Size};
                 --search-background-color: {color:Search Background Color};
                 --search-text-color: {color:Search Text Color};
+            }
+            
+            body {
+                --pushdown-amount: 0px;
+            }
+            
+            body.tmblr-iframe-pushdown {
+                --pushdown-amount: 54px;
             }
 
             * {
@@ -316,6 +327,13 @@
 
             .post header {
                 padding: var(--mobile-margin);
+            }
+            
+            .post header.sticky {
+                position: sticky;
+                top: var(--pushdown-amount);
+                z-index: 2;
+                background-color: var(--content-color);
             }
             
             .post header h1 {
@@ -1046,10 +1064,7 @@
                     margin-inline-start:var(--far-width);
                     border-inline-end: var(--border-thick);
                     inset-block-start: 0;
-                }
-                
-                body.tmblr-iframe-pushdown .information {
-                    margin-top: 54px;
+                    margin-top: var(--pushdown-amount);
                 }
 
                 .title {
@@ -1152,10 +1167,7 @@
                     block-size: 80px;
                     justify-content: space-between;
                     inset-block-start: 0;
-                }
-                
-                body.tmblr-iframe-pushdown .tumblr-controls-desktop {
-                    margin-top: 54px;
+                    margin-top: var(--pushdown-amount);
                 }
 
                 .controls, .search {
@@ -1210,6 +1222,10 @@
                     border-block-end: var(--border-standard);
                     padding-block-end: var(--mobile-margin);
                 }
+                
+                .post header.sticky {
+                    top: calc(80px + var(--pushdown-amount));
+                }
 
                 .post header h1 {
                     margin-block-end: 0;
@@ -1255,10 +1271,8 @@
                     inset-block-start: 0;
                     padding-inline: 0;
                     align-items: center;
-                }
-                
-                body.tmblr-iframe-pushdown > footer {
-                    padding-top: calc(var(--mobile-margin) + 54px);
+                    
+                    padding-top: calc(var(--mobile-margin) + var(--pushdown-amount));
                 }
 
                 .avatar {
@@ -1287,10 +1301,7 @@
                     inset-inline-end: 0px;
                     inset-block-start: 80px;
                     block-size: 100%;
-                }
-                
-                body.tmblr-iframe-pushdown aside {
-                    margin-top: 54px;
+                    margin-top: var(--pushdown-amount);
                 }
 
                 .menu {
@@ -1445,12 +1456,16 @@
 
                     .controls {
                         flex-basis: var(--sidebar-width);
+                        {block:IfShowSidebar}
                         border-inline-start: var(--border-thick);
+                        {/block:IfShowSidebar}
                     }
 
                     main {
                         margin-block-start: var(--max-main-margin);
+                        {block:IfShowSidebar}
                         margin-inline-end: var(--sidebar-width);
+                        {/block:IfShowSidebar}
                     }
 
                     .sidenav {
@@ -1641,7 +1656,7 @@
                 {block:Posts}
                 
                 <article class="post post-{PostType}" id="{PostId}">
-                    <header>
+                    <header {block:IfStickyPostHeaders}class="sticky"{/block:IfStickyPostHeaders}>
                         {block:Date}
                         <div class="post-info">
 
@@ -2144,10 +2159,14 @@
             }
         </script>
 
+        {block:IfShowSidebar}
         <!-- tags setting script -->
         <script>
             (function() {
                 const trending = document.querySelectorAll(".trending")
+                if (trending.length === 0) {
+                    return;
+                }
     
                 function setTags(tagString) {
                     if(tagString === "") return []
@@ -2207,6 +2226,7 @@
                 })
             })
         </script>
+        {/block:IfShowSidebar}
 
         <!-- Minified functions for lightboxes and photosets-->
         <script src="https://static.tumblr.com/7ijwq6x/CPWrlisng/functions1.min.js"></script>
