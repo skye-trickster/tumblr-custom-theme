@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.4a
+    VERSION: 2.0.5
     RELEASE DATE: 17 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -210,23 +210,23 @@
 
             /* HEADING */
 
-            .title:hover { text-decoration: none;}
-            .title:link { color:var(--main-text-color); }
+            #heading .title:hover { text-decoration: none;}
+            #heading .title:link { color:var(--main-text-color); }
 
-            .heading {
+            #heading {
                 background-color: var(--content-color);
             }
 
-            .information {
+            #heading .information {
                 text-align: center;
                 background-color: var(--content-color);
             }
             
-            .header-image {
+            #heading .header-image {
                 display: flex;
             }
 
-            .heading h1 { 
+            #heading h1 { 
                 padding: var(--mobile-margin); 
                 font-size: 2.5rem;
                 font-family: {font:Title};
@@ -234,20 +234,20 @@
             
             {block:IfNotShowDescription}
             {block:IfNotShowSubtext}
-            .description {
+            #heading .description {
                 display: none;
             }
             {/block:IfNotShowSubtext}
             {/block:IfNotShowDescription}
 
-            .description {
+            #heading .description {
                 padding-inline: var(--mobile-margin);
                 padding-block-start: var(--mobile-margin);
                 max-width: 100%;
                 text-align: start;
             }
 
-            .description a {
+            #heading .description a {
                 color: var(--accent-color);
             }
 
@@ -267,28 +267,29 @@
 
             /* NAVBAR */
 
-            .navigation {
+            #heading .navigation {
                 background-color: var(--nav-color);
                 padding: var(--small-margin);
                 border-block: var(--border-standard);
             }
 
-            .navigation ul {
+            #heading .navigation ul {
                 overflow: auto;
                 white-space: nowrap;
                 text-align: center;
             }
 
-            .navigation .material-symbols-outlined, .nav-left .no-icon {
+            #heading .navigation .material-symbols-outlined,
+            .nav-left .no-icon {
                 display: none;
             }
 
-            .navigation ul li {
+            #heading .navigation ul li {
                 display: inline-block;
                 list-style-type: none;
             }
 
-            .navigation a {
+            #heading .navigation a {
                 padding: var(--mobile-margin);
             }
 
@@ -769,8 +770,24 @@
             .exif-photo:hover .exif-info {
                 visibility: visible;
                 opacity: 1;
-                width: 75%;
+                width: calc(100% - 4px);
                 transition-delay: 0s;
+            }
+            
+            .exif-photo:hover:first-child .exif-info,
+            .exif-photo:hover:last-child .exif-info {
+                width: calc(100% - 2px);
+            }
+            .exif-photo:hover:first-child:last-child .exif-info {
+                width: 100%;
+            }
+            
+            .post div.npf_row div.npf_col.exif-photo figure.tmblr-full.exif-figure {
+                padding-right: 0;
+            }
+            
+            .post div.npf_row div.npf_col.exif-photo figure.tmblr-full.exif-figure {
+                padding-right: 0;
             }
             
             .exif-info ul {
@@ -961,16 +978,25 @@
                 align-items: center;
             }
             
-            div.npf-link-block {
+            div.featured-link.npf-link-block {
             	border-radius: 0px;
-            	margin-block-start: 0;
-            	border: var(--border-thick);
+            	border-block: var(--border-thick);
             	transition: 0.3s;
+            	border-inline: none;
+            	margin-block: 0;
             }
             
-            div.npf-link-block:hover {
+            div.featured-link.npf-link-block:hover {
             	background-color: var(--accent-color-dark);
             	color: var(--accent-color);
+            }
+            
+            div.featured-link.npf-link-block .poster {
+                border-bottom: var(--border-thick);
+            }
+            
+            div.featured-link.npf-link-block .bottom .description {
+                text-wrap: nowrap;
             }
 
             .link-details {
@@ -1206,7 +1232,7 @@
                 }
 
 
-                .information {
+                #heading .information {
                     position: fixed;
                     z-index: 3;
                     block-size: 100%;
@@ -1217,7 +1243,7 @@
                     margin-top: var(--pushdown-amount);
                 }
 
-                .title {
+                #heading .title {
                     height: var(--header-height);
                     display: flex;
                     justify-content: center;
@@ -1225,57 +1251,57 @@
                     border-block-end: var(--border-thick);
                 }
 
-                .title h1 {
+                #heading .title h1 {
                     font-size: 1.6em;
                     display:inline;
                 }
 
-                .description {
+                #heading .description {
                     padding: var(--small-margin);
                 }
 
-                .writer {
+                #heading .writer {
                     margin-block: var(--small-margin);
                     font-size: 0.8em;
                 }
 
-                .navigation {
+                #heading .navigation {
                     padding: 0;
                 }
 
-                .navigation ul {
+                #heading .navigation ul {
                     padding: 0;
                 }
 
                 /* Change to row navigation once gets enough space */
                 @media (min-height: 575px) {
 
-                    .information {
+                    #heading .information {
                         display: flex;
                         flex-direction: column;
                     }
 
-                    .information > * {
+                    #heading .information > * {
                         flex-shrink: 0;
                     }
 
-                    .navigation {
+                    #heading .navigation {
                         flex-shrink: 1;
                         overflow-y: auto;
                     }
 
-                    .navigation ul {
+                    #heading .navigation ul {
                         display: block;
                         white-space: initial;
                         overflow: initial;   
                     }
                     
-                    .navigation ul li {
+                    #heading .navigation ul li {
                         display: list-item;
                         margin: 0;
                     }
                     
-                    .navigation a {
+                    #heading .navigation a {
                         padding-inline: var(--mobile-margin);
                         padding-block: var(--standard-margin);
                         display: flex;
@@ -1288,7 +1314,9 @@
                         align-items: center;
                     }
                     
-                    .navigation .material-symbols-outlined, .nav-left .no-icon, .nav-left p {
+                    #heading .navigation .material-symbols-outlined,
+                    .nav-left .no-icon,
+                    .nav-left p {
                         display: inline;
                     }
                     
@@ -1640,8 +1668,7 @@
     </head>
 
     <body>
-        <header class="heading">
-
+        <header id="heading">
             <div class="information">
                 <a href="/" class="title">
                     <h1>{Title}</h1>
@@ -2416,10 +2443,11 @@
                         case 'link':
                             updateTypes('link', article);
                             const link = content.querySelector('.npf-link-block');
+                            link.classList.add('featured-link');
                             if (link) {
                                 content.prepend(link);
                             }
-                            cleanupPost(link);
+                            cleanupPost(article);
                             break;
                         case 'audio':
                             updateTypes('audio', article);
