@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.1d
+    VERSION: 2.0.2
     RELEASE DATE: 16 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -86,11 +86,36 @@
         <meta name="text:Main Tags" content="venusaur, squirtle, charizard">
         
         <meta name="if:Copyright Years" content="1">
+        <meta name="if:Filled Icons" content="1">
+        
+        <!--  CUSTOM LINKS -->
+        <meta name="if:Open custom links in a new tab" content="1">
+        <meta name="text:Link 1 Name" content="">
+        <meta name="text:Link 1 URL" content="">
+        <meta name="text:Link 1 Symbol" content="">
+
+        <meta name="text:Link 2 Name" content="">
+        <meta name="text:Link 2 URL" content="">
+        <meta name="text:Link 2 Symbol" content="">
+
+        <meta name="text:Link 3 Name" content="">
+        <meta name="text:Link 3 URL" content="">
+        <meta name="text:Link 3 Symbol" content="">
+
+        <meta name="text:Link 4 Name" content="">
+        <meta name="text:Link 4 URL" content="">
+        <meta name="text:Link 4 Symbol" content="">
+
         <!-- VARIABLES -->
         {/block:Hidden}
 
         <link rel="shortcut icon" href="{Favicon}">
+        {block:IfFilledIcons}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,0">
+        {/block:IfFilledIcons}
+        {block:IfNotFilledIcons}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0">
+        {/block:IfNotFilledIcons}
 
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         {block:Description}
@@ -1096,11 +1121,12 @@
                     }
                     
                     .nav-left {
-                        display: flex;
+                        line-height: 0;
                     }
                     
                     .navigation .material-symbols-outlined, .nav-left p {
                         display: inline;
+                        vertical-align: middle;
                     }
 
                     .nav-left .material-symbols-outlined {
@@ -1479,7 +1505,7 @@
                         <li>
                             <a href="/">
                                 <div class="nav-left">
-                                    <span class="material-symbols-outlined">other_houses</span>
+                                    <span class="material-symbols-outlined">home</span>
                                     <p>{lang:Home}</p>
                                 </div>
                                 <span class="material-symbols-outlined">arrow_forward</span>
@@ -1519,16 +1545,76 @@
                         {/block:SubmissionsEnabled} 
                         {block:HasPages}
                             {block:Pages}
-                                <li>
-                                    <a href="{URL}">
-                                        <div class="nav-left">
-                                            <p>{Label}</p>
-                                        </div>
-                                        <span class="material-symbols-outlined">arrow_forward</span>
-                                    </a>
-                                </li>
+                            <li>
+                                <a href="{URL}">
+                                    <div class="nav-left">
+                                        <p>{Label}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
                             {/block:Pages}
                         {/block:HasPages}
+                        {block:IfLink1Name}
+                            {block:IfLink1URL}
+                            <li>
+                                <a href="{text:Link 1 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink1Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 1 Symbol}</span>
+                                        {/block:IfLink1Symbol}
+                                        <p>{text:Link 1 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink1URL}
+                        {/block:IfLink1Name}
+                        {block:IfLink2Name}
+                            {block:IfLink2URL}
+                            <li>
+                                <a href="{text:Link 2 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink2Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 2 Symbol}</span>
+                                        {/block:IfLink2Symbol}
+                                        <p>{text:Link 2 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink2URL}
+                        {/block:IfLink2Name}
+                        {block:IfLink3Name}
+                            {block:IfLink3URL}
+                            <li>
+                                <a href="{text:Link 3 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink3Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 3 Symbol}</span>
+                                        {/block:IfLink3Symbol}
+                                        <p>{text:Link 3 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink3URL}
+                        {/block:IfLink3Name}
+                        {block:IfLink4Name}
+                            {block:IfLink4URL}
+                            <li>
+                                <a href="{text:Link 4 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink4Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 4 Symbol}</span>
+                                        {/block:IfLink4Symbol}
+                                        <p>{text:Link 4 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink4URL}
+                        {/block:IfLink4Name}
                     </ul>
                 </nav>
             </div>
