@@ -4,7 +4,7 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.5
+    VERSION: 2.0.5a
     RELEASE DATE: 17 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
@@ -1244,16 +1244,18 @@
                 }
 
                 #heading .title {
-                    height: var(--header-height);
+                    min-height: var(--header-height);
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-block-end: var(--border-thick);
+                    padding: var(--small-margin);
                 }
 
                 #heading .title h1 {
                     font-size: 1.6em;
                     display:inline;
+                    padding: 0;
                 }
 
                 #heading .description {
@@ -2437,14 +2439,17 @@
                         case 'video':
                             updateTypes('video', article);
                             let video = article.querySelector('figure');
-                            content.prepend(video);
+                            if (video) {
+                                video.classList.add('featured-video');
+                                content.prepend(video);
+                            }
                             cleanupPost(article);
                             break;
                         case 'link':
                             updateTypes('link', article);
                             const link = content.querySelector('.npf-link-block');
-                            link.classList.add('featured-link');
                             if (link) {
+                                link.classList.add('featured-link');
                                 content.prepend(link);
                             }
                             cleanupPost(article);
@@ -2452,8 +2457,10 @@
                         case 'audio':
                             updateTypes('audio', article);
                             let audio = article.querySelector('figure');
-                            audio?.classList.add('featured-audio');
-                            content.prepend(audio);
+                            if (audio) {
+                                audio.classList.add('featured-audio');
+                                content.prepend(audio);
+                            }
                             cleanupPost(article);
                             break;
                         default: // 'text'
