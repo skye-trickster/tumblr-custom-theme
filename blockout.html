@@ -4,18 +4,17 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.5a
-    RELEASE DATE: 17 August 2024
+    VERSION: 2.0.6
+    RELEASE DATE: 18 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
 
     Credits:
-        - NPF Format rendering by eggdesign: https://npftemplate.tumblr.com/ 
+        - NPF Format rendering based on eggdesign: https://npftemplate.tumblr.com/ 
 
     Please do not remove the credit.
 -->
-<html lang="en">
-
+<html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{Title}</title>
@@ -71,9 +70,10 @@
         <!-- ADDITIONAL TEXT -->
         <meta name="if:Show Description" content="1">
         <meta name="if:Show Subtext" content="1">
-        <meta name="text:Subtext" content="Written by Skye">
+        <meta name="text:Subtext" content="">
         <meta name="text:Custom Ask Label" content="Ask">
         <meta name="text:Custom Submit Label" content="Submit">
+        <meta name="text:Page Icons" content="">
 
         <!-- POST VARIABLES -->
         <meta name="if:Sticky Post Headers" content="0">
@@ -159,10 +159,10 @@
             }
             
             :root {
-                --border-color: #0f0f0f;
+                --border-color: rgba(255, 255, 255, 0.05);
                 --border-color: rgba({RGBcolor:Main Border Color}, 0.05);
-                
-                --border-desktop-color: #333333;
+
+                --border-desktop-color: rgba(255, 255, 255, 0.2);
                 --border-desktop-color: rgba({RGBcolor:Main Border Color}, 0.2);
             }
             
@@ -344,7 +344,7 @@
             .post header.sticky {
                 position: sticky;
                 top: var(--pushdown-amount);
-                z-index: 2;
+                z-index: 20;
                 background-color: var(--content-color);
             }
             
@@ -635,8 +635,8 @@
                 text-align: center;
             }
 
-            body > footer nav { 
-                justify-content: center;
+            body > footer nav {
+                padding: var(--small-margin);
                 text-align: center;
             }
             body > footer ul {
@@ -1217,6 +1217,10 @@
                 display: flex;
                 margin: 0 var(--standard-margin);
             }
+            
+            .copyright:before {
+                content: '\00A9';
+            }
 
 
             /* desktop view once at 700px as long as your device is tall enough */
@@ -1234,7 +1238,7 @@
 
                 #heading .information {
                     position: fixed;
-                    z-index: 3;
+                    z-index: 30;
                     block-size: 100%;
                     inline-size: var(--info-width);
                     margin-inline-start:var(--far-width);
@@ -1338,7 +1342,7 @@
                     display: flex;
                     inline-size: calc(100% - var(--content-margin));
                     position: fixed;
-                    z-index: 3;
+                    z-index: 30;
                     background-color: var(--content-color);
                     border-block-end: var(--border-thick);
                     margin-inline-start: var(--content-margin);
@@ -1449,7 +1453,6 @@
                     inset-block-start: 0;
                     padding-inline: 0;
                     align-items: center;
-                    
                     padding-top: calc(var(--mobile-margin) + var(--pushdown-amount));
                 }
 
@@ -1476,6 +1479,7 @@
                 aside {
                     display: flex;
                     position: fixed;
+                    z-index: 30;
                     inset-inline-end: 0px;
                     inset-block-start: 80px;
                     block-size: 100%;
@@ -1692,7 +1696,7 @@
                         {/block:IfShowSubtext}
                     </div>
                 </div>
-                <nav class="navigation"> <!-- Block:pages for custom page navigation-->
+                <nav class="navigation">
                     <ul>
                         <li>
                             <a href="/">
@@ -1734,10 +1738,10 @@
                                 <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
                         </li>
-                        {/block:SubmissionsEnabled} 
+                        {/block:SubmissionsEnabled}
                         {block:HasPages}
                             {block:Pages}
-                            <li>
+                            <li class="nav-page">
                                 <a href="{URL}">
                                     <div class="nav-left">
                                         <div class="no-icon"></div>
@@ -2240,8 +2244,8 @@
             <nav>
                 <ul>
                     {block:IfCopyrightYears}
-                    <li>
-                        &copy; {CopyrightYears}
+                    <li class="copyright">
+                        {CopyrightYears}
                     </li>
                     {block:IfCopyrightYears}
                     <li>
@@ -2250,10 +2254,16 @@
                     <li>
                         <a href="/archive">{lang:Archive}</a>
                     </li>
-
+                    {block:English}
                     <li>
                         <a target="_blank" rel="noreferrer" href="https://skyetrick-blockout.tumblr.com/">Credit</a>
                     </li>
+                    {/block:English}
+                    {block:NotEnglish}
+                    <li>
+                        <a class="material-symbols-outlined" target="_blank" rel="noreferrer" href="https://skyetrick-blockout.tumblr.com/">code</a>
+                    </li>
+                    {/block:NotEnglish}
                 </ul>
             </nav>
         </footer>
@@ -2471,6 +2481,32 @@
                 }
             })()
         </script>
+
+        {block:IfPageIcons}
+        <script>
+            (function() {
+                const pages = document.querySelectorAll(".nav-page");
+                if (pages.length === 0) return;
+                
+                const pageIcons = "{text:Page Icons}".split(',');
+                const pageIconList = pageIcons.map((icon) => icon.trim());
+                
+                function setPageIcon(page, icon) {
+                    if (!(page && icon)) return;
+                    const element = page.querySelector('.no-icon');
+                    if (!element) return;
+                    
+                    if (element.classList.replace('no-icon', 'material-symbols-outlined')) {
+                        element.innerText = icon;
+                    }
+                }
+                
+                pageIconList.forEach((icon, index) => {
+                    setPageIcon(pages[index], icon);
+                });
+            })();
+        </script>
+        {/block:IfPageIcons}
 
         {block:IfShowSidebar}
         <!-- tags setting script -->
