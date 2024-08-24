@@ -4,18 +4,17 @@
     AUTHOR: © SKYE TRICKSTER (Vincent)
     TUMBLR: @mxstball
     GITHUB: @skye-trickster
-    VERSION: 2.0.1b
-    RELEASE DATE: 7 October 2023
+    VERSION: 2.1.0
+    RELEASE DATE: 21 August 2024
     GET THE THEME: https://raw.githubusercontent.com/skye-trickster/tumblr-custom-theme/main/blockout.html
     TEXT ICON CREDIT: GOOGLE MATERIAL
 
     Credits:
-        - NPF Format rendering by eggdesign: https://npftemplate.tumblr.com/ 
+        - NPF Format rendering based on eggdesign: https://npftemplate.tumblr.com/ 
 
     Please do not remove the credit.
 -->
-<html lang="en">
-
+<html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{Title}</title>
@@ -68,13 +67,20 @@
         <meta name="select:Sidebar Size" content="300px" title="300px">
         <meta name="select:Sidebar Size" content="400px" title="400px">
         
-        
         <!-- ADDITIONAL TEXT -->
         <meta name="if:Show Description" content="1">
         <meta name="if:Show Subtext" content="1">
-        <meta name="text:Subtext" content="Written by Skye">
+        <meta name="text:Subtext" content="">
         <meta name="text:Custom Ask Label" content="Ask">
         <meta name="text:Custom Submit Label" content="Submit">
+        <meta name="text:Page Icons" content="">
+
+        <!-- POST VARIABLES -->
+        <meta name="if:Sticky Post Headers" content="0">
+        <meta name="if:Show Additional Photo Info" content="1">
+        <meta name="font:Title" content="{TitleFont}">
+        <meta name="font:Body" content="Helvetica Neue">
+
         <!-- SIDENAV VARIABLES -->
         <meta name="if:Show Sidebar" content="1">
         <meta name="text:Updates Title" content="Updates">
@@ -86,11 +92,36 @@
         <meta name="text:Main Tags" content="venusaur, squirtle, charizard">
         
         <meta name="if:Copyright Years" content="1">
+        <meta name="if:Filled Icons" content="1">
+        
+        <!--  CUSTOM LINKS -->
+        <meta name="if:Open custom links in a new tab" content="1">
+        <meta name="text:Link 1 Name" content="">
+        <meta name="text:Link 1 URL" content="">
+        <meta name="text:Link 1 Symbol" content="">
+
+        <meta name="text:Link 2 Name" content="">
+        <meta name="text:Link 2 URL" content="">
+        <meta name="text:Link 2 Symbol" content="">
+
+        <meta name="text:Link 3 Name" content="">
+        <meta name="text:Link 3 URL" content="">
+        <meta name="text:Link 3 Symbol" content="">
+
+        <meta name="text:Link 4 Name" content="">
+        <meta name="text:Link 4 URL" content="">
+        <meta name="text:Link 4 Symbol" content="">
+
         <!-- VARIABLES -->
         {/block:Hidden}
 
         <link rel="shortcut icon" href="{Favicon}">
+        {block:IfFilledIcons}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,1,0">
+        {/block:IfFilledIcons}
+        {block:IfNotFilledIcons}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0">
+        {/block:IfNotFilledIcons}
 
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
         {block:Description}
@@ -108,7 +139,8 @@
                 --side-bg-color: {color:Side Background Color};
                 --subtext-color: {color:Subtext Color};
                 --content-color: {color:Content Color};
-                --font: 'Helvetica Neue';
+                --font: {font:Body}, Arial, Helvetica, sans-serif;
+                --title-font: {font:Title};
                 --font-size: {select:Font Size};
                 --extreme-margin: 30px;
                 --large-margin: 20px;
@@ -119,13 +151,27 @@
                 --small-margin: 5px;
                 --tiny-margin: 3px;
                 --nav-color: {color:Nav Color};
-                --border-color: rgba({RGBcolor:Main Border Color}, 0.05);
-                --border-desktop-color: rgba({RGBcolor:Main Border Color}, 0.2);
                 --border-standard: 1px solid var(--border-color);
                 --border-thick: 1px solid var(--border-desktop-color);
                 --max-post-list-width: {select:Post Size};
                 --search-background-color: {color:Search Background Color};
                 --search-text-color: {color:Search Text Color};
+            }
+            
+            :root {
+                --border-color: rgba(255, 255, 255, 0.05);
+                --border-color: rgba({RGBcolor:Main Border Color}, 0.05);
+
+                --border-desktop-color: rgba(255, 255, 255, 0.2);
+                --border-desktop-color: rgba({RGBcolor:Main Border Color}, 0.2);
+            }
+            
+            body {
+                --pushdown-amount: 0px;
+            }
+            
+            body.tmblr-iframe-pushdown {
+                --pushdown-amount: 54px;
             }
 
             * {
@@ -164,43 +210,44 @@
 
             /* HEADING */
 
-            .title:hover { text-decoration: none;}
-            .title:link { color:var(--main-text-color); }
+            #heading .title:hover { text-decoration: none;}
+            #heading .title:link { color:var(--main-text-color); }
 
-            .heading {
+            #heading {
                 background-color: var(--content-color);
             }
 
-            .information {
+            #heading .information {
                 text-align: center;
                 background-color: var(--content-color);
             }
             
-            .header-image {
+            #heading .header-image {
                 display: flex;
             }
 
-            .heading h1 { 
+            #heading h1 { 
                 padding: var(--mobile-margin); 
                 font-size: 2.5rem;
+                font-family: {font:Title};
             }
             
             {block:IfNotShowDescription}
             {block:IfNotShowSubtext}
-            .description {
+            #heading .description {
                 display: none;
             }
             {/block:IfNotShowSubtext}
             {/block:IfNotShowDescription}
 
-            .description {
+            #heading .description {
                 padding-inline: var(--mobile-margin);
                 padding-block-start: var(--mobile-margin);
                 max-width: 100%;
                 text-align: start;
             }
 
-            .description a {
+            #heading .description a {
                 color: var(--accent-color);
             }
 
@@ -220,28 +267,29 @@
 
             /* NAVBAR */
 
-            .navigation {
+            #heading .navigation {
                 background-color: var(--nav-color);
                 padding: var(--small-margin);
                 border-block: var(--border-standard);
             }
 
-            .navigation ul {
+            #heading .navigation ul {
                 overflow: auto;
                 white-space: nowrap;
                 text-align: center;
             }
 
-            .navigation .material-symbols-outlined {
+            #heading .navigation .material-symbols-outlined,
+            .nav-left .no-icon {
                 display: none;
             }
 
-            .navigation ul li {
+            #heading .navigation ul li {
                 display: inline-block;
                 list-style-type: none;
             }
 
-            .navigation a {
+            #heading .navigation a {
                 padding: var(--mobile-margin);
             }
 
@@ -291,6 +339,13 @@
 
             .post header {
                 padding: var(--mobile-margin);
+            }
+            
+            .post header.sticky {
+                position: sticky;
+                top: var(--pushdown-amount);
+                z-index: 20;
+                background-color: var(--content-color);
             }
             
             .post header h1 {
@@ -352,12 +407,23 @@
 
             .content figure {
                 border: none;
+                line-height: 0;
             }
             
             .content figure.tmblr-full {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                text-align: center;
+            }
+            
+            .content figure p {
+                line-height: 1.4;
+            }
+
+            .content ol, .content ul {
+                padding-inline-start: 40px;
+            }
+
+            .content ol li, .content ul li {
+                margin-block-end: var(--standard-margin);
             }
 
             .post-body {
@@ -376,6 +442,22 @@
                 margin-block-end: 0;
             }
 
+            .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5, .post-body h6 {
+                font-weight: normal;
+            }
+
+            .post-body h1 a {
+                color: var(--accent-color);
+            }
+
+            .post-body h1 a:hover {
+                text-decoration: underline;
+            }
+
+            .post-body h1 a:visited {
+                color: inherit;
+            }
+
             .post-body ul, .post-body ol {
                 /* To keep the original ordered list */
                 padding-inline-start: 40px;
@@ -383,6 +465,22 @@
             
             .reblog-item .post-body {
                 padding-block: 0;
+            }
+            
+            .post .post-source {
+            	border-block-start: var(--border-standard);
+            	justify-content: space-between;
+            	background-color: var(--border-color);
+            	padding: var(--small-margin);
+            	background-color: rgba(255, 255, 255, 0.1);
+            	background-color: rgba({RGBcolor:Post Footer Color}, {select:Post Footer Transparency});
+            	font-size: 0.9em;
+            	text-align: center;
+            	color: var(--subtext-color);
+            }
+            
+            .post .post-source a, .post .post-source a:visited {
+                color: var(--accent-color);
             }
 
             .post footer {
@@ -393,6 +491,7 @@
                 padding: var(--mobile-margin);
                 flex-direction: column;
                 
+                background-color: rgba(255, 255, 255, 0.1);
                 background-color: rgba({RGBcolor:Post Footer Color}, {select:Post Footer Transparency});
             }
             
@@ -536,8 +635,8 @@
                 text-align: center;
             }
 
-            body > footer nav { 
-                justify-content: center;
+            body > footer nav {
+                padding: var(--small-margin);
                 text-align: center;
             }
             body > footer ul {
@@ -603,9 +702,11 @@
             }
             
             .featured-photo {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                text-align: center;
+            }
+            
+            .featured-photo .featured-image {
+                width: 100%;
             }
             
             .featured-photo img:hover {
@@ -627,6 +728,140 @@
             .post-caption {
                 margin: var(--mobile-margin);
             }
+            
+            .post-caption * {
+                line-height: 1.4;
+            }
+            
+            .post-caption > * {
+                margin-bottom: 10px;
+            }
+            
+            .post-caption > *:last-child {
+                margin-bottom: 0;
+            }
+            
+            .exif-photo {
+                position: relative;
+                top: 0;
+                bottom: 0;
+            }
+            
+            .exif-photo .exif-info {
+                font-size: 0.75em;
+                line-height: 1.4;
+                display: flex;
+                position: absolute;
+                bottom: 0;
+                background-color: black;
+                width: 0%;
+                padding: 4px;
+                justify-content: space-between;
+                gap: 8px;
+                transition-duration: 1s;
+                transition-timing-function: linear;
+                opacity: 0;
+                transition: ease-in;
+                visibility: collapse;
+                background-color: rgba(0, 0, 0, 0.7);
+                transition: visibility 0s linear 0.5s, opacity 0.5s linear, width 0.5s linear;
+            }
+
+            .exif-photo:hover .exif-info {
+                visibility: visible;
+                opacity: 1;
+                width: calc(100% - 4px);
+                transition-delay: 0s;
+            }
+            
+            .exif-photo:hover:first-child .exif-info,
+            .exif-photo:hover:last-child .exif-info {
+                width: calc(100% - 2px);
+            }
+            .exif-photo:hover:first-child:last-child .exif-info {
+                width: 100%;
+            }
+            
+            .post div.npf_row div.npf_col.exif-photo figure.tmblr-full.exif-figure {
+                padding-right: 0;
+            }
+            
+            .post div.npf_row div.npf_col.exif-photo figure.tmblr-full.exif-figure {
+                padding-right: 0;
+            }
+            
+            .exif-info ul {
+                list-style: none;
+                padding-inline-start: 0;
+            }
+            
+            .exif-info ul li {
+                margin-block-end: 0;
+                color: white;
+            }
+            
+            .exif-info .action-link a {
+                color: white;
+                opacity: 0.8;
+                transition: 0.5s;
+            }
+            
+            .exif-info .action-link a:hover {
+                opacity: 1;
+                color: var(--accent-color);
+                text-decoration: none;
+                transition: 0.5s;
+            }
+            
+            .with-click-through .click-through {
+                max-height: 0;
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s linear 0.5s, opacity 0.5s linear, max-height 0.5s linear
+            }
+            
+            .with-click-through:hover .click-through {
+                max-height: 3em;
+                visibility: visible;
+                opacity: 1;
+                transition-delay: 0s;
+            }
+            
+            .click-through {
+                line-height: 1.4;
+                text-align: center;
+                background-color: var(--nav-color);
+                width: 100%;
+            }
+            
+            .click-through a {
+            	color: var(--subtext-color);
+            	overflow: hidden;
+            	display: block;
+            	width: 100%;
+            	text-overflow: ellipsis;
+            	white-space: nowrap;
+            	padding: 4px;
+            	font-size: 0.9em;
+            	border: var(--border-thick);
+            	border-top: none;
+            	transition: 0.5s;
+            }
+            
+            .npf_col:last-child .click-through a {
+                border-inline-end: none;
+            }
+            
+            .npf_col:first-child .click-through a {
+                border-inline-start: none;
+            }
+            
+            .click-through a:hover {
+                background-color: var(--accent-color-dark);
+                text-decoration: none;
+                color: var(--accent-color);
+                transition: 0.5s;
+            }
 
             /* PHOTOSET TYPE*/
 
@@ -634,6 +869,18 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .photoset .npf_row {
+                width: 100%;
+            }
+            
+            .photoset .npf_col {
+                max-width: 100%;
+            }
+
+            .photoset .post_media_photo_anchor {
+                width: 100%;
             }
             
             .slideshow {
@@ -730,6 +977,27 @@
                 display: flex;
                 align-items: center;
             }
+            
+            div.featured-link.npf-link-block {
+            	border-radius: 0px;
+            	border-block: var(--border-thick);
+            	transition: 0.3s;
+            	border-inline: none;
+            	margin-block: 0;
+            }
+            
+            div.featured-link.npf-link-block:hover {
+            	background-color: var(--accent-color-dark);
+            	color: var(--accent-color);
+            }
+            
+            div.featured-link.npf-link-block .poster {
+                border-bottom: var(--border-thick);
+            }
+            
+            div.featured-link.npf-link-block .bottom .description {
+                text-wrap: nowrap;
+            }
 
             .link-details {
                 flex-grow: 3;
@@ -780,6 +1048,27 @@
             }
 
             /* AUDIO POSTS */
+            .tmblr-embed {
+                width: 100%;
+            }
+            
+            .featured-audio {
+                text-align: center;
+            }
+            
+            .featured-audio figcaption {
+                text-align: start;
+            }
+            
+            .featured-audio iframe {
+                width: 100%;
+            }
+            
+            /* spotify iframe has a weird gap so we're setting it manually */
+            .featured-audio .spotify_audio_player {
+                height: 160px;
+            }
+            
             .audio-embed, .video-embed {
                 display: flex;
                 justify-content: center;
@@ -792,6 +1081,10 @@
 
             .video-embed {
                 margin-block-end: var(--standard-margin);
+            }
+            
+            .npf-post .tmblr-embed .embed_iframe {
+                width: 100%;
             }
             
             .audio-caption, .video-caption {
@@ -924,6 +1217,10 @@
                 display: flex;
                 margin: 0 var(--standard-margin);
             }
+            
+            .copyright:before {
+                content: '\00A9';
+            }
 
 
             /* desktop view once at 700px as long as your device is tall enough */
@@ -939,63 +1236,78 @@
                 }
 
 
-                .information {
+                #heading .information {
                     position: fixed;
-                    z-index: 3;
+                    z-index: 30;
                     block-size: 100%;
                     inline-size: var(--info-width);
                     margin-inline-start:var(--far-width);
                     border-inline-end: var(--border-thick);
                     inset-block-start: 0;
+                    margin-top: var(--pushdown-amount);
                 }
 
-                .title {
-                    height: var(--header-height);
+                #heading .title {
+                    min-height: var(--header-height);
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-block-end: var(--border-thick);
-                }
-
-                .title h1 {
-                    font-size: 1.6em;
-                    display:inline;
-                }
-
-                .description {
                     padding: var(--small-margin);
                 }
 
-                .writer {
+                #heading .title h1 {
+                    font-size: 1.6em;
+                    display:inline;
+                    padding: 0;
+                }
+
+                #heading .description {
+                    padding: var(--small-margin);
+                }
+
+                #heading .writer {
                     margin-block: var(--small-margin);
                     font-size: 0.8em;
                 }
 
-                .navigation {
+                #heading .navigation {
                     padding: 0;
                 }
 
-                .navigation ul {
+                #heading .navigation ul {
                     padding: 0;
                 }
-
-
 
                 /* Change to row navigation once gets enough space */
-                @media screen and (min-height: 575px) {
+                @media (min-height: 575px) {
 
-                    .navigation ul {
+                    #heading .information {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    #heading .information > * {
+                        flex-shrink: 0;
+                    }
+
+                    #heading .navigation {
+                        flex-shrink: 1;
+                        overflow-y: auto;
+                    }
+
+                    #heading .navigation ul {
                         display: block;
                         white-space: initial;
                         overflow: initial;   
                     }
                     
-                    .navigation ul li {
+                    #heading .navigation ul li {
                         display: list-item;
                         margin: 0;
                     }
                     
-                    .navigation a {
+                    #heading .navigation a {
                         padding-inline: var(--mobile-margin);
                         padding-block: var(--standard-margin);
                         display: flex;
@@ -1005,19 +1317,23 @@
                     
                     .nav-left {
                         display: flex;
+                        align-items: center;
                     }
                     
-                    .navigation .material-symbols-outlined, .nav-left p {
+                    #heading .navigation .material-symbols-outlined,
+                    .nav-left .no-icon,
+                    .nav-left p {
                         display: inline;
                     }
-
-                    .nav-left .material-symbols-outlined {
-                        margin: auto;
+                    
+                    .nav-left .no-icon {
+                        width: 24px;
                     }
 
                     .nav-left p {
                         font-size: 0.9rem;
                         padding-inline-start: var(--mobile-margin);
+                        text-align: start;
                     }
 
                 }
@@ -1026,13 +1342,14 @@
                     display: flex;
                     inline-size: calc(100% - var(--content-margin));
                     position: fixed;
-                    z-index: 3;
+                    z-index: 30;
                     background-color: var(--content-color);
                     border-block-end: var(--border-thick);
                     margin-inline-start: var(--content-margin);
                     block-size: 80px;
                     justify-content: space-between;
                     inset-block-start: 0;
+                    margin-top: var(--pushdown-amount);
                 }
 
                 .controls, .search {
@@ -1081,11 +1398,16 @@
                 .post {
                     margin-block-end: var(--large-margin);
                     border: var(--border-standard);
+                    overflow: clip;
                 }
 
                 .post header {
                     border-block-end: var(--border-standard);
                     padding-block-end: var(--mobile-margin);
+                }
+                
+                .post header.sticky {
+                    top: calc(80px + var(--pushdown-amount));
                 }
 
                 .post header h1 {
@@ -1132,6 +1454,7 @@
                     inset-block-start: 0;
                     padding-inline: 0;
                     align-items: center;
+                    padding-top: calc(var(--mobile-margin) + var(--pushdown-amount));
                 }
 
                 .avatar {
@@ -1157,9 +1480,11 @@
                 aside {
                     display: flex;
                     position: fixed;
+                    z-index: 30;
                     inset-inline-end: 0px;
                     inset-block-start: 80px;
                     block-size: 100%;
+                    margin-top: var(--pushdown-amount);
                 }
 
                 .menu {
@@ -1314,12 +1639,16 @@
 
                     .controls {
                         flex-basis: var(--sidebar-width);
+                        {block:IfShowSidebar}
                         border-inline-start: var(--border-thick);
+                        {/block:IfShowSidebar}
                     }
 
                     main {
                         margin-block-start: var(--max-main-margin);
+                        {block:IfShowSidebar}
                         margin-inline-end: var(--sidebar-width);
+                        {/block:IfShowSidebar}
                     }
 
                     .sidenav {
@@ -1346,8 +1675,7 @@
     </head>
 
     <body>
-        <header class="heading">
-
+        <header id="heading">
             <div class="information">
                 <a href="/" class="title">
                     <h1>{Title}</h1>
@@ -1369,12 +1697,12 @@
                         {/block:IfShowSubtext}
                     </div>
                 </div>
-                <nav class="navigation"> <!-- Block:pages for custom page navigation-->
+                <nav class="navigation">
                     <ul>
                         <li>
                             <a href="/">
                                 <div class="nav-left">
-                                    <span class="material-symbols-outlined">other_houses</span>
+                                    <span class="material-symbols-outlined">home</span>
                                     <p>{lang:Home}</p>
                                 </div>
                                 <span class="material-symbols-outlined">arrow_forward</span>
@@ -1411,20 +1739,92 @@
                                 <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
                         </li>
-                        {/block:SubmissionsEnabled} 
+                        {/block:SubmissionsEnabled}
                         {block:HasPages}
                             {block:Pages}
-                                <li>
-                                    <a href="{URL}">
-                                        <div class="nav-left">
-                                            <i class=""></i>
-                                            <p>{Label}</p>
-                                        </div>
-                                        <span class="material-symbols-outlined">arrow_forward</span>
-                                    </a>
-                                </li>
+                            <li class="nav-page">
+                                <a href="{URL}">
+                                    <div class="nav-left">
+                                        <div class="no-icon"></div>
+                                        <p>{Label}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
                             {/block:Pages}
                         {/block:HasPages}
+                        {block:IfLink1Name}
+                            {block:IfLink1URL}
+                            <li>
+                                <a href="{text:Link 1 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink1Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 1 Symbol}</span>
+                                        {/block:IfLink1Symbol}
+                                        {block:IfNotLink1Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink1Symbol}
+                                        <p>{text:Link 1 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink1URL}
+                        {/block:IfLink1Name}
+                        {block:IfLink2Name}
+                            {block:IfLink2URL}
+                            <li>
+                                <a href="{text:Link 2 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink2Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 2 Symbol}</span>
+                                        {/block:IfLink2Symbol}
+                                        {block:IfNotLink2Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink2Symbol}
+                                        <p>{text:Link 2 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink2URL}
+                        {/block:IfLink2Name}
+                        {block:IfLink3Name}
+                            {block:IfLink3URL}
+                            <li>
+                                <a href="{text:Link 3 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink3Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 3 Symbol}</span>
+                                        {/block:IfLink3Symbol}
+                                        {block:IfNotLink3Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink3Symbol}
+                                        <p>{text:Link 3 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink3URL}
+                        {/block:IfLink3Name}
+                        {block:IfLink4Name}
+                            {block:IfLink4URL}
+                            <li>
+                                <a href="{text:Link 4 URL}" {block:IfOpenCustomLinksInANewTab}target="_blank" rel="noreferrer"{/block:IfOpenCustomLinksInANewTab}>
+                                    <div class="nav-left">
+                                        {block:IfLink4Symbol}
+                                        <span class="material-symbols-outlined">{text:Link 4 Symbol}</span>
+                                        {/block:IfLink4Symbol}
+                                        {block:IfNotLink4Symbol}
+                                        <div class="no-icon"></div>
+                                        {/block:IfNotLink4Symbol}
+                                        <p>{text:Link 4 Name}</p>
+                                    </div>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </li>
+                            {/block:IfLink4URL}
+                        {/block:IfLink4Name}
                     </ul>
                 </nav>
             </div>
@@ -1451,12 +1851,12 @@
                 {block:Posts}
                 
                 <article class="post post-{PostType}" id="{PostId}">
-                    <header>
+                    <header {block:IfStickyPostHeaders}class="sticky"{/block:IfStickyPostHeaders}>
                         {block:Date}
                         <div class="post-info">
 
                             <div class="post-meta">
-                                <a href="{Permalink}" title="{ShortDayOfWeek}, {DayOfMonth} {ShortMonth} {Year}">{TimeAgo}</a>
+                                <a href="{Permalink}" title="{lang:Posted on DayOfWeek DayOfMonth Month Year}">{TimeAgo}</a>
                                 {block:RebloggedFrom}
                                     <span class="material-symbols-outlined">cached</span>
                                     <a href="{ReblogParentURL}">{ReblogParentName}</a>
@@ -1476,10 +1876,10 @@
                     <div class="content">
                     
                         {block:Photo}
-                        <figure class="photo-info">
-                            <div class="photo-header">
+                        <div class="photo-info">
+                            <div class="photo-header{block:exif} exif-photo{/block:exif}">
                                 <figure 
-                                    class="featured-photo {block:HighRes}high-res{/block:HighRes}"
+                                    class="featured-photo{block:HighRes} high-res{/block:HighRes}"
                                     {block:HighRes}
                                     data-full-width="{PhotoWidth-HighRes}"
                                     data-full-height="{PhotoHeight-HighRes}"
@@ -1501,12 +1901,36 @@
                                     </figcaption>
                                     {/block:LinkURL}
                                 </figure>
-                                
+                                {block:exif}
+                                <div class="exif-info">
+                                    <ul>
+                                        {block:Camera}
+                                        <li>Camera: <a href="https://www.dpreview.com/search/?query={Camera}" target="_blank" rel="noreferrer">{Camera}</a></li>
+                                        {/block:Camera}
+                                        {block:FocalLength}
+                                        <li>Focal Length: {FocalLength}</li>
+                                        {/block:FocalLength}
+                                        {block:Exposure}
+                                        <li>Exposure: {Exposure}</li>
+                                        {/block:Exposure}
+                                        {block:Aperture}
+                                        <li>Aperture: {Aperture}</li>
+                                        {/block:Aperture}
+                                    </ul>
+                                    <div class="action-link">
+                                        <a href="https://www.cambridgeincolour.com/tutorials/camera-exposure.htm" class="material-symbols-outline" title="What is all of this information?">info</a>
+                                    </div>
+                                </div>
+                                {/block:exif}
                             </div>
-                            {block:NotReblog} 
-                            <figcaption class="post-caption">{Caption}</figcaption>
+                            {block:NotReblog}
+                            <div class="post-body">
+                                {block:Caption}
+                                {Caption}
+                                {/block:Caption}
+                            </div>
                             {/block:NotReblog}
-                        </figure>
+                        </div>
                         {/block:Photo}
 
                         {block:Photoset}
@@ -1695,6 +2119,12 @@
 
 
                     </div>
+                    {block:ContentSource}
+                    <div class="post-source">
+                        {lang:Source}:
+                        <a href="{SourceURL}" target="_blank" rel="noreferrer" title="{SourceTitle}">{SourceTitle}</a>
+                    </div>
+                    {/block:ContentSource}
     {block:Date}
                     <footer>
 
@@ -1815,8 +2245,8 @@
             <nav>
                 <ul>
                     {block:IfCopyrightYears}
-                    <li>
-                        &copy; {CopyrightYears}
+                    <li class="copyright">
+                        {CopyrightYears}
                     </li>
                     {block:IfCopyrightYears}
                     <li>
@@ -1825,10 +2255,16 @@
                     <li>
                         <a href="/archive">{lang:Archive}</a>
                     </li>
-
+                    {block:English}
                     <li>
-                        <a target="_blank" href="https://skyetrick-blockout.tumblr.com/">Credit</a>
+                        <a target="_blank" rel="noreferrer" href="https://skyetrick-blockout.tumblr.com/">Credit</a>
                     </li>
+                    {/block:English}
+                    {block:NotEnglish}
+                    <li>
+                        <a class="material-symbols-outlined" target="_blank" rel="noreferrer" href="https://skyetrick-blockout.tumblr.com/">code</a>
+                    </li>
+                    {/block:NotEnglish}
                 </ul>
             </nav>
         </footer>
@@ -1838,122 +2274,286 @@
 
         <!-- NPF Rendering -->
         <script>
-            // remove empty p tags
-            for (const p of document.querySelectorAll('p')) {
-                if (p.innerHTML.trim() === '') {
-                    p.remove()
+            (function() {
+                // remove empty p tags
+                for (const p of document.querySelectorAll('p')) {
+                    if (p.innerHTML.trim() === '') {
+                        p.remove()
+                    }
                 }
-            }
-            // create posts array
-            let posts = [];
-            {block:Posts}
-                posts.push({ npf: JSON.parse({JSNPF}), id: {JSPostId}});
-            {/block:Posts}
-            
-            function updateTypes(type, article) {
-                article.classList.remove('post-text');
-                const postName = "post-" + type;
-                article.classList.add(postName, 'npf-post');
-            }
-            
-            for (const post of posts) {
-                let npf = post.npf;
-                let article = document.getElementById(`${post.id}`);
-
-                let content = article.querySelector(".content");
-                const photoCandidate = false;
-                if (content != null && article.classList.contains('post-text')) {
-                    switch(npf.trail[0]?.content[0]?.type ?? npf.content[0].type) {
-                        case 'image':
-                            if (article.querySelector(".npf_row")) {
-                                const parent = content.querySelectorAll(".npf_row")[0].parentElement;
-                                const elements = [];
-                                const photoset = document.createElement("div");
-                                photoset.classList.add("photoset");
-                                content.prepend(photoset);
-
-                                let current = parent.firstElementChild;
-
-                                // gather all of the photoset items in the first row; break when there's not one.
-                                while(current?.classList.contains("npf_row")) {
-                                    elements.push(current);
-                                    current = current.nextElementSibling;
-                                }
-                                
-                                photoset.append(...elements);
-
-                                // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
-                                if (photoset.querySelectorAll('.npf_col').length > 1) {
-                                    updateTypes('photoset', article);
-                                }
-                                else {
-                                    updateTypes('photo', article);
-                                }
-
-                                // clean up any potential stray reblog headers
-                                let reblogHeader = article.querySelector('.reblog-header')
-                                let reblogBody = article.querySelector('.reblog-body')
-                                if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
-                                    reblogHeader.remove()
-                                    reblogBody.remove()
-                                }
+                // create posts array
+                const posts = [];
+                {block:Posts}
+                posts.push({ npf: {NPF}, id: "{PostId}"});
+                {/block:Posts}
+                
+                function updateTypes(type, article) {
+                    article.classList.remove('post-text');
+                    const postName = "post-" + type;
+                    article.classList.add(postName, 'npf-post');
+                }
+                
+                function cleanupPost(article) {
+                    const postBody = article.querySelector('.post-body');
+                    if (postBody && postBody.innerHTML.trim() === '') {
+                        postBody.remove();
+                    }
+                    
+                    // clean up any potential stray reblog headers
+                    let reblogHeader = article.querySelector('.reblog-header')
+                    let reblogBody = article.querySelector('.reblog-body')
+                    if (reblogHeader?.nextElementSibling === reblogBody && reblogBody?.childElementCount === 0) {
+                        reblogHeader.remove()
+                        reblogBody.remove()
+                    }
+                    
+                    // clean up any potential stray captions
+                    let captions = article.querySelectorAll('figcaption');
+                    for (const caption of captions) {
+                        if (caption.innerHTML.trim() === '') {
+                            caption.remove();
+                        }
+                    }
+                }
+                
+                {block:IfShowAdditionalPhotoInfo}
+                function handlePhotos(photoset, postContent) {
+                    const photos = photoset.querySelectorAll('.npf_col');
+                    
+                    photos.forEach((photo, index) => {
+                        const content = postContent[index];
+                        
+                        // checks for exif content
+                        const {exif, attribution} = content;
+                        if (exif) {
+                            const {
+                                Aperture,
+                                aperture,
+                                CameraMake,
+                                cameramake,
+                                CameraModel,
+                                cameramodel,
+                                ExposureTime,
+                                exposuretime,
+                                FocalLength,
+                                focallength
+                            } = exif
+                            
+                            photo.classList.add('exif-photo');
+                            const exifFigure = photo.querySelector('figure');
+                            exifFigure.classList.add('exif-figure');
+                            const exifWrapper = document.createElement('div');
+                            exifWrapper.classList.add('exif-info');
+                            const exifList = document.createElement('ul');
+                            
+                            const cameraName = (cameramake ?? CameraMake ?? '') + ' ' + (cameramodel ?? CameraModel ?? '');
+                            if (cameraName.trim()) {
+                                const link = document.createElement('a');
+                                link.innerText = cameraName;
+                                const href = 'https://www.dpreview.com/search/?query=' + cameraName;
+                                link.href = href;
+                                const cameraItem = document.createElement('li');
+                                cameraItem.innerText = 'Camera: '
+                                cameraItem.append(link);
+                                exifList.append(cameraItem);
                             }
+                            
+                            const focalLength = focallength ?? FocalLength;
+                            if (focalLength) {
+                                const focalItem = document.createElement('li');
+                                focalItem.innerText = "Focal Length: " + focalLength;
+                                exifList.append(focalItem);
+                            }
+                            
+                            const exposureTime = exposuretime ?? ExposureTime;
+                            if (exposureTime) {
+                                const exposureItem = document.createElement('li');
+                                exposureItem.innerText = "Exposure: " + exposureTime;
+                                exifList.append(exposureItem);
+                            }
+                            
+                            const camAperture = aperture ?? Aperture;
+                            if (camAperture) {
+                                const apertureItem = document.createElement('li');
+                                apertureItem.innerText = "Aperture: " + camAperture;
+                                exifList.append(apertureItem);
+                            }
+
+                            if (exifList.childElementCount) {
+                                exifWrapper.append(exifList);
+                                const actionDiv = document.createElement('div');
+                                actionDiv.classList.add('action-link');
+                                actionDiv.innerHTML = '<a href="https://www.cambridgeincolour.com/tutorials/camera-exposure.htm" class="material-symbols-outlined" title="What is all of this information?">info</a>';
+                                exifWrapper.append(actionDiv);
+                                photo.append(exifWrapper);
+                            } else {
+                                exifList.remove();
+                                exifWrapper.remove();
+                            }
+                        }
+                        
+                        if (attribution && attribution.type === 'link') {
+                            photo.classList.add('with-click-through');
+                            const figure = photo.querySelector('figure');
+                            const attrElement = document.createElement('div');
+                            attrElement.classList.add('click-through');
+                            const anchor = document.createElement('a');
+                            anchor.innerText = attribution.url;
+                            anchor.href = attribution.url;
+                            attrElement.append(anchor);
+                            figure.append(attrElement);
+                        }
+                    });
+                }
+                {/block:IfShowAdditionalPhotoInfo}
+                
+                
+                for (const {npf, id} of posts) {
+                    const article = document.getElementById(id);
+                    if (article === null) continue;
+                    if (!article.classList.contains('post-text')) continue;
+                    
+                    const content = article?.querySelector(".content");
+                    if (!content === null) continue;
+    
+                    const postContent = npf.trail[0]?.content?.length ? npf.trail[0].content : npf.content;
+                    
+                    const type = postContent[0]?.type;
+                    const subtype = postContent[0]?.subtype;
+                    switch(type) {
+                        case 'image':
+                            const parent = content.querySelector('.npf_row')?.parentElement;
+                            const elements = [];
+    
+                            // gather all of the beginning rows of the photoset
+                            let current = parent?.firstElementChild;
+                            while(current?.classList.contains("npf_row")) {
+                                elements.push(current);
+                                current = current.nextElementSibling;
+                            }
+                            
+                            if (elements.length === 0) continue;
+                            
+                            const photoset = document.createElement("div");
+                            photoset.classList.add("photoset");
+                            photoset.append(...elements);
+                            content.prepend(photoset);
+                            
+                            // set post type to photoset if there are multiple photos in the photoset; otherwise, it's a singular photo
+                            const newType = photoset.querySelectorAll('.npf_col').length > 1 ? 'photoset' : 'photo';
+                            updateTypes(newType, article);
+                            {block:IfShowAdditionalPhotoInfo}
+                            handlePhotos(photoset, postContent);
+                            {/block:IfShowAdditionalPhotoInfo}
+                            cleanupPost(article);
                             break;
                         case 'video':
                             updateTypes('video', article);
                             let video = article.querySelector('figure');
-                            content.prepend(video);
+                            if (video) {
+                                video.classList.add('featured-video');
+                                content.prepend(video);
+                            }
+                            cleanupPost(article);
                             break;
                         case 'link':
                             updateTypes('link', article);
+                            const link = content.querySelector('.npf-link-block');
+                            if (link) {
+                                link.classList.add('featured-link');
+                                content.prepend(link);
+                            }
+                            cleanupPost(article);
                             break;
                         case 'audio':
                             updateTypes('audio', article);
+                            let audio = article.querySelector('figure');
+                            if (audio) {
+                                audio.classList.add('featured-audio');
+                                content.prepend(audio);
+                            }
+                            cleanupPost(article);
                             break;
-                        case 'quote':
-                            updateTypes('quote', article);
+                        default: // 'text'
+                            if (subtype === 'quote') {
+                                updateTypes('quote', article);
+                            }
                     }
                 }
-            }
+            })()
         </script>
 
+        {block:HasPages}
+        {block:IfPageIcons}
         <script>
-            const trending = document.querySelectorAll(".trending")
+            (function() {
+                const pages = document.querySelectorAll(".nav-page");
+                if (pages.length === 0) return;
+                
+                const pageIcons = "{text:Page Icons}".split(',');
+                const pageIconList = pageIcons.map((icon) => icon.trim());
+                
+                function setPageIcon(page, icon) {
+                    if (!(page && icon)) return;
+                    const element = page.querySelector('.no-icon');
+                    if (!element) return;
+                    
+                    if (element.classList.replace('no-icon', 'material-symbols-outlined')) {
+                        element.innerText = icon;
+                    }
+                }
+                
+                pageIconList.forEach((icon, index) => {
+                    setPageIcon(pages[index], icon);
+                });
+            })();
+        </script>
+        {/block:IfPageIcons}
+        {/block:HasPages}
 
-            function setTags(tagString) {
-                if(tagString === "") return []
-                let list = tagString.split(',')
-                list = list.map((item) => item.trimStart().trimEnd())
-                return list
-            }
-            const guestTags = setTags("{text:Guest Tags}")
-            const mainTags = setTags("{text:Main Tags}")        
-            function createTrend(trendText, trend) {
-                const a = document.createElement("a")
-                a.href = "/tagged/" + trendText
-                const name = document.createElement("h3")
-                name.innerText = trendText
-                const seeTags = document.createElement("h4")
-                seeTags.innerText = "see tags"
-                a.appendChild(name)
-                a.appendChild(seeTags)
+        {block:IfShowSidebar}
+        <!-- tags setting script -->
+        <script>
+            (function() {
+                const trending = document.querySelectorAll(".trending")
+                if (trending.length === 0) {
+                    return;
+                }
+    
+                function setTags(tagString) {
+                    if(tagString === "") return []
+                    let list = tagString.split(',')
+                    list = list.map((item) => item.trimStart().trimEnd())
+                    return list
+                }
+                const guestTags = setTags("{text:Guest Tags}")
+                const mainTags = setTags("{text:Main Tags}")        
+                function createTrend(trendText, trend) {
+                    const a = document.createElement("a")
+                    a.href = "/tagged/" + trendText
+                    const name = document.createElement("h3")
+                    name.innerText = trendText
+                    const seeTags = document.createElement("h4")
+                    seeTags.innerText = "see tags"
+                    a.appendChild(name)
+                    a.appendChild(seeTags)
+                    
+                    trend.querySelector(".trend-tags").appendChild(a)
+                    return a
+                }
+                if(guestTags.length === 0) {
+                    trending[0].style.display = "none"
+                }
+                else {
+                    guestTags.forEach((tag) => createTrend(tag, trending[0]))
+                }
                 
-                trend.querySelector(".trend-tags").appendChild(a)
-                return a
-            }
-            if(guestTags.length === 0) {
-                trending[0].style.display = "none"
-            }
-            else {
-                guestTags.forEach((tag) => createTrend(tag, trending[0]))
-            }
-            
-            if(mainTags.length === 0) {
-                trending[1].style.display = "none"
-            }
-            else
-                mainTags.forEach((tag) => createTrend(tag, trending[1]))
-                
+                if(mainTags.length === 0) {
+                    trending[1].style.display = "none";
+                }
+                else
+                    mainTags.forEach((tag) => createTrend(tag, trending[1]));
+            })();
         </script>
 
         <!--Menu Toggle-->
@@ -1978,6 +2578,7 @@
                 })
             })
         </script>
+        {/block:IfShowSidebar}
 
         <!-- Minified functions for lightboxes and photosets-->
         <script src="https://static.tumblr.com/7ijwq6x/CPWrlisng/functions1.min.js"></script>
@@ -1989,38 +2590,6 @@
                 $(".slideshow").each(setPhotosetLayout);
                 $(".slideshow .image").click(startSlideshow);
             });
-        </script>
-
-        <script>
-            const body = document.querySelector("body")
-            
-            function callback(mutationsList, observer) {
-                mutationsList.forEach(function(mutation) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                // handle class change
-                const pushdown = "tmblr-iframe-pushdown"
-                if (mutation.target.className.includes(pushdown) && screen.width > 700)
-                {
-                    body.style.paddingTop = "0px";
-                    body.querySelector(".information").classList.add(pushdown)
-                    body.querySelector(".footer").classList.add(pushdown)
-                }
-                }
-                })
-
-            }
-            
-            const mutationObserver = new MutationObserver(callback)
-            mutationObserver.observe(body, {attributes:true});
-        </script>
-
-        <script>
-            // remove empty p tags
-            for (const p of document.querySelectorAll('p')) {
-                if (p.innerHTML.trim() === '') {
-                    p.remove();
-                }
-            }
         </script>
 
         <noscript>This page requires JavaScript.</noscript>
